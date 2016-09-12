@@ -1,0 +1,5 @@
+dev-libs/efl
+media-libs/elementary
+media-plugins/emotion_generic_players
+x11-wm/enlightenment
+media-plugins/evas_generic_loaders
