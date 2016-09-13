@@ -2,6 +2,16 @@
 
 Enlightenment WM latest stable version and live ebuilds
 
+## Usage
+
+Add repository using layman.
+
+    layman -a enlightenment-live
+
+Install the latest enlightennment git master.
+
+    emerge -av =x11-wm/enlightenment-core-9999
+
 ## Package ebuild admission guidelines
 
 Package ebuilds eligible for this overlay:
