@@ -10,7 +10,7 @@ Add repository using layman.
 
 Install the latest enlightennment git master.
 
-    emerge -av =x11-wm/enlightenment-core-9999
+    emerge -av @enlightenment-core-9999
 
 ## Package ebuild admission guidelines
 
