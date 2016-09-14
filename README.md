@@ -8,7 +8,7 @@ Add repository using layman.
 
     layman -a enlightenment-live
 
-Install the latest enlightennment git master.
+Install the latest enlightenment git master.
 
     emerge -av @enlightenment-core-9999
 
