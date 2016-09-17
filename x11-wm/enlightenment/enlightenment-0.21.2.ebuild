@@ -55,7 +55,7 @@ RDEPEND="
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
 	)
-	>=dev-libs/efl-1.18.0[X]
+	>=dev-libs/efl-1.18.1[X]
 	x11-libs/xcb-util-keysyms"
 DEPEND="${RDEPEND}"
 
@@ -93,7 +93,7 @@ src_configure() {
 	check_modules
 
 	E_ECONF=(
-		--disable-install-sysactions
+		#--disable-install-sysactions
 		$(use_enable doc)
 		$(use_enable nls)
 		$(use_enable pam)
