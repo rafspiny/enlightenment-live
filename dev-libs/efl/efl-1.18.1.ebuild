@@ -101,13 +101,11 @@ RDEPEND="
 		x11-libs/libXScrnSaver
 
 		opengl? (
-			x11-libs/libX11
 			x11-libs/libXrender
 			virtual/opengl
 		)
 
 		gles? (
-			x11-libs/libX11
 			x11-libs/libXrender
 			virtual/opengl
 		)
@@ -234,7 +232,6 @@ src_configure() {
 		$(use_enable sdl)
 		$(use_enable sound audio)
 		$(use_enable systemd)
-		$(use_enable tga image-loader-tga)
 		$(use_enable tiff image-loader-tiff)
 		$(use_enable tslib)
 		#$(use_enable udisk udisk-mount)
