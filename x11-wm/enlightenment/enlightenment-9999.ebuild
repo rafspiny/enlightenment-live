@@ -14,30 +14,30 @@ EGIT_REPO_URI="git://git.enlightenment.org/core/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
-SLOT="0.17/0.20"
+SLOT="0.17/${PV%%_*}"
 
 E_MODULES_DEFAULT=(
 	conf-applications conf-bindings conf-dialogs conf-display conf-interaction
 	conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves
 	conf-theme conf-window-manipulation conf-window-remembers
 
-	appmenu backlight battery bluez4 clock connman contact cpufreq everything
-	fileman fileman-opinfo gadman ibar ibox lokker mixer msgbus music-control
-	notification pager pager16 quickaccess shot start syscon systray tasks
+	appmenu backlight battery bluez4 clock conf connman contact cpufreq everything
+	fileman fileman-opinfo gadman geolocation ibar ibox lokker mixer msgbus music-control
+	notification pager packagekit pager-plain quickaccess shot start syscon systray tasks time 
 	teamwork temperature tiling winlist wizard xkbswitch
+	wl-weekeyboard wl-wl wl-x11
 )
 E_MODULES=(
-	access packagkit wl-desktop-shell wl-drm wl-fb wl-x11
+	packagekit #wl-desktop-shell wl-drm wl-fb wl-x11
 )
 IUSE_E_MODULES=(
 	"${E_MODULES_DEFAULT[@]/#/+enlightenment_modules_}"
 	"${E_MODULES[@]/#/enlightenment_modules_}"
 )
-IUSE="doc +eeze egl nls pam pm-utils static-libs systemd ukit wayland ${IUSE_E_MODULES[@]}"
+IUSE="doc +eeze egl nls pam pm-utils static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]}"
 
 RDEPEND="
 	>=dev-libs/efl-1.10.0[X,egl?,wayland?]
-	>=media-libs/elementary-1.10.0
 	virtual/udev
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
@@ -63,15 +63,15 @@ src_prepare() {
 src_configure() {
 	local config=(
 		--disable-simple-x11
-		--disable-wayland-only
+		#--disable-wayland-only
 
 		--enable-conf
 		--enable-device-udev # instead of hal
-		--enable-enotify
+		#--enable-enotify
 		--enable-files
 		--enable-install-enlightenment-menu
 		--enable-install-sysactions
-
+	
 		$(use_enable doc)
 		$(use_enable egl wayland-egl)
 		$(use_enable nls)
@@ -80,7 +80,8 @@ src_configure() {
 		$(use_enable systemd)
 		$(use_enable ukit mount-udisks)
 		$(use_enable eeze mount-eeze)
-		$(use_enable wayland wayland-clients)
+		$(use_enable wayland wayland)
+		#$(use_enable wayland wayland-clients)
 	)
 
 	local i
@@ -89,7 +90,7 @@ src_configure() {
 	done
 
 	if use wayland; then
-		config+=( --enable-enlightenment_modules_wl-desktop-shell )
+		config+=( --enable-enlightenment_modules_wl-desktop-shell --enable-wl-x11 --enable-wl-wl --enable-wl-drm --enable-wl-text-input --enable-wl-weekeyboard)
 	fi
 
 	econf "${config[@]}"
