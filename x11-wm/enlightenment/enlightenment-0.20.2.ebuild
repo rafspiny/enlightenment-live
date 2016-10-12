@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -27,7 +27,7 @@ E_MODULES_DEFAULT=(
 	teamwork temperature tiling winlist wizard xkbswitch
 )
 E_MODULES=(
-	access packagkit wl-desktop-shell wl-drm wl-fb wl-x11
+	access packagekit wl-desktop-shell wl-drm wl-fb wl-x11
 )
 IUSE_E_MODULES=(
 	"${E_MODULES_DEFAULT[@]/#/+enlightenment_modules_}"

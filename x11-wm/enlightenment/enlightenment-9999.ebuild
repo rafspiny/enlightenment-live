@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -23,7 +23,7 @@ E_MODULES_DEFAULT=(
 
 	appmenu backlight battery bluez4 clock conf connman contact cpufreq everything
 	fileman fileman-opinfo gadman geolocation ibar ibox lokker mixer msgbus music-control
-	notification pager packagekit pager-plain quickaccess shot start syscon systray tasks time 
+	notification pager packagekit pager-plain quickaccess shot start syscon systray tasks time
 	teamwork temperature tiling winlist wizard xkbswitch
 	wl-weekeyboard wl-wl wl-x11
 )
@@ -71,7 +71,7 @@ src_configure() {
 		--enable-files
 		--enable-install-enlightenment-menu
 		--enable-install-sysactions
-	
+
 		$(use_enable doc)
 		$(use_enable egl wayland-egl)
 		$(use_enable nls)

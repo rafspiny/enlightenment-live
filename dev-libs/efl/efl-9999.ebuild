@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="5"
 
@@ -39,7 +39,7 @@ COMMON_DEP="
 	dev-lang/luajit:2
 	sys-apps/dbus
 	sys-libs/zlib
-	virtual/jpeg
+	virtual/jpeg:*
 	virtual/udev
 	X? (
 		x11-libs/libX11
@@ -68,9 +68,9 @@ COMMON_DEP="
 	fontconfig? ( media-libs/fontconfig )
 	fribidi? ( dev-libs/fribidi )
 	gif? ( media-libs/giflib )
-	glib? ( dev-libs/glib )
+	glib? ( dev-libs/glib:* )
 	gnutls? ( net-libs/gnutls )
-	!gnutls? ( ssl? ( dev-libs/openssl ) )
+	!gnutls? ( ssl? ( dev-libs/openssl:* ) )
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
@@ -83,7 +83,7 @@ COMMON_DEP="
 	oldlua? ( dev-lang/lua:* )
 	physics? ( sci-physics/bullet )
 	pixman? ( x11-libs/pixman )
-    postscript? ( app-text/libspectre:* )
+	postscript? ( app-text/libspectre:* )
 	png? ( media-libs/libpng:0= )
 	pulseaudio? (
 		media-sound/pulseaudio
@@ -236,7 +236,7 @@ src_configure() {
 		--enable-image-loader-jpeg # required by ethumb
 		--enable-image-loader-tga
 		--enable-image-loader-wbmp
-		
+
 		--enable-cserve
 		--enable-libmount
 		--enable-threads
