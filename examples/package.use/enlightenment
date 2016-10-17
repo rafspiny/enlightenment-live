@@ -1,0 +1,2 @@
+dev-libs/efl X drm opengl -egl -gles glib sound pulseaudio drm ibus tslib udisk
+x11-wm/enlightenment ukit

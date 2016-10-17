@@ -29,3 +29,6 @@ Additional requirements for each ebuild.
     must be taken to keep it buildable in the long term.
 
 Package ebuilds that are not buildable should be either fixed or removed.
+
+Note that in the **examples** directory you can find package.keywords and package.use enlightenment files to use.
+You can simple link to this files from /etc/portage/package.use/ and from /etc/portage/package.keywords/
