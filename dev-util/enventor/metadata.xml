@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment Window Manager.</description>
+	</maintainer>
+	<longdescription>nventor, which is also known as EDC (Edje Data Collections) Editor, is a EDC script editor tool that supports text editing and previewing functions for the EDC source code. See http://www.enlightenment.org/about-enventor</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
