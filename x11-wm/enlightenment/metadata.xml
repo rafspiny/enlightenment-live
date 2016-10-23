@@ -20,7 +20,6 @@
 		<flag name="enlightenment_modules_bluez4">Configure Bluetooth devices</flag>
 		<flag name="enlightenment_modules_clock">Nice clock gadget to show current time</flag>
 		<flag name="enlightenment_modules_connman">Control Wifi and wired networks as a user</flag>
-		<flag name="enlightenment_modules_contact">Contect module</flag>
 		<flag name="enlightenment_modules_cpufreq">Gadget to monitor and change the CPU frequency</flag>
 		<flag name="enlightenment_modules_everything">The run command module provides an application launcher dialog</flag>
 		<flag name="enlightenment_modules_fileman">Enlightenment's integrated file manager</flag>
