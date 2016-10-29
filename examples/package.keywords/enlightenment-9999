@@ -2,3 +2,5 @@
 =x11-wm/enlightenment-9999 **
 =x11-terms/terminology-9999 **
 =dev-libs/efl-9999 **
+# Needed for the apps
+=dev-python/python-efl-9999 **
