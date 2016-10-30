@@ -6,7 +6,7 @@ EAPI=5
 PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
 
 inherit eutils distutils-r1
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment torrent client"
 HOMEPAGE="http://www.enlightenment.org/about-epour"

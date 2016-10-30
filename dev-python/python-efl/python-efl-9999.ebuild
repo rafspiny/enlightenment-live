@@ -10,7 +10,7 @@ PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
 #PYTHON_COMPAT=( python{3_2,3_3} pypy2_0 )
 
 inherit eutils distutils-r1
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="http://www.enlightenment.org/about-epour"
