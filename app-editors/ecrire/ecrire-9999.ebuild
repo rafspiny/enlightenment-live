@@ -15,7 +15,7 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="doc nls static-libs"
+IUSE=""
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
@@ -25,7 +25,6 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
-	#eautoreconf
 	mkdir build
 	cd build
 	cmake-utils_src_prepare
@@ -33,12 +32,6 @@ src_prepare() {
 
 src_configure() {
 	cmake-utils_src_configure
-	#local config=(
-	#	$(use_enable nls)
-	#	$(use_enable static-libs static)
-	#)
-
-	#econf "${config[@]}"
 }
 
 src_install() {

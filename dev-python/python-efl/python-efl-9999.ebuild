@@ -7,7 +7,6 @@ E_PKG_IUSE="examples"
 E_PYTHON="yes"
 
 PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
-#PYTHON_COMPAT=( python{3_2,3_3} pypy2_0 )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3

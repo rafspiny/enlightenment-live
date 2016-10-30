@@ -17,7 +17,6 @@ LICENSE="BSD-2"
 SLOT="0"
 
 IUSE=""
-# =dev-python/python-efl[${PYTHON_USEDEP}]
 RDEPEND="dev-python/python-distutils-extra
 		>=dev-libs/efl-1.15.0
 		=dev-python/python-efl-9999
