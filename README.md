@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rafspiny/enlightenment-live.svg?branch=master)](https://travis-ci.org/rafspiny/enlightenment-live)
+
 # enlightenment-live
 
 Enlightenment WM latest stable version and live ebuilds
@@ -30,5 +32,6 @@ Additional requirements for each ebuild.
 
 Package ebuilds that are not buildable should be either fixed or removed.
 
-Note that in the **examples** directory you can find package.keywords and package.use enlightenment files to use.
+
+**Note** that in the **examples** directory you can find package.keywords and package.use enlightenment files to use.
 You can simple link to this files from /etc/portage/package.use/ and from /etc/portage/package.keywords/
