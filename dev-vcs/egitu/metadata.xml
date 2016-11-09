@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Egitu - EFL Git client.</description>
+	</maintainer>
+	<longdescription>Theis client is written using the python bindings for EFL.</longdescription>
+</pkgmetadata>
