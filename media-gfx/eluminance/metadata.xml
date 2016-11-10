@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>EFL fast image browser.</description>
+	</maintainer>
+	<longdescription>Another photo browser focused on speed and based on EFL. More info at https://github.com/DaveMDS/eluminance</longdescription>
+</pkgmetadata>
