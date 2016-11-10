@@ -21,9 +21,9 @@ E_MODULES_DEFAULT=(
 	conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves
 	conf-theme conf-window-manipulation conf-window-remembers
 
-	appmenu backlight battery bluez4 clock conf connman contact cpufreq everything
+	appmenu backlight battery bluez4 clock conf connman cpufreq everything
 	fileman fileman-opinfo gadman geolocation ibar ibox lokker mixer msgbus music-control
-	notification pager packagekit pager-plain quickaccess shot start syscon systray tasks time
+	notification pager pager-plain quickaccess shot start syscon systray tasks time
 	teamwork temperature tiling winlist wizard xkbswitch
 	wl-weekeyboard wl-wl wl-x11
 )

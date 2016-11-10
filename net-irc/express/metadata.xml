@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment IRC client.</description>
+	</maintainer>
+	<longdescription>The Enlightenment IRC client based on EFL. See http://www.enlightenment.org</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
