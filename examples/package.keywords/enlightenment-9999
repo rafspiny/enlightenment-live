@@ -17,4 +17,4 @@
 # required by net-p2p/epour-9999::enlightenment-live
 # required by epour (argument)
 =net-libs/rb_libtorrent-1.0.10 ~amd64
-
+=net-misc/econnman-9999 **

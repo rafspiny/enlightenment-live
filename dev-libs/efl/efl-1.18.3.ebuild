@@ -25,7 +25,6 @@ DESCRIPTION="Enlightenment Foundation Libraries all-in-one package"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 IUSE="+bmp debug drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua opengl ssl physics pixman +png +ppm postscript +psd pulseaudio rawphoto scim sdl sound systemd tga tiff tslib v4l valgrind wayland webp X xim xine xpm"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x64-solaris"
-
 REQUIRED_USE="
 	pulseaudio?	( sound )
 	opengl?		( || ( X sdl wayland ) )
@@ -101,13 +100,11 @@ RDEPEND="
 		x11-libs/libXScrnSaver
 
 		opengl? (
-			x11-libs/libX11
 			x11-libs/libXrender
 			virtual/opengl
 		)
 
 		gles? (
-			x11-libs/libX11
 			x11-libs/libXrender
 			virtual/opengl
 		)
@@ -115,6 +112,7 @@ RDEPEND="
 	xine? ( >=media-libs/xine-lib-1.1.1 )
 	xpm? ( x11-libs/libXpm )
 
+	gnome-base/librsvg
 	sys-apps/dbus
 	>=sys-apps/util-linux-2.20.0
 	sys-libs/zlib
@@ -234,7 +232,6 @@ src_configure() {
 		$(use_enable sdl)
 		$(use_enable sound audio)
 		$(use_enable systemd)
-		$(use_enable tga image-loader-tga)
 		$(use_enable tiff image-loader-tiff)
 		$(use_enable tslib)
 		#$(use_enable udisk udisk-mount)
@@ -248,6 +245,7 @@ src_configure() {
 		--enable-cserve
 		--enable-image-loader-generic
 		--enable-image-loader-jpeg
+		--enable-image-loader-svg
 
 		#--disable-eeze-mount
 		--disable-tizen
