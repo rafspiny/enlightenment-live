@@ -9,11 +9,16 @@ E_PYTHON="yes"
 PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
 
 inherit eutils distutils-r1
-[ "${PV}" = 9999 ] && inherit git-r3
+# inherit git-r3
+# http://download.enlightenment.org/rel/bindings/python/python-efl-1.18.0.tar.gz
 
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="http://www.enlightenment.org/about-epour"
-EGIT_REPO_URI="git://git.enlightenment.org/bindings/python/${PN}.git"
+if [[ "${PV}" == "9999" ]] ; then
+	EGIT_REPO_URI="git://git.enlightenment.org/bindings/python/${PN}.git"
+else
+	SRC_URI="http://download.enlightenment.org/rel/bindings/python/${PN}-${PV}.tar.gz"
+fi
 
 LICENSE="LGPL-2.1"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
