@@ -26,7 +26,6 @@
 		<flag name="ppm">Enable PMAPS image loader</flag>
 		<flag name="psd">Enable PSD image loader</flag>
 		<flag name="scim">Enable Smart Common Input Method</flag>
-		<flag name="svg">Enable SVG for generic evas oader</flag>
 		<flag name="tga">Enable Tga image loader</flag>
 		<flag name="tiff">Enable TIFF image loader</flag>
 		<flag name="tslib">Enable <pkg>x11-libs/tslib</pkg> for touchscreen events</flag>
