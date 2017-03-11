@@ -36,8 +36,9 @@ IUSE_E_MODULES=(
 )
 IUSE="doc +eeze egl nls pam pm-utils static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]}"
 
+ # maybe even dev-libs/wlc for wayland USE flag
 RDEPEND="
-	>=dev-libs/efl-1.10.0[X,egl?,wayland?]
+	>=dev-libs/efl-9999[X,egl?,wayland?]
 	virtual/udev
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
@@ -48,6 +49,7 @@ RDEPEND="
 	systemd? ( sys-apps/systemd )
 	wayland? (
 		>=dev-libs/wayland-1.3.0
+		>=dev-libs/weston-1.11.0
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
 	)"
