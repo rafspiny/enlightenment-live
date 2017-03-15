@@ -243,7 +243,7 @@ src_configure() {
 		--enable-image-loader-generic
 		--enable-image-loader-ico
 		--enable-image-loader-jpeg # required by ethumb
-		$(use_enable svg image-loader-svg) # Is should be required by default
+		$(use_enable svg librsvg)
 		--enable-image-loader-tga
 		--enable-image-loader-wbmp
 
@@ -252,11 +252,11 @@ src_configure() {
 		--enable-threads
 		--enable-xinput22
 
-		--disable-gesture
 		--disable-gstreamer # using gstreamer1
 		#--disable-lua-old
 		--disable-multisense
 		--disable-tizen
+		--disable-gesture
 		#--disable-xinput2
 		#--enable-xinput2 # enable it
 		--enable-elput

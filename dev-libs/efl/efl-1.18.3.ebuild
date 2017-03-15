@@ -245,7 +245,7 @@ src_configure() {
 		--enable-cserve
 		--enable-image-loader-generic
 		--enable-image-loader-jpeg
-		$(use_enable svg image-loader-svg)
+		$(use_enable svg librsvg)
 
 		#--disable-eeze-mount
 		--disable-tizen
