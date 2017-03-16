@@ -16,7 +16,7 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua nls +opengl ssl physics pixman +png +ppm postscript psd pulseaudio rawphoto scim sdl sound static-libs systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
+IUSE="+X avahi +bmp cxx-bindings debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua nls +opengl ssl physics pixman +png +ppm postscript psd pulseaudio rawphoto scim sdl sound static-libs +svg systemd test tga tiff tslib v4l2 vlc wayland webp xim xine xpm"
 
 REQUIRED_USE="
 	pulseaudio?	( sound )
@@ -94,6 +94,8 @@ COMMON_DEP="
 	sdl? (
 		>=media-libs/libsdl2-2.0.0:0[opengl?,gles?]
 	)
+
+	svg? ( gnome-base/librsvg )
 	sound? ( media-libs/libsndfile )
 	systemd? ( sys-apps/systemd )
 	tiff? ( media-libs/tiff:0 )
@@ -241,6 +243,7 @@ src_configure() {
 		--enable-image-loader-generic
 		--enable-image-loader-ico
 		--enable-image-loader-jpeg # required by ethumb
+		$(use_enable svg librsvg)
 		--enable-image-loader-tga
 		--enable-image-loader-wbmp
 
@@ -249,11 +252,11 @@ src_configure() {
 		--enable-threads
 		--enable-xinput22
 
-		--disable-gesture
 		--disable-gstreamer # using gstreamer1
 		#--disable-lua-old
 		--disable-multisense
 		--disable-tizen
+		--disable-gesture
 		#--disable-xinput2
 		#--enable-xinput2 # enable it
 		--enable-elput
