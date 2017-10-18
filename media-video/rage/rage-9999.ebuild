@@ -9,7 +9,7 @@ inherit eutils
 
 DESCRIPTION="This is a Video + Audio player mplayer style, based on EFL"
 HOMEPAGE="https://www.enlightenment.org/about-rage"
-EGIT_REPO_URI="git://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
 LICENSE="BSD-2"

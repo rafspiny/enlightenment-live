@@ -13,7 +13,7 @@ inherit eutils distutils-r1
 
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="http://www.enlightenment.org/about-epour"
-EGIT_REPO_URI="git://git.enlightenment.org/bindings/python/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/bindings/python/${PN}.git"
 
 LICENSE="LGPL-2.1"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
