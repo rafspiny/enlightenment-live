@@ -9,7 +9,7 @@ inherit eutils
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="http://www.enlightenment.org/"
-EGIT_REPO_URI="git://git.enlightenment.org/core/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
 LICENSE="BSD-2"

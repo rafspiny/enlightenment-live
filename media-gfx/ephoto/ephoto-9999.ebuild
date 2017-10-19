@@ -9,7 +9,7 @@ inherit eutils
 
 DESCRIPTION="Enlightenment image viewer built on the EFL."
 HOMEPAGE="http://www.enlightenment.org/about-ephoto"
-EGIT_REPO_URI="git://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"

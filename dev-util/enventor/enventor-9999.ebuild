@@ -10,7 +10,7 @@ inherit eutils l10n
 DESCRIPTION="EFL Dynamic EDC edtiro"
 #HOMEPAGE="http://www.enlightenment.org/"
 HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
-EGIT_REPO_URI="git://git.enlightenment.org/tools/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"

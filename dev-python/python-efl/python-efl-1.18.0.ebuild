@@ -15,7 +15,7 @@ inherit eutils distutils-r1
 DESCRIPTION="Python bindings for EFL"
 HOMEPAGE="http://www.enlightenment.org/about-epour"
 if [[ "${PV}" == "9999" ]] ; then
-	EGIT_REPO_URI="git://git.enlightenment.org/bindings/python/${PN}.git"
+	EGIT_REPO_URI="https://git.enlightenment.org/bindings/python/${PN}.git"
 else
 	SRC_URI="http://download.enlightenment.org/rel/bindings/python/${PN}-${PV}.tar.gz"
 fi
