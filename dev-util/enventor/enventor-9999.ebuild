@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -8,7 +7,7 @@ inherit eutils l10n
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="EFL Dynamic EDC edtiro"
-#HOMEPAGE="http://www.enlightenment.org/"
+#HOMEPAGE="https://www.enlightenment.org/"
 HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
 EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
