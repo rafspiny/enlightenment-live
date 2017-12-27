@@ -33,9 +33,9 @@ __NORM_MODS=(
 	fileman fileman-opinfo gadman geolocation
 	ibar ibox lokker
 	mixer msgbus music-control notification
-	pager packagekit pager-plain policy-mobile quickaccess
-	shot start syscon systray tasks teamwork temperature tiling
-	time winlist wireless wizard wl-desktop-shell wl-drm wl-text-input
+	pager packagekit pager-plain quickaccess
+	shot start syscon sysinfo systray tasks teamwork temperature tiling
+	time winlist wireless wizard wl-buffer wl-desktop-shell wl-drm wl-text-input
 	wl-weekeyboard wl-wl wl-x11 xkbswitch xwayland
 )
 IUSE_E_MODULES=(
