@@ -5,7 +5,7 @@ EAPI=5
 E_PKG_IUSE="examples"
 E_PYTHON="yes"
 
-PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
+PYTHON_COMPAT=( python{2_6,2_7,3_4} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
@@ -26,6 +26,7 @@ RDEPEND="
 		doc? ( dev-python/sphinx )
 		${PYTHON_DEPS}"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${P/_/-}"

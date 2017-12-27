@@ -42,6 +42,7 @@
 		<flag name="enlightenment_modules_shot">Simple screenshot+save/upload module</flag>
 		<flag name="enlightenment_modules_start">Enlightenment's 'Start' button equivalent</flag>
 		<flag name="enlightenment_modules_syscon">This module provides a unified popup dialog for all the system actions in Enlightenment</flag>
+		<flag name="enlightenment_modules_sysinfo">This module should enable the retrieval of system info. Need to double check.</flag>
 		<flag name="enlightenment_modules_systray">system tray that hold applications icons like Skype, Pidgin, Kopete and others</flag>
 		<flag name="enlightenment_modules_tasks">Gadget to allow you to switch tasks</flag>
 		<flag name="enlightenment_modules_teamwork">Enable teamwork module</flag>
@@ -51,6 +52,7 @@
 		<flag name="enlightenment_modules_winlist">A module to show the list of client applications presently running</flag>
 		<flag name="enlightenment_modules_wireless">The wireless module</flag>
 		<flag name="enlightenment_modules_wizard">First Run Wizard</flag>
+		<flag name="enlightenment_modules_wl-buffer">Wayland Buffer module</flag>
 		<flag name="enlightenment_modules_wl-desktop-shell">Enlightenment Wayland Desktop Shell</flag>
 		<flag name="enlightenment_modules_wl-drm">Wayland DRM (Direct Rendering Manager) compositing module</flag>
 		<flag name="enlightenment_modules_wl-fb">Wayland DRM Frame Buffer compositing module</flag>
