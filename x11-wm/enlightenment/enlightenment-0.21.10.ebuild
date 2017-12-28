@@ -43,7 +43,7 @@ IUSE_E_MODULES=(
 	${__NORM_MODS[@]/#/enlightenment_modules_}
 )
 
-IUSE="pam spell static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]/#/+}"
+IUSE="pam spell static-libs systemd egl +eeze +udev ukit wayland ${IUSE_E_MODULES[@]/#/+}"
 
 RDEPEND="
 	pam? ( sys-libs/pam )
@@ -54,8 +54,12 @@ RDEPEND="
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
 	)
-	>=dev-libs/efl-1.18.1[X]
-	x11-libs/xcb-util-keysyms"
+	>=dev-libs/efl-1.19.2[X,egl?,wayland?]
+	virtual/udev
+	x11-libs/libxcb
+	x11-libs/xcb-util-keysyms
+"
+
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
@@ -95,11 +99,13 @@ src_configure() {
 		#--disable-install-sysactions
 		$(use_enable doc)
 		$(use_enable nls)
+		$(use_enable egl wayland-egl)
 		$(use_enable pam)
 		$(use_enable systemd)
 		--enable-device-udev
 		$(use_enable udev mount-eeze)
 		$(use_enable ukit mount-udisks)
+
 		$(use_enable wayland)
 	)
 	local u c

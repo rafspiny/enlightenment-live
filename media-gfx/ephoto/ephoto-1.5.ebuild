@@ -6,18 +6,19 @@ EAPI=5
 inherit eutils
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
-DESCRIPTION="Enlightenment IRC client"
-HOMEPAGE="https://www.enlightenment.org/"
+DESCRIPTION="Enlightenment image viewer built on the EFL."
+HOMEPAGE="https://www.enlightenment.org/about-ephoto"
 EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
-SLOT="0.17/${PV%%_*}"
+[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
+SLOT="0"
 
 IUSE="doc nls static-libs"
 
 RDEPEND="
-	>=dev-libs/efl-1.10.0
+	>=dev-libs/efl-1.18.0
 	"
 DEPEND="${RDEPEND}"
 

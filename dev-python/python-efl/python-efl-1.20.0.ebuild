@@ -5,7 +5,7 @@ EAPI=5
 E_PKG_IUSE="examples"
 E_PYTHON="yes"
 
-PYTHON_COMPAT=( python{2_6,2_7,3_4,3_5} )
+PYTHON_COMPAT=( python{2_6,2_7,3_4} )
 
 inherit eutils distutils-r1
 # inherit git-r3
@@ -27,7 +27,7 @@ IUSE="doc"
 RDEPEND="
 		>=dev-python/cython-0.21
 		>=dev-python/dbus-python-1.2.0-r1
-		=dev-libs/efl-1.18.0
+		>=dev-libs/efl-1.18.0
 		doc? ( dev-python/sphinx )
 		${PYTHON_DEPS}"
 

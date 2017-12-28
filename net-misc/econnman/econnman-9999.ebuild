@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -9,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="EFL user interface for connman"
 HOMEPAGE="https://www.enlightenment.org"
-EGIT_REPO_URI="git://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
 LICENSE="BSD-2"

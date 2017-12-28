@@ -1,19 +1,18 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 E_PKG_IUSE="examples"
 E_PYTHON="yes"
 
-PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
+PYTHON_COMPAT=( python{2_6,2_7,3_4} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Python bindings for EFL"
-HOMEPAGE="http://www.enlightenment.org/about-epour"
-EGIT_REPO_URI="git://git.enlightenment.org/bindings/python/${PN}.git"
+HOMEPAGE="https://www.enlightenment.org/about-epour"
+EGIT_REPO_URI="https://git.enlightenment.org/bindings/python/${PN}.git"
 
 LICENSE="LGPL-2.1"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
@@ -27,6 +26,7 @@ RDEPEND="
 		doc? ( dev-python/sphinx )
 		${PYTHON_DEPS}"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 S="${WORKDIR}/${P/_/-}"
