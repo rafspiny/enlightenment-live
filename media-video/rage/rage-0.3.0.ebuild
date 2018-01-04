@@ -1,9 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 inherit eutils
+inherit meson
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="This is a Video + Audio player mplayer style, based on EFL"
@@ -17,7 +18,7 @@ SLOT="0"
 
 # TODO vlc USE flag is disabled for the moment, should be re-enabled once EFL has the same USE flag
 # TODO Must fix IUSE, RDEPEND for the vlc USE flag on efl and for the flag itself
-IUSE="gstreamer vlc xine"
+IUSE="+gstreamer vlc xine"
 
 RDEPEND="
 	|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )
@@ -32,18 +33,12 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-}
-
 src_configure() {
-	local config=(
-	)
-
-	econf "${config[@]}"
+	local emesonargs=(
+    )
+    meson_src_configure
 }
 
 src_install() {
-	default
-	prune_libtool_files
+	meson_src_install
 }

@@ -17,7 +17,7 @@ SLOT="0"
 
 # TODO vlc USE flag is disabled for the moment, should be re-enabled once EFL has the same USE flag
 # TODO Must fix IUSE, RDEPEND for the vlc USE flag on efl and for the flag itself
-IUSE="gstreamer vlc xine"
+IUSE="+gstreamer vlc xine"
 
 RDEPEND="
 	|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )
