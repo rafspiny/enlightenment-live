@@ -27,7 +27,8 @@ RDEPEND="
 	xine? ( dev-libs/efl[xine] )
 "
 DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
 

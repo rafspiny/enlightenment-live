@@ -31,6 +31,11 @@ before_script:
     - SIZE=$(stat -c %s .travis.yml.upstream)
 #    - if ! cmp -n $SIZE -s .travis.yml .travis.yml.upstream; then echo -e "\e[31m !!! .travis.yml outdated! Update available https://github.com/mrueg/repoman-travis \e[0m" > /tmp/update ; fi
     - cd enlightenment-live
+# repoman is not able to cope with the files in portage/arch/<ARCH>/package.use.mask to mask ISE flags for a specific arch
+# Taking care of that by temporary removing those USE flags
+    - find . find enlightenment-live/ \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~alpha//gi {} \;
+    - find . find enlightenment-live/ \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~hppa//gi {} \;
+    - find . find enlightenment-live/ \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~ia64//gi {} \;
 script:
     - ./../spinner.sh "python ../portage-${PORTAGE_VER}/repoman/bin/repoman full -d"
 # You can append own scripts after this line

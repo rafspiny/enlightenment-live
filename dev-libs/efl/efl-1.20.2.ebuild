@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -22,7 +22,7 @@ inherit enlightenment pax-utils
 DESCRIPTION="Enlightenment Foundation Libraries all-in-one package"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-IUSE="+bmp debug drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +ico ibus jpeg2k libressl neon oldlua opengl ssl physics pixman +png +ppm postscript +psd pulseaudio rawphoto scim sdl sound +svg systemd tga tiff tslib v4l valgrind wayland +webp X xim xine xpm"
+IUSE="+bmp debug drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +ico ibus jpeg2k libressl neon oldlua opengl ssl physics pixman +png +ppm postscript +psd pulseaudio rawphoto scim sdl sound +svg systemd tga tiff tslib v4l valgrind vlc wayland +webp X xim xine xpm"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x64-solaris"
 
 REQUIRED_USE="
@@ -79,6 +79,7 @@ RDEPEND="
 	tiff? ( media-libs/tiff:0= )
 	tslib? ( x11-libs/tslib )
 	valgrind? ( dev-util/valgrind )
+	vlc? ( media-video/vlc )
 	wayland? (
 		>=dev-libs/wayland-1.8.0
 		>=x11-libs/libxkbcommon-0.3.1
@@ -259,6 +260,18 @@ src_configure() {
 		--enable-libmount
 		--enable-liblz4
 	)
+
+	# Checking for with version of vlc is enabled and therefore use the right configure option
+	if use vlc ; then
+		einfo "You enabled USE=vlc. Checking vlc version..."
+		if has_version ">media-video/vlc-3.0" ; then
+			einfo "> 3.0 found. Enabling libvlc."
+			E_ECONF+=($(use_enable vlc libvlc))
+		else
+			einfo "< 3.0 found. Enabling generic-vlc."
+			E_ECONF+=($(use_with vlc generic-vlc))
+		fi
+	fi
 
 	enlightenment_src_configure
 }

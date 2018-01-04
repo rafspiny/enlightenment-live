@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -105,6 +105,7 @@ COMMON_DEP="
 		egl? ( media-libs/mesa[egl,gles2] )
 	)
 	webp? ( media-libs/libwebp )
+	vlc? ( media-video/vlc )
 	xine? ( >=media-libs/xine-lib-1.1.1 )
 	xpm? ( x11-libs/libXpm )"
 RDEPEND="${COMMON_DEP}"
@@ -277,6 +278,18 @@ src_configure() {
 #		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-aba
 		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-abb
 	)
+
+	# Checking for with version of vlc is enabled and therefore use the right configure option
+	if use vlc ; then
+		einfo "You enabled USE=vlc. Checking vlc version..."
+		if has_version ">media-video/vlc-3.0" ; then
+			einfo "> 3.0 found. Enabling libvlc."
+			E_ECONF+=($(use_enable vlc libvlc))
+		else
+			einfo "< 3.0 found. Enabling generic-vlc."
+			E_ECONF+=($(use_with vlc generic-vlc))
+		fi
+	fi
 
 	econf "${config[@]}"
 }
