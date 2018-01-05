@@ -3,9 +3,8 @@
 
 EAPI=6
 
-inherit eutils
 inherit meson
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="This is a Video + Audio player mplayer style, based on EFL"
 HOMEPAGE="https://www.enlightenment.org/about-rage"
@@ -34,9 +33,8 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
-	local emesonargs=(
-    )
-    meson_src_configure
+	local emesonargs=()
+	meson_src_configure
 }
 
 src_install() {
