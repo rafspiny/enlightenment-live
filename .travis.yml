@@ -33,9 +33,12 @@ before_script:
     - cd enlightenment-live
 # repoman is not able to cope with the files in portage/arch/<ARCH>/package.use.mask to mask ISE flags for a specific arch
 # Taking care of that by temporary removing those USE flags
-    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~alpha//gi {} \;
-    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~hppa//gi {} \;
-    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~ia64//gi {} \;
+    - mkdir -p /usr/portage/profiles/arch/alpha/ && cat profiles/alpha/package.use.mask >> /usr/portage/profiles/arch/alpha/package.use.mask
+    - mkdir -p /usr/portage/profiles/arch/hppa/ && cat profiles/hppa/package.use.mask >> /usr/portage/profiles/arch/hppa/package.use.mask
+    - mkdir -p /usr/portage/profiles/arch/ia64/ && cat profiles/ia64/package.use.mask >> /usr/portage/profiles/arch/ia64/package.use.mask
+#    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~alpha//gi {} \;
+#    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~hppa//gi {} \;
+#    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~ia64//gi {} \;
 script:
     - ./../spinner.sh "python ../portage-${PORTAGE_VER}/repoman/bin/repoman full -d"
 # You can append own scripts after this line
