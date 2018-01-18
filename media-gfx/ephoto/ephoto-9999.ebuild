@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit meson
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment image viewer built on the EFL."
 HOMEPAGE="https://www.enlightenment.org/about-ephoto"
@@ -19,24 +19,19 @@ IUSE="doc nls static-libs"
 RDEPEND="
 	>=dev-libs/efl-1.18.0
 	"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-}
-
 src_configure() {
-	local config=(
-		$(use_enable nls)
-		$(use_enable static-libs static)
+	local emesonargs=(
+		-Dnls=$(usex nls true false)
+		-Dstatic_libs=$(usex static-libs true false)
 	)
-
-	econf "${config[@]}"
+	meson_src_configure
 }
 
 src_install() {
-	default
-	prune_libtool_files
+	meson_src_install
 }
