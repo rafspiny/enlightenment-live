@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit meson
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="https://www.enlightenment.org/"
@@ -15,6 +15,11 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0.17/${PV%%_*}"
 
+E_MODULES_DEFAULT_MESON=(
+	conf conf-applications conf-bindings conf-dialogs conf-display conf-interaction conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves conf-theme conf-window-manipulation conf-window-remembers
+
+	appmenu backlight battery bluez4 clock connman cpufreq everything fileman fileman-opinfo gadman geolocation ibar ibox lokker luncher mixer msgbus music-control notification packagekit pager pager-plain quickaccess start shot syscon sysinfo systray tasks teamwork temperature tiling time winlist wireless wizard xkbswitch vkbd
+)
 E_MODULES_DEFAULT=(
 	conf-applications conf-bindings conf-dialogs conf-display conf-interaction
 	conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves
@@ -53,51 +58,42 @@ RDEPEND="
 		>=x11-libs/libxkbcommon-0.3.1
 	)"
 DEPEND="${RDEPEND}
-	doc? ( app-doc/doxygen )"
+	doc? ( app-doc/doxygen )
+	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-}
-
 src_configure() {
-	local config=(
-		--disable-simple-x11
-		#--disable-wayland-only
-
-		--enable-conf
-		--enable-device-udev # instead of hal
-		#--enable-enotify
-		--enable-files
-		--enable-install-enlightenment-menu
-		--enable-install-sysactions
-
-		$(use_enable doc)
-		$(use_enable egl wayland-egl)
-		$(use_enable nls)
-		$(use_enable pam)
-		$(use_enable static-libs static)
-		$(use_enable systemd)
-		$(use_enable ukit mount-udisks)
-		$(use_enable eeze mount-eeze)
-		$(use_enable wayland wayland)
-		#$(use_enable wayland wayland-clients)
+	local emesonargs=(
+		-Dinstall-sysactions=true
+		-Dinstall-enlightenment-menu=true
+		-Dfiles=true
+		-Ddevice-udev=true
+		-Dnls=$(usex nls true false)
+		-Dpam=$(usex pam true false)
+		-Dmount-udisks=$(usex ukit true false)
+		-Dmount-eeze=$(usex eeze true false)
+		-Dsystemd=$(usex systemd true false)
+		-Dmount-eeze=$(usex eeze true false)
 	)
+	# TODO Should we set systemdunitdir as well?
 
-	local i
-	for i in ${E_MODULES_DEFAULT} ${E_MODULES}; do
-		config+=( $(use_enable enlightenment_modules_${i} ${i}) )
-	done
-
+	# Check for wayland flag
+	# TODO Maybe we should check for wayland and xwayland
+	# TODO wl-text-input and wl-weekeyboard may be dependent on something else...need to check
 	if use wayland; then
-		config+=( --enable-enlightenment_modules_wl-desktop-shell --enable-wl-x11 --enable-wl-wl --enable-wl-drm --enable-wl-text-input --enable-wl-weekeyboard)
+		emesonargs+=( -Dwayland=true -Dwl-buffer=true -Dwl-drm=true -Dwl-wl=true -Dwl-x11=true -Dwl-desktop-shell=true -Dwl-text-input=true -Dwl-weekeyboard=true )
 	fi
 
-	econf "${config[@]}"
+	# TODO This should be useless given that the default value for each and one of the module is 'true'
+	for i in ${E_MODULES_DEFAULT_MESON}; do
+		emesonargs+=( -D${i}=true )
+	done
+
+	meson_src_configure
 }
 
 src_install() {
-	default
+	meson_src_install
 	prune_libtool_files
 }

@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -17,12 +17,13 @@ SLOT="0"
 
 # TODO vlc USE flag is disabled for the moment, should be re-enabled once EFL has the same USE flag
 # TODO Must fix IUSE, RDEPEND for the vlc USE flag on efl and for the flag itself
-IUSE="gstreamer xine"
+IUSE="+gstreamer vlc xine"
 
 RDEPEND="
 	|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )
-	|| ( dev-libs/efl[gstreamer] dev-libs/efl[xine] )
+	|| ( dev-libs/efl[gstreamer] dev-libs/efl[xine] dev-libs/efl[vlc] )
 	gstreamer? ( dev-libs/efl[gstreamer] )
+	vlc? ( dev-libs/efl[vlc] )
 	xine? ( dev-libs/efl[xine] )
 "
 DEPEND="${RDEPEND}

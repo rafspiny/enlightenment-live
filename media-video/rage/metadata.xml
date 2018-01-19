@@ -7,4 +7,9 @@
 		<description>EFL video player.</description>
 	</maintainer>
 	<longdescription>Rage is a video and audio player written with Enlightenment Foundation Libraries with some extra bells and whistles.</longdescription>
+	<use>
+		<flag name="gstreamer">Enabling gstreamer engine</flag>
+		<flag name="vlc">Enabling vlc engine</flag>
+		<flag name="xine">Enabling xine engine</flag>
+	</use>
 </pkgmetadata>

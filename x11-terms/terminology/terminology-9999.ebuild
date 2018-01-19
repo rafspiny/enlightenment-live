@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit meson
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Feature rich terminal emulator using the Enlightenment Foundation Libraries"
 HOMEPAGE="https://www.enlightenment.org/p.php?p=about/terminology"
@@ -19,22 +19,18 @@ IUSE=""
 
 RDEPEND="|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )"
 DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-}
-
 src_configure() {
-	local config=(
+	local emesonargs=(
+		-Dnls=true
 	)
-
-	econf "${config[@]}"
+	meson_src_configure
 }
 
 src_install() {
-	default
-	prune_libtool_files
+	meson_src_install
 }
