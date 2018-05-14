@@ -54,7 +54,7 @@ RDEPEND="
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
 	)
-	>=dev-libs/efl-1.19.2[X,egl?,wayland?]
+	>=dev-libs/efl-1.20.5[X,egl?,wayland?]
 	virtual/udev
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
