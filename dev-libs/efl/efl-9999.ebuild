@@ -49,7 +49,6 @@ COMMON_DEP="
 		x11-libs/libXext
 		x11-libs/libXfixes
 		x11-libs/libXinerama
-		x11-libs/libXp
 		x11-libs/libXrandr
 		x11-libs/libXrender
 		x11-libs/libXtst
@@ -74,7 +73,6 @@ COMMON_DEP="
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
 	)
-	vlc? ( media-video/vlc )
 	harfbuzz? ( media-libs/harfbuzz )
 	ibus? ( app-i18n/ibus )
 	jpeg2k? ( media-libs/openjpeg:0 )
