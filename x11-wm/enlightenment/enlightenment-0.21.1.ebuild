@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=6
 
 MY_P=${P/_/-}
 
@@ -13,7 +13,7 @@ else
 	EKEY_STATE="snap"
 fi
 
-inherit enlightenment
+inherit xdg-utils
 
 DESCRIPTION="Enlightenment DR17 window manager"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x64-solaris"
@@ -21,13 +21,13 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-lin
 LICENSE="BSD-2"
 SLOT="0.17/${PV%%_*}"
 
-__CONF_MODS=(
+E_CONF_MODS=(
 	applications bindings dialogs display
 	interaction intl menus
 	paths performance randr shelves theme
 	window-manipulation window-remembers
 )
-__NORM_MODS=(
+E_NORM_MODS=(
 	appmenu backlight bluez4 battery
 	clock conf connman cpufreq everything
 	fileman fileman-opinfo gadman geolocation
@@ -39,8 +39,8 @@ __NORM_MODS=(
 	wl-weekeyboard wl-wl wl-x11 xkbswitch xwayland
 )
 IUSE_E_MODULES=(
-	${__CONF_MODS[@]/#/enlightenment_modules_conf-}
-	${__NORM_MODS[@]/#/enlightenment_modules_}
+	${E_CONF_MODS[@]/#/enlightenment_modules_conf-}
+	${E_NORM_MODS[@]/#/enlightenment_modules_}
 )
 
 IUSE="pam spell static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]/#/+}"
@@ -61,7 +61,11 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	enlightenment_src_prepare
+	default
+
+	# eapply "${FILESDIR}"/"${P}"-quickstart.diff
+
+	xdg_environment_reset
 }
 
 # Sanity check to make sure module lists are kept up-to-date.
@@ -91,10 +95,10 @@ check_modules() {
 src_configure() {
 	check_modules
 
-	E_ECONF=(
+	local E_ECONF=(
 		--disable-install-sysactions
-		$(use_enable doc)
-		$(use_enable nls)
+		# $(use_enable doc)
+		# $(use_enable nls)
 		$(use_enable pam)
 		$(use_enable systemd)
 		--enable-device-udev
@@ -116,7 +120,7 @@ src_configure() {
 		esac
 		E_ECONF+=( $(use_enable ${u} ${c}) )
 	done
-	enlightenment_src_configure
+	econf "${E_ECONF[@]}"
 }
 
 src_install() {
