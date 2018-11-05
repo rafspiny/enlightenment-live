@@ -14,21 +14,16 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="doc nls static-libs"
+IUSE="nls"
 
 RDEPEND="
-	>=dev-libs/efl-1.18.0
+	>=dev-libs/efl-1.19.0[eet,X]
+	nls? ( sys-devel/gettext )
 	"
 DEPEND="${RDEPEND}
 	dev-util/meson"
 
-S="${WORKDIR}/${P/_/-}"
-
 src_configure() {
-	local emesonargs=(
-		-Dnls=$(usex nls true false)
-		-Dstatic_libs=$(usex static-libs true false)
-	)
 	meson_src_configure
 }
 

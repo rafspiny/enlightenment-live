@@ -17,7 +17,7 @@ SLOT="0"
 
 IUSE=""
 
-RDEPEND="|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )"
+RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	dev-util/meson"

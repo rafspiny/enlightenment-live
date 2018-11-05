@@ -6,10 +6,11 @@ language: python
 python:
     - pypy
 env:
-    - PORTAGE_VER="2.3.0"
+    - PORTAGE_VER="2.3.49"
 before_install:
     - sudo apt-get -qq update
     - pip install lxml
+    - pip install pyyaml
 before_script:
     - mkdir enlightenment-live
     - mv !(enlightenment-live) enlightenment-live/
