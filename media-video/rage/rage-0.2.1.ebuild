@@ -20,7 +20,7 @@ SLOT="0"
 IUSE="+gstreamer vlc xine"
 
 RDEPEND="
-	|| ( >=dev-libs/efl-1.18.0 ( <dev-libs/efl-1.18.0 >=media-libs/elementary-1.15.1 ) )
+	>=dev-libs/efl-1.18.0
 	|| ( dev-libs/efl[gstreamer] dev-libs/efl[xine] dev-libs/efl[vlc] )
 	gstreamer? ( dev-libs/efl[gstreamer] )
 	vlc? ( dev-libs/efl[vlc] )

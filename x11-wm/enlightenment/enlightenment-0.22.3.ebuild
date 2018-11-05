@@ -16,8 +16,9 @@ fi
 inherit xdg-utils
 
 DESCRIPTION="Enlightenment DR17 window manager"
+HOMEPAGE="https://www.enlightenment.org"
 # KEYWORDS="~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x64-solaris"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 LICENSE="BSD-2"
 SLOT="0.17/${PV%%_*}"
@@ -137,21 +138,21 @@ src_install() {
 	newins "${FILESDIR}"/gentoo-sysactions.conf sysactions.conf
 
 	# if use doc ; then
-    #        local HTML_DOCS=( doc/. )
-    # fi
+	#        local HTML_DOCS=( doc/. )
+	# fi
 
-    einstalldocs
-    V=1 emake install DESTDIR="${D}" || die
+	einstalldocs
+	V=1 emake install DESTDIR="${D}" || die
 
-    find "${D}" -name '*.la' -delete || die
+	find "${D}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
-        xdg_desktop_database_update
-        xdg_mimeinfo_database_update
+	    xdg_desktop_database_update
+	    xdg_mimeinfo_database_update
 }
 
 pkg_postrm() {
-        xdg_desktop_database_update
-        xdg_mimeinfo_database_update
+	    xdg_desktop_database_update
+	    xdg_mimeinfo_database_update
 }

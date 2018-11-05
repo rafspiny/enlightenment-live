@@ -13,7 +13,6 @@
 		<flag name="ukit">Use upower/udisks to automount devices</flag>
 		<flag name="eeze">Use eeze to mount/unmount devices trough udev</flag>
 		<flag name="egl">Enable EGL support</flag>
-		<flag name="enlightenment_modules_access"/>
 		<flag name="enlightenment_modules_appmenu">Gadget that hold the toolbar of the foreground application</flag>
 		<flag name="enlightenment_modules_backlight">Backlight control slider gadget</flag>
 		<flag name="enlightenment_modules_battery">A gadget to visualize your battery status</flag>
@@ -35,7 +34,6 @@
 		<flag name="enlightenment_modules_notification">notification-daemon alternative. Popup if an event occur</flag>
 		<flag name="enlightenment_modules_packagekit">Package manager integration</flag>
 		<flag name="enlightenment_modules_pager">Gadget to allow you to visualize your virtual desktops and the windows they contain</flag>
-		<flag name="enlightenment_modules_pager16">Gadget to allow you to visualize your virtual desktops and the windows they contain from E16</flag>
 		<flag name="enlightenment_modules_pager-plain">A simpler desktop pager</flag>
 		<flag name="enlightenment_modules_policy-mobile"/>
 		<flag name="enlightenment_modules_quickaccess">Enlightenment Quickaccess Launcher</flag>
@@ -55,7 +53,6 @@
 		<flag name="enlightenment_modules_wl-buffer">Wayland Buffer module</flag>
 		<flag name="enlightenment_modules_wl-desktop-shell">Enlightenment Wayland Desktop Shell</flag>
 		<flag name="enlightenment_modules_wl-drm">Wayland DRM (Direct Rendering Manager) compositing module</flag>
-		<flag name="enlightenment_modules_wl-fb">Wayland DRM Frame Buffer compositing module</flag>
 		<flag name="enlightenment_modules_wl-text-input">Wayland text input support</flag>
 		<flag name="enlightenment_modules_wl-weekeyboard">Wayland virtual keyboard</flag>
 		<flag name="enlightenment_modules_wl-wl">Wayland-in-Wayland module</flag>

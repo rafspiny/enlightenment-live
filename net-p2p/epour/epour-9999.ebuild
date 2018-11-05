@@ -18,7 +18,7 @@ SLOT="0"
 IUSE=""
 RDEPEND="dev-python/python-distutils-extra
 		>=dev-libs/efl-1.15.0
-		=dev-python/python-efl-9999
+		~dev-python/python-efl-9999
 		>=net-libs/libtorrent-rasterbar-1.0.10[python]
 		sys-apps/dbus
 		x11-misc/xdg-utils

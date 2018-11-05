@@ -17,7 +17,7 @@ SLOT="0"
 
 IUSE="doc nls static-libs"
 
-RDEPEND=" || ( >=dev-libs/efl-1.18.0 >=media-libs/elementary-1.16.0 )"
+RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${P/_/-}"
