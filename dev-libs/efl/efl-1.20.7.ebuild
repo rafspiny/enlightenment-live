@@ -23,7 +23,7 @@ HOMEPAGE="https://www.enlightenment.org/"
 DESCRIPTION="Enlightenment Foundation Libraries all-in-one package"
 SLOT="0"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-IUSE="avahi +bmp dds connman debug doc drm +eet egl examples fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus ivi jpeg2k libressl libuv luajit neon nls opengl ssl pdf physics pixman postscript +ppm +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib v4l valgrind vlc vnc wayland +webp X xcf xim xine xpresent xpm"
+IUSE="avahi +bmp dds connman debug doc drm +eet egl examples fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus ivi jpeg2k libressl libuv luajit neon nls opengl ssl pdf physics pixman png postscript +ppm +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp X xcf xim xine xpresent xpm"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc64 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 REQUIRED_USE="
@@ -260,7 +260,7 @@ src_configure() {
 
 		#--disable-eeze-mount
 		--disable-tizen
-		--enable-gesture
+		#--enable-gesture
 		--disable-gstreamer
 		--enable-xinput2
 		--enable-xinput22
