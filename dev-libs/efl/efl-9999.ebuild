@@ -161,6 +161,7 @@ src_prepare() {
 	        sed -i -e 's:libunwind libunwind-generic:xxxxxxxxxxxxxxxx:' \
 	        configure || die "Sedding configure file with unwind fix failed."
 	fi
+	eapply_user
 }
 
 src_configure() {
@@ -180,7 +181,7 @@ src_configure() {
 		--disable-doc
 	    --disable-gesture
 	    --disable-gstreamer
-	    --disable-image-loader-tgv
+	    #--disable-image-loader-tgv
 	    --disable-tizen
 	    --disable-wayland-ivi-shell
 
@@ -198,7 +199,6 @@ src_configure() {
 		$(use_enable dds image-loader-dds)
 		$(use_enable drm)
 		$(use_enable drm elput)
-		$(use_enable cxx-bindings cxx-bindings)
 		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
 		$(use_enable fbcon fb)
@@ -232,7 +232,7 @@ src_configure() {
 		$(use_enable tslib)
 		$(use_enable v4l v4l2)
 		$(use_enable valgrind)
-	    $(use_enable vlc libvlc)
+	    # $(use_enable vlc libvlc)
 	    $(use_enable vnc vnc-server)
 	    $(use_enable wayland)
 	    $(use_enable webp image-loader-webp)

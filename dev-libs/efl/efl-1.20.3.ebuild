@@ -185,6 +185,7 @@ src_prepare() {
 	        configure || die "Sedding configure file with unwind fix failed."
 	fi
 
+    eapply_user
 	xdg_environment_reset
 }
 
