@@ -20,7 +20,6 @@
 		<flag name="hyphen">Enable text hyphenation support</flag>
 		<flag name="ibus">Enable Intelligent Input Bus</flag>
 		<flag name="ico">Enable Ico image loader</flag>
-		<flag name="ivi">Enable ivi-shell support</flag>
 		<flag name="raw">Enable libraw library for image loader</flag>
 		<flag name="libuv">Enable dev-libs/libuv support</flag>
 		<flag name="physics">Enable Bullet physics effects and support</flag>
@@ -28,7 +27,6 @@
 		<flag name="ppm">Enable PMAPS image loader</flag>
 		<flag name="psd">Enable PSD image loader</flag>
 		<flag name="scim">Enable Smart Common Input Method</flag>
-		<flag name="system-lz4">Use system liblz4 instead of bundled one</flag>
 		<flag name="tga">Enable Tga image loader</flag>
 		<flag name="tiff">Enable TIFF image loader</flag>
 		<flag name="tslib">Enable <pkg>x11-libs/tslib</pkg> for touchscreen events</flag>

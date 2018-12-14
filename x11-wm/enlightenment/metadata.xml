@@ -51,6 +51,7 @@
 		<flag name="enlightenment_modules_wireless">The wireless module</flag>
 		<flag name="enlightenment_modules_wizard">First Run Wizard</flag>
 		<flag name="enlightenment_modules_wl-buffer">Wayland Buffer module</flag>
+		<flag name="enlightenment_modules_wl-fb">Wayland framebuffer module</flag>
 		<flag name="enlightenment_modules_wl-desktop-shell">Enlightenment Wayland Desktop Shell</flag>
 		<flag name="enlightenment_modules_wl-drm">Wayland DRM (Direct Rendering Manager) compositing module</flag>
 		<flag name="enlightenment_modules_wl-text-input">Wayland text input support</flag>

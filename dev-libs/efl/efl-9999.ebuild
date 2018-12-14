@@ -9,6 +9,7 @@ inherit eutils gnome2-utils pax-utils xdg-utils
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
+#EGIT_REPO_URI="https://github.com/Enlightenment/efl.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
@@ -16,10 +17,10 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 SLOT="0"
 
 # cxx-bindings
-IUSE="avahi +bmp connman dds debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf physics +ppm postscript +psd pulseaudio raw scim sdl sound static-libs +svg +system-lz4 systemd test tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
+# static-libs
+IUSE="avahi +bmp connman dds debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
+
 REQUIRED_USE="
-	?? ( opengl egl )
-	?? ( opengl gles )
 	fbcon? ( !tslib )
 	gles? (
 	        || ( X wayland )
@@ -27,20 +28,21 @@ REQUIRED_USE="
 	        egl
 	)
 	ibus? ( glib )
-	opengl? ( X )
-	pulseaudio? ( sound )
-	sdl? ( opengl )
-	vnc? ( X fbcon )
-	wayland? ( egl gles !opengl )
-	xim? ( X )
+	opengl?		( || ( X sdl wayland ) )
+	pulseaudio?	( sound )
+	sdl?		( opengl )
+	vnc?        ( X fbcon )
+	wayland?	( egl !opengl gles )
+	xim?		( X )
 "
 
 COMMON_DEP="
 	net-misc/curl
 	media-libs/libpng:0=
 	sys-apps/dbus
-	sys-apps/util-linux
+	>=sys-apps/util-linux-2.20.0
 	sys-libs/zlib:=
+	app-arch/lz4:0=
 	virtual/jpeg:0=
 	virtual/udev
 	avahi? ( net-dns/avahi )
@@ -61,6 +63,13 @@ COMMON_DEP="
 	        media-libs/gstreamer:1.0
 	        media-libs/gst-plugins-base:1.0
 	)
+	gnutls? ( net-libs/gnutls )
+	!gnutls? (
+		ssl? (
+			!libressl? ( dev-libs/openssl:0= )
+			libressl? ( dev-libs/libressl )
+		)
+	)
 	harfbuzz? ( media-libs/harfbuzz )
 	hyphen? ( dev-libs/hyphen )
 	ibus? ( app-i18n/ibus )
@@ -71,30 +80,20 @@ COMMON_DEP="
 	nls? ( sys-devel/gettext )
 	pdf? ( app-text/poppler:=[cxx] )
 	physics? ( sci-physics/bullet:= )
-	postscript? ( app-text/libspectre )
-	pulseaudio? (
-	        media-sound/pulseaudio
-	        media-libs/libsndfile
-	)
-	raw? ( media-libs/libraw:= )
+	pixman? ( x11-libs/pixman )
+	postscript? ( app-text/libspectre:* )
+	pulseaudio? ( media-sound/pulseaudio )
+	raw? ( media-libs/libraw:* )
 	scim? ( app-i18n/scim )
 	sdl? (
-	        >=media-libs/libsdl2-2.0.0:0[opengl?,gles?]
-	        virtual/opengl
+		media-libs/libsdl2
+		virtual/opengl
 	)
 	sound? ( media-libs/libsndfile )
-	ssl? (
-	        gnutls? ( net-libs/gnutls:= )
-	        !gnutls? (
-	                !libressl? ( dev-libs/openssl:= )
-	                libressl? ( dev-libs/libressl:= )
-	        )
-	)
 	svg? (
 	        gnome-base/librsvg
 	        x11-libs/cairo
 	)
-	system-lz4? ( app-arch/lz4 )
 	systemd? ( sys-apps/systemd )
 	tiff? ( media-libs/tiff:0= )
 	tslib? ( x11-libs/tslib:= )
@@ -103,17 +102,16 @@ COMMON_DEP="
 	vlc? ( media-video/vlc )
 	vnc? ( net-libs/libvncserver )
 	wayland? (
-	        dev-libs/wayland
-	        media-libs/mesa[gles2,wayland]
-	        x11-libs/libxkbcommon
+		>=dev-libs/wayland-1.8.0
+		>=x11-libs/libxkbcommon-0.3.1
+		media-libs/mesa[gles2,wayland]
 	)
 	webp? ( media-libs/libwebp:= )
 	X? (
 	        media-libs/freetype
-	        x11-libs/libX11
-	        x11-libs/libXScrnSaver
-	        x11-libs/libXcomposite
 	        x11-libs/libXcursor
+	        x11-libs/libX11
+	        x11-libs/libXcomposite
 	        x11-libs/libXdamage
 	        x11-libs/libXext
 	        x11-libs/libXfixes
@@ -121,6 +119,7 @@ COMMON_DEP="
 	        x11-libs/libXrandr
 	        x11-libs/libXrender
 	        x11-libs/libXtst
+	        x11-libs/libXScrnSaver
 	        opengl? (
 	                x11-libs/libX11
 	                x11-libs/libXrender
@@ -137,11 +136,29 @@ COMMON_DEP="
 	xpm? ( x11-libs/libXpm )
 	# xine? ( >=media-libs/xine-lib-1.1.1 )
 	# xpm? ( x11-libs/libXpm )
+
+	!dev-libs/ecore
+	!dev-libs/edbus
+	!dev-libs/eet
+	!dev-libs/eeze
+	!dev-libs/efreet
+	!dev-libs/eina
+	!dev-libs/eio
+	!dev-libs/embryo
+	!dev-libs/eobj
+	!dev-libs/ephysics
+	!media-libs/edje
+	!media-libs/emotion
+	!media-libs/ethumb
+	!media-libs/evas
 "
 
 DEPEND="
-	    ${COMMON_DEPEND}
-	    virtual/pkgconfig
+	${CORE_EFL_CONFLICTS}
+
+	${RDEPEND}
+	virtual/pkgconfig
+	doc? ( app-doc/doxygen )
 "
 
 RDEPEND="
@@ -162,21 +179,41 @@ src_prepare() {
 	        configure || die "Sedding configure file with unwind fix failed."
 	fi
 	eapply_user
+	xdg_environment_reset
 }
 
 src_configure() {
-	local config+=(
+	if use ssl && use gnutls ; then
+		einfo "You enabled both USE=ssl and USE=gnutls, but only one can be used;"
+		einfo "gnutls has been selected for you."
+	fi
+	if use opengl && use gles ; then
+		einfo "You enabled both USE=opengl and USE=gles, but only one can be used;"
+		einfo "opengl has been selected for you."
+	fi
+
+	local myconf=(
 	    # image loaders
 		--enable-image-loader-generic
 		--enable-image-loader-jpeg # required by ethumb
 		--enable-image-loader-png
-		--enable-image-loader-wbmp
+		$(use_enable bmp image-loader-bmp)
+		$(use_enable bmp image-loader-wbmp)
+		$(use_enable eet image-loader-eet)
+		$(use_enable gif image-loader-gif)
+		$(use_enable ico image-loader-ico)
+		$(use_enable jpeg2k image-loader-jp2k)
+		$(use_enable svg librsvg)
+		$(use_enable tga image-loader-tga)
 
 		--enable-cserve
+		--enable-elput
+		--enable-multisense
 		--enable-libmount
 		--enable-libeeze
 		--enable-threads
 		--enable-xinput22
+		--enable-liblz4
 
 		--disable-doc
 	    --disable-gesture
@@ -185,32 +222,43 @@ src_configure() {
 	    --disable-tizen
 	    --disable-wayland-ivi-shell
 
-		--disable-multisense
+		#--disable-multisense
 		#--disable-xinput2
 		#--enable-xinput2 # enable it
-		--enable-elput
 
-		$(use_enable svg librsvg)
-		$(use_enable tga image-loader-tga)
+		$(use_enable doc)
+		$(use_enable luajit lua-old)
+		$(use_enable pixman)
+		$(use_enable pixman pixman-font)
+		$(use_enable pixman pixman-rect)
+		$(use_enable pixman pixman-line)
+		$(use_enable pixman pixman-poly)
+		$(use_enable pixman pixman-image)
+		$(use_enable pixman pixman-image-scale-sample)
+		$(use_enable ppm image-loader-pmaps)
+		$(use_enable postscript spectre)
+		$(use_enable psd image-loader-psd)
+		$(use_enable pulseaudio)
+		$(use_enable raw libraw)
+		$(use_enable scim)
+		$(use_enable sdl)
+		$(use_enable sound audio)
+		$(use_enable systemd)
+		$(use_enable tiff image-loader-tiff)
+		$(use_enable !fbcon tslib)
 
 		$(use_enable avahi)
-		$(use_enable bmp image-loader-bmp)
-		$(use_enable bmp image-loader-wbmp)
 		$(use_enable dds image-loader-dds)
 		$(use_enable drm)
 		$(use_enable drm elput)
-		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
 		$(use_enable fbcon fb)
 		$(use_enable fontconfig)
 		$(use_enable fribidi)
-		$(use_enable gif image-loader-gif)
 		$(use_enable gstreamer gstreamer1)
 		$(use_enable harfbuzz)
 		$(use_enable hyphen)
-		$(use_enable ico image-loader-ico)
 		$(use_enable ibus)
-		$(use_enable jpeg2k image-loader-jp2k)
 		$(use_enable libuv)
 	    $(use_enable !luajit lua-old)
 		$(use_enable neon)
@@ -223,9 +271,7 @@ src_configure() {
 		$(use_enable pulseaudio)
 		$(use_enable scim)
 		$(use_enable sdl)
-		$(use_enable static-libs static)
 		$(use_enable svg librsvg)
-	    $(use_enable system-lz4 liblz4)
 		$(use_enable systemd)
 		$(use_enable tga image-loader-tga)
 		$(use_enable tiff image-loader-tiff)
@@ -245,8 +291,9 @@ src_configure() {
 	    --with-glib=$(usex glib)
 	    --with-js=none
 	    --with-net-control=$(usex connman connman none)
+	    --with-opengl=$(usex opengl full $(usex gles es none))
 	    --with-profile=$(usex debug debug release)
-	    --with-tests=$(usex test regular none)
+	    #--with-tests=$(usex test regular none)
 	    --with-x11=$(usex X xlib none)
 
 	    $(use_with X x)
