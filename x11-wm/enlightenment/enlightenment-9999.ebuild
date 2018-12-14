@@ -18,7 +18,6 @@ SLOT="0.17/${PV%%_*}"
 
 E_MODULES_DEFAULT_MESON=(
 	conf conf-applications conf-bindings conf-dialogs conf-display conf-interaction conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves conf-theme conf-window-manipulation conf-window-remembers
-
 	appmenu backlight battery bluez4 clock connman cpufreq everything fileman fileman-opinfo gadman geolocation ibar ibox lokker luncher mixer msgbus music-control notification packagekit pager pager-plain quickaccess start shot syscon sysinfo systray tasks teamwork temperature tiling time winlist wireless wizard xkbswitch vkbd
 )
 E_MODULES_DEFAULT=(
@@ -33,7 +32,7 @@ E_MODULES_DEFAULT=(
 	wl-weekeyboard wl-wl wl-x11
 )
 E_MODULES=(
-	packagekit #wl-desktop-shell wl-drm wl-fb wl-x11
+	packagekit wl-desktop-shell wl-drm wl-fb wl-x11 wireless wl-buffer xwayland sysinfo policy-mobile wl-text-input
 )
 IUSE_E_MODULES=(
 	"${E_MODULES_DEFAULT[@]/#/+enlightenment_modules_}"

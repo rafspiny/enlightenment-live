@@ -21,8 +21,8 @@ SLOT="0"
 IUSE="avahi +bmp connman dds debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
 
 REQUIRED_USE="
-    fbcon? ( !tslib )
-    gles? (
+	fbcon? ( !tslib )
+	gles? (
 	        || ( X wayland )
 	        !sdl
 	        egl
@@ -110,16 +110,16 @@ COMMON_DEP="
 	X? (
 	        media-libs/freetype
 	        x11-libs/libXcursor
-            x11-libs/libX11
-            x11-libs/libXcomposite
-            x11-libs/libXdamage
-            x11-libs/libXext
-            x11-libs/libXfixes
-            x11-libs/libXinerama
-            x11-libs/libXrandr
-            x11-libs/libXrender
-            x11-libs/libXtst
-            x11-libs/libXScrnSaver
+	        x11-libs/libX11
+	        x11-libs/libXcomposite
+	        x11-libs/libXdamage
+	        x11-libs/libXext
+	        x11-libs/libXfixes
+	        x11-libs/libXinerama
+	        x11-libs/libXrandr
+	        x11-libs/libXrender
+	        x11-libs/libXtst
+	        x11-libs/libXScrnSaver
 	        opengl? (
 	                x11-libs/libX11
 	                x11-libs/libXrender
@@ -136,7 +136,6 @@ COMMON_DEP="
 	xpm? ( x11-libs/libXpm )
 	# xine? ( >=media-libs/xine-lib-1.1.1 )
 	# xpm? ( x11-libs/libXpm )
-
 
 	!dev-libs/ecore
 	!dev-libs/edbus
@@ -162,7 +161,6 @@ DEPEND="
 	doc? ( app-doc/doxygen )
 "
 
-
 RDEPEND="
 	    ${COMMON_DEPEND}
 	    !media-libs/elementary
@@ -185,7 +183,7 @@ src_prepare() {
 }
 
 src_configure() {
-    if use ssl && use gnutls ; then
+	if use ssl && use gnutls ; then
 		einfo "You enabled both USE=ssl and USE=gnutls, but only one can be used;"
 		einfo "gnutls has been selected for you."
 	fi
@@ -228,7 +226,6 @@ src_configure() {
 		#--disable-xinput2
 		#--enable-xinput2 # enable it
 
-
 		$(use_enable doc)
 		$(use_enable luajit lua-old)
 		$(use_enable pixman)
@@ -249,7 +246,6 @@ src_configure() {
 		$(use_enable systemd)
 		$(use_enable tiff image-loader-tiff)
 		$(use_enable !fbcon tslib)
-
 
 		$(use_enable avahi)
 		$(use_enable dds image-loader-dds)

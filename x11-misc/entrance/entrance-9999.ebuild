@@ -15,7 +15,6 @@ LICENSE="GPL-3"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-
 IUSE="consolekit debug nls pam systemd"
 
 RDEPEND="
@@ -54,7 +53,7 @@ src_install() {
 }
 
 pkg_postinst() {
-    if use systemd; then
+	if use systemd; then
 	    einfo "Systemd detected."
 	    einfo "Before proceeding you may have to disable the current ldm. Suppose you have lightdm installed:"
 	    einfo "> systemctl disable lightdm.service"
