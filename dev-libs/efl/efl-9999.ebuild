@@ -9,6 +9,7 @@ inherit eutils gnome2-utils pax-utils xdg-utils
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
+#EGIT_REPO_URI="https://github.com/Enlightenment/efl.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
@@ -237,7 +238,6 @@ src_configure() {
 		$(use_enable pixman pixman-poly)
 		$(use_enable pixman pixman-image)
 		$(use_enable pixman pixman-image-scale-sample)
-		$(use_enable png image-loader-png)
 		$(use_enable ppm image-loader-pmaps)
 		$(use_enable postscript spectre)
 		$(use_enable psd image-loader-psd)
@@ -275,7 +275,6 @@ src_configure() {
 		$(use_enable pulseaudio)
 		$(use_enable scim)
 		$(use_enable sdl)
-		$(use_enable static-libs static)
 		$(use_enable svg librsvg)
 		$(use_enable systemd)
 		$(use_enable tga image-loader-tga)
@@ -298,7 +297,7 @@ src_configure() {
 	    --with-net-control=$(usex connman connman none)
 	    --with-opengl=$(usex opengl full $(usex gles es none))
 	    --with-profile=$(usex debug debug release)
-	    --with-tests=$(usex test regular none)
+	    #--with-tests=$(usex test regular none)
 	    --with-x11=$(usex X xlib none)
 
 	    $(use_with X x)
