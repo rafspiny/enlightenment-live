@@ -13,6 +13,13 @@ Add repository using layman.
 Install the latest enlightenment git master.
 
     emerge -av @enlightenment-core-9999
+    
+### Applications
+
+It is possible to install several EFL applications like ecrire, express, egitu 
+by hand or by using the enlightenment-apps-9999
+
+    emerge -av @enlightenment-apps-9999
 
 ## Package ebuild admission guidelines
 
@@ -21,14 +28,14 @@ Package ebuilds eligible for this overlay:
   * Live packages for git master and branches
      - enlightenment-9999 (live git master)
      - e.g. enlightenment-0.20.9999 (live git 0.20 branch)
-  * Released versions as long as they aren't included in the official
-    gentoo repository.
+  * Released versions as long as they are not included in the official 
+  Gentoo repository.
   * Important snapshots.
 
 Additional requirements for each ebuild.
 
-  * It must be buildable at the time of inclusion and reasonable effort
-    must be taken to keep it buildable in the long term.
+  * It must be buildable at the time of inclusion and reasonable effort 
+  must be taken to keep it buildable in the long term.
 
 Package ebuilds that are not buildable should be either fixed or removed.
 
