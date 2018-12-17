@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-PYTHON_COMPAT=( python{3_2,3_4} pypy2_0 )
+PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} pypy2_0 )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
