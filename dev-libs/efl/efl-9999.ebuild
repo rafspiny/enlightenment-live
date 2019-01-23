@@ -192,7 +192,7 @@ src_configure() {
 		einfo "opengl has been selected for you."
 	fi
 
-	local myconf=(
+	local config=(
 	    # image loaders
 		--enable-image-loader-generic
 		--enable-image-loader-jpeg # required by ethumb
