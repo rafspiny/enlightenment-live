@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 inherit eutils l10n
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
@@ -24,6 +24,8 @@ S="${WORKDIR}/${P/_/-}"
 DOCS=( AUTHORS NEWS README )
 
 src_prepare() {
+	eapply -p0 "${FILESDIR}/enventor_eo_prefix_fix.patch"
+	eapply_user
 	[ ${PV} = 9999 ] && eautoreconf
 }
 

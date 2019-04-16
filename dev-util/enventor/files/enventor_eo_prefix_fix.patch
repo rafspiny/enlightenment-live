@@ -1,0 +1,119 @@
+diff --git src/lib/edc_editor.c src/lib/edc_editor.c
+index 3a9766d..3aa96a6 100644
+--- src/lib/edc_editor.c
++++ src/lib/edc_editor.c
+@@ -455,7 +455,7 @@ edit_changed_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info)
+                 parser_line_cnt_get(ed->pd, info->change.insert.content);
+           }
+ 
+-        if (enventor_obj_auto_indent_get(ed->enventor))
++        if (enventor_object_auto_indent_get(ed->enventor))
+           {
+              increase =
+                 indent_insert_apply(syntax_indent_data_get(ed->sh),
+@@ -466,7 +466,7 @@ edit_changed_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info)
+      }
+    else
+      {
+-        if (enventor_obj_auto_indent_get(ed->enventor))
++        if (enventor_object_auto_indent_get(ed->enventor))
+           {
+              indent_delete_apply(syntax_indent_data_get(ed->sh),
+                                  info->change.del.content, ed->cur_line);
+@@ -752,7 +752,7 @@ edit_cursor_double_clicked_cb(void *data, Evas_Object *obj,
+    edit_data *ed = data;
+ 
+    if (ed->ctrl_pressed) return;
+-   if (!enventor_obj_ctxpopup_get(ed->enventor)) return;
++   if (!enventor_object_ctxpopup_get(ed->enventor)) return;
+ 
+    char *selected = (char *) elm_entry_selection_get(obj);
+    if (!selected) return;
+@@ -1114,7 +1114,7 @@ edit_edc_load(edit_data *ed, const char *file_path)
+       = indent_text_check(id, (const char *)utf8_edit);
+ 
+    //Set edc text to entry.
+-   if (enventor_obj_auto_indent_get(ed->enventor) && !indent_correct)
++   if (enventor_object_auto_indent_get(ed->enventor) && !indent_correct)
+      //Create indented markup text from utf8 text of EDC file.
+      markup_edit = indent_text_create(id, (const char *)utf8_edit,
+                                       &line_num);
+@@ -1122,13 +1122,13 @@ edit_edc_load(edit_data *ed, const char *file_path)
+      markup_edit = elm_entry_utf8_to_markup(utf8_edit);
+    if (!markup_edit) goto err;
+    elm_entry_entry_set(ed->en_edit, markup_edit);
+-   if (enventor_obj_auto_indent_get(ed->enventor) && !indent_correct)
++   if (enventor_object_auto_indent_get(ed->enventor) && !indent_correct)
+      edit_changed_set(ed, EINA_TRUE);
+    free(markup_edit);
+ 
+    //Append line numbers.
+    if (!eina_strbuf_append_char(strbuf_line, '1')) goto err;
+-   if (enventor_obj_auto_indent_get(ed->enventor) && !indent_correct)
++   if (enventor_object_auto_indent_get(ed->enventor) && !indent_correct)
+      {
+         int num = 2;
+         //Use line_num given by indent_text_create().
+diff --git src/lib/edj_viewer.c src/lib/edj_viewer.c
+index 0687e93..2337afc 100644
+--- src/lib/edj_viewer.c
++++ src/lib/edj_viewer.c
+@@ -168,10 +168,10 @@ view_obj_create_post_job(view_data *vd)
+ 
+    if (vd->part_name) view_part_highlight_set(vd, vd->part_name);
+ 
+-   if (enventor_obj_dummy_parts_get(vd->enventor))
++   if (enventor_object_dummy_parts_get(vd->enventor))
+      dummy_obj_new(vd->layout);
+ 
+-   if (enventor_obj_wireframes_get(vd->enventor))
++   if (enventor_object_wireframes_get(vd->enventor))
+      wireframes_obj_new(vd->layout);
+ 
+    view_mirror_mode_update(vd);
+@@ -961,7 +961,7 @@ view_mirror_mode_update(view_data *vd)
+ {
+    if (!vd || !vd->layout) return;
+    edje_object_mirrored_set(vd->layout,
+-                            enventor_obj_mirror_mode_get(vd->enventor));
++                            enventor_object_mirror_mode_get(vd->enventor));
+    dummy_obj_update(vd->layout);
+    part_obj_geom_cb(vd, evas_object_evas_get(vd->layout), vd->part_obj, NULL);
+ }
+diff --git src/lib/enventor_object.eo src/lib/enventor_object.eo
+index 7ea72f4..e33e60b 100644
+--- src/lib/enventor_object.eo
++++ src/lib/enventor_object.eo
+@@ -5,8 +5,8 @@ type Edje_Part_Type: __undefined_type;
+ 
+ class Enventor.Object extends Efl.Ui.Widget implements Efl.File, Efl.Ui.Focus.Object
+ {
+-   legacy_prefix: enventor_object;
+-   eo_prefix: enventor_obj;
++   // legacy_prefix: enventor_object;
++   eo_prefix: enventor_object;
+    methods {
+       @property part_highlight {
+          set {
+diff --git src/lib/redoundo.c src/lib/redoundo.c
+index 94c866b..d3d9cbc 100644
+--- src/lib/redoundo.c
++++ src/lib/redoundo.c
+@@ -64,7 +64,7 @@ static diff_data *
+ smart_analyser(redoundo_data *rd, diff_data *diff)
+ {
+    Eina_Bool is_continues_text = EINA_FALSE;
+-   if (!enventor_obj_smart_undo_redo_get(rd->enventor)) return diff;
++   if (!enventor_object_smart_undo_redo_get(rd->enventor)) return diff;
+ 
+    if (rd->smart.timer)
+      {
+@@ -80,7 +80,7 @@ smart_analyser(redoundo_data *rd, diff_data *diff)
+         return diff;
+      }
+ 
+-   if (diff->length == 1 && enventor_obj_auto_indent_get(rd->enventor))
++   if (diff->length == 1 && enventor_object_auto_indent_get(rd->enventor))
+      {
+        if (strstr(diff->text, "<br/>")) diff->relative = EINA_TRUE;
+          else diff->relative = EINA_FALSE;
