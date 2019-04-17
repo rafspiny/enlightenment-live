@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -18,7 +18,7 @@ SLOT="0"
 
 # cxx-bindings
 # static-libs
-IUSE="avahi +bmp connman dds debug doc drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
+IUSE="avahi +bmp connman dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
 
 REQUIRED_USE="
 	fbcon? ( !tslib )
@@ -226,6 +226,7 @@ src_configure() {
 		#--disable-xinput2
 		#--enable-xinput2 # enable it
 
+		$(use_enable eo install-eo-files)
 		$(use_enable doc)
 		$(use_enable luajit lua-old)
 		$(use_enable pixman)

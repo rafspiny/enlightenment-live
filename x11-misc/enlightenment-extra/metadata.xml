@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment theme and background download manager.</description>
+	</maintainer>
+	<longdescription>An app for downloading themes and add-ons to Enlightenment WM. See http://www.enlightenment.org</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
