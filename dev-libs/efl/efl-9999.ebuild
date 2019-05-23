@@ -36,13 +36,13 @@ REQUIRED_USE="
 	xim?		( X )
 "
 
-COMMON_DEP="
+RDEPEND="
+	app-arch/lz4:0=
 	net-misc/curl
 	media-libs/libpng:0=
 	sys-apps/dbus
 	>=sys-apps/util-linux-2.20.0
 	sys-libs/zlib:=
-	app-arch/lz4:0=
 	virtual/jpeg:0=
 	virtual/udev
 	avahi? ( net-dns/avahi )
@@ -76,7 +76,7 @@ COMMON_DEP="
 	jpeg2k? ( media-libs/openjpeg:0= )
 	libuv? ( dev-libs/libuv )
 	luajit? ( dev-lang/luajit:= )
-	!luajit? ( dev-lang/lua:* )
+	!luajit ( dev-lang/lua:* )
 	nls? ( sys-devel/gettext )
 	pdf? ( app-text/poppler:=[cxx] )
 	physics? ( sci-physics/bullet:= )
@@ -151,21 +151,17 @@ COMMON_DEP="
 	!media-libs/emotion
 	!media-libs/ethumb
 	!media-libs/evas
+	!media-libs/elementary
+	!media-plugins/emotion_generic_players
+	!media-plugins/evas_generic_loaders
 "
 
-DEPEND="
-	${CORE_EFL_CONFLICTS}
+DEPEND="${RDEPEND}"
 
-	${RDEPEND}
-	virtual/pkgconfig
-	doc? ( app-doc/doxygen )
-"
-
-RDEPEND="
-	    ${COMMON_DEPEND}
-	    !media-libs/elementary
-	    !media-plugins/emotion_generic_players
-	    !media-plugins/evas_generic_loaders
+DEPEND="${RDEPEND}"
+BDEPEND="
+    virtual/pkgconfig
+    doc? ( app-doc/doxygen )
 "
 
 S="${WORKDIR}/${P/_/-}"
