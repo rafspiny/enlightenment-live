@@ -23,9 +23,9 @@ IUSE="avahi +bmp connman dds debug doc drm +eet egl eo fbcon +fontconfig fribidi
 REQUIRED_USE="
 	fbcon? ( !tslib )
 	gles? (
-	        || ( X wayland )
-	        !sdl
-	        egl
+		|| ( X wayland )
+		!sdl
+		egl
 	)
 	ibus? ( glib )
 	opengl?		( || ( X sdl wayland ) )
@@ -60,8 +60,8 @@ RDEPEND="
 	glib? ( dev-libs/glib:2 )
 	gles? ( media-libs/mesa[gles2] )
 	gstreamer? (
-	        media-libs/gstreamer:1.0
-	        media-libs/gst-plugins-base:1.0
+		media-libs/gstreamer:1.0
+		media-libs/gst-plugins-base:1.0
 	)
 	gnutls? ( net-libs/gnutls )
 	!gnutls? (
@@ -76,7 +76,7 @@ RDEPEND="
 	jpeg2k? ( media-libs/openjpeg:0= )
 	libuv? ( dev-libs/libuv )
 	luajit? ( dev-lang/luajit:= )
-	!luajit ( dev-lang/lua:* )
+	!luajit? ( dev-lang/lua:* )
 	nls? ( sys-devel/gettext )
 	pdf? ( app-text/poppler:=[cxx] )
 	physics? ( sci-physics/bullet:= )
@@ -91,8 +91,8 @@ RDEPEND="
 	)
 	sound? ( media-libs/libsndfile )
 	svg? (
-	        gnome-base/librsvg
-	        x11-libs/cairo
+		gnome-base/librsvg
+		x11-libs/cairo
 	)
 	systemd? ( sys-apps/systemd )
 	tiff? ( media-libs/tiff:0= )
@@ -108,34 +108,32 @@ RDEPEND="
 	)
 	webp? ( media-libs/libwebp:= )
 	X? (
-	        media-libs/freetype
-	        x11-libs/libXcursor
-	        x11-libs/libX11
-	        x11-libs/libXcomposite
-	        x11-libs/libXdamage
-	        x11-libs/libXext
-	        x11-libs/libXfixes
-	        x11-libs/libXinerama
-	        x11-libs/libXrandr
-	        x11-libs/libXrender
-	        x11-libs/libXtst
-	        x11-libs/libXScrnSaver
-	        opengl? (
-	                x11-libs/libX11
-	                x11-libs/libXrender
-	                virtual/opengl
-	        )
-	        gles? (
-	                x11-libs/libX11
-	                x11-libs/libXrender
-	                virtual/opengl
-	                xpresent? ( x11-libs/libXpresent )
-	        )
+		media-libs/freetype
+		x11-libs/libXcursor
+		x11-libs/libX11
+		x11-libs/libXcomposite
+		x11-libs/libXdamage
+		x11-libs/libXext
+		x11-libs/libXfixes
+		x11-libs/libXinerama
+		x11-libs/libXrandr
+		x11-libs/libXrender
+		x11-libs/libXtst
+		x11-libs/libXScrnSaver
+		opengl? (
+			x11-libs/libX11
+			x11-libs/libXrender
+			virtual/opengl
+		)
+		gles? (
+			x11-libs/libX11
+			x11-libs/libXrender
+			virtual/opengl
+			xpresent? ( x11-libs/libXpresent )
+		)
 	)
 	xine? ( media-libs/xine-lib )
 	xpm? ( x11-libs/libXpm )
-	# xine? ( >=media-libs/xine-lib-1.1.1 )
-	# xpm? ( x11-libs/libXpm )
 
 	!dev-libs/ecore
 	!dev-libs/edbus
@@ -160,8 +158,8 @@ DEPEND="${RDEPEND}"
 
 DEPEND="${RDEPEND}"
 BDEPEND="
-    virtual/pkgconfig
-    doc? ( app-doc/doxygen )
+	virtual/pkgconfig
+	doc? ( app-doc/doxygen )
 "
 
 S="${WORKDIR}/${P/_/-}"
@@ -189,7 +187,7 @@ src_configure() {
 	fi
 
 	local config=(
-	    # image loaders
+		# image loaders
 		--enable-image-loader-generic
 		--enable-image-loader-jpeg # required by ethumb
 		--enable-image-loader-png
@@ -212,11 +210,11 @@ src_configure() {
 		--enable-liblz4
 
 		--disable-doc
-	    --disable-gesture
-	    --disable-gstreamer
-	    #--disable-image-loader-tgv
-	    --disable-tizen
-	    --disable-wayland-ivi-shell
+		--disable-gesture
+		--disable-gstreamer
+		#--disable-image-loader-tgv
+		--disable-tizen
+		--disable-wayland-ivi-shell
 
 		#--disable-multisense
 		#--disable-xinput2
@@ -257,7 +255,7 @@ src_configure() {
 		$(use_enable hyphen)
 		$(use_enable ibus)
 		$(use_enable libuv)
-	    $(use_enable !luajit lua-old)
+		$(use_enable !luajit lua-old)
 		$(use_enable neon)
 		$(use_enable nls)
 		$(use_enable pdf poppler)
@@ -275,25 +273,25 @@ src_configure() {
 		$(use_enable tslib)
 		$(use_enable v4l v4l2)
 		$(use_enable valgrind)
-	    # $(use_enable vlc libvlc)
-	    $(use_enable vnc vnc-server)
-	    $(use_enable wayland)
-	    $(use_enable webp image-loader-webp)
-	    $(use_enable xcf)
-	    $(use_enable xim)
-	    $(use_enable xine)
-	    $(use_enable xpm image-loader-xpm)
+		# $(use_enable vlc libvlc)
+		$(use_enable vnc vnc-server)
+		$(use_enable wayland)
+		$(use_enable webp image-loader-webp)
+		$(use_enable xcf)
+		$(use_enable xim)
+		$(use_enable xine)
+		$(use_enable xpm image-loader-xpm)
 
-	    --with-crypto=$(usex gnutls gnutls $(usex ssl openssl none))
-	    --with-glib=$(usex glib)
-	    --with-js=none
-	    --with-net-control=$(usex connman connman none)
-	    --with-opengl=$(usex opengl full $(usex gles es none))
-	    --with-profile=$(usex debug debug release)
-	    #--with-tests=$(usex test regular none)
-	    --with-x11=$(usex X xlib none)
+		--with-crypto=$(usex gnutls gnutls $(usex ssl openssl none))
+		--with-glib=$(usex glib)
+		--with-js=none
+		--with-net-control=$(usex connman connman none)
+		--with-opengl=$(usex opengl full $(usex gles es none))
+		--with-profile=$(usex debug debug release)
+		#--with-tests=$(usex test regular none)
+		--with-x11=$(usex X xlib none)
 
-	    $(use_with X x)
+		$(use_with X x)
 
 		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-abb
 	)
@@ -333,7 +331,7 @@ src_configure() {
 }
 
 src_compile() {
-	    if host-is-pax && use luajit ; then
+	if host-is-pax && use luajit ; then
 	            # We need to build the lua code first so we can pax-mark it. #547076
 	            local target='_e_built_sources_target_gogogo_'
 	            printf '%s: $(BUILT_SOURCES)\n' "${target}" >> src/Makefile || die
@@ -342,7 +340,7 @@ src_compile() {
 	            pax-mark m src/bin/elua/.libs/elua
 	    fi
 
-	    V=1 emake || die "Compiling EFL failed."
+	V=1 emake || die "Compiling EFL failed."
 }
 
 src_test() {
@@ -358,11 +356,11 @@ src_install() {
 }
 
 pkg_postinst() {
-	    gnome2_icon_cache_update
-	    xdg_mimeinfo_database_update
+	gnome2_icon_cache_update
+	xdg_mimeinfo_database_update
 }
 
 pkg_postrm() {
-	    gnome2_icon_cache_update
-	    xdg_mimeinfo_database_update
+	gnome2_icon_cache_update
+	xdg_mimeinfo_database_update
 }
