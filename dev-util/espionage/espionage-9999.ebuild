@@ -1,8 +1,11 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_6} pypy2_0 )
+
+# Add experimental python3_{5,7} support, which needs testing!
+PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+
 inherit eutils l10n
 [ "${PV}" = 9999 ] && inherit git-r3 distutils-r1
 
@@ -16,8 +19,8 @@ SLOT="0"
 
 IUSE=""
 
-DEPEND=">=dev-python/python-efl-9999
-	dev-python/dbus-python"
+DEPEND=">=dev-python/python-efl-9999[${PYTHON_USEDEP}]
+	dev-python/dbus-python[${PYTHON_USEDEP}]"
 
 RDEPEND="
 	>=dev-libs/efl-9999
