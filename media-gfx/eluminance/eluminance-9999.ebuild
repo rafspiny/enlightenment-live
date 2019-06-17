@@ -1,8 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-PYTHON_COMPAT=( python{2_7,3_2,3_4} pypy2_0 )
+
+# FIXME: There were python 3.{2,3} implementations listed.
+# Probably this also supports python 3.{5,6,7}. Needs testing!
+PYTHON_COMPAT=( python3_{5,6,7} )
 
 inherit distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
@@ -17,8 +20,8 @@ SLOT="0"
 
 IUSE=""
 RDEPEND=">=dev-libs/efl-1.18.0
-		dev-python/python-efl
-		dev-python/pyxdg
+		dev-python/python-efl[${PYTHON_USEDEP}]
+		dev-python/pyxdg[${PYTHON_USEDEP}]
 		${PYTHON_DEPS}"
 
 DEPEND="${RDEPEND}"
