@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 # TODO: re-add python 3.7 support, once python-distutils-extra and
 # libtorrent-rasterbar have it supported.
@@ -26,7 +26,12 @@ RDEPEND="dev-python/python-distutils-extra[${PYTHON_USEDEP}]
 		sys-apps/dbus
 		x11-misc/xdg-utils
 		${PYTHON_DEPS}"
-
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${P/_/-}"
+
+src_install() {
+	distutils-r1_src_install
+	# README.txt gets installed twice
+	rm -r "${ED%/}"/usr/share/doc/"${PN}" || die "failed to remove dir"
+}
