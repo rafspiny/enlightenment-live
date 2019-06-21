@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 # FIXME: There were python 3.{2,3} implementations listed.
 # Probably this also supports python 3.{5,6,7}. Needs testing!
