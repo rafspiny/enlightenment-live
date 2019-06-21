@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 # FIXME: They are not declared in any official eclass.
 # The enlightenment.niifaq overlay at
@@ -27,11 +27,10 @@ IUSE="doc"
 RDEPEND="
 		>=dev-python/cython-0.21[${PYTHON_USEDEP}]
 		>=dev-python/dbus-python-1.2.0-r1[${PYTHON_USEDEP}]
-		>=dev-libs/efl-1.18.0
+		>=dev-libs/efl-1.22.99
 		doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 		${PYTHON_DEPS}"
-
-DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 S="${WORKDIR}/${P/_/-}"
