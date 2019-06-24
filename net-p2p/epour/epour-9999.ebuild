@@ -1,8 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-PYTHON_COMPAT=( python{3_4,3_5,3_6,3_7} pypy2_0 )
+EAPI=7
+
+# TODO: re-add python 3.7 support, once python-distutils-extra and
+# libtorrent-rasterbar have it supported.
+PYTHON_COMPAT=( python3_{5,6} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
@@ -16,14 +19,19 @@ LICENSE="BSD-2"
 SLOT="0"
 
 IUSE=""
-RDEPEND="dev-python/python-distutils-extra
+RDEPEND="dev-python/python-distutils-extra[${PYTHON_USEDEP}]
 		>=dev-libs/efl-1.15.0
-		~dev-python/python-efl-9999
-		>=net-libs/libtorrent-rasterbar-1.0.10[python]
+		~dev-python/python-efl-9999[${PYTHON_USEDEP}]
+		>=net-libs/libtorrent-rasterbar-1.0.10:=[python,${PYTHON_USEDEP}]
 		sys-apps/dbus
 		x11-misc/xdg-utils
 		${PYTHON_DEPS}"
-
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${P/_/-}"
+
+src_install() {
+	distutils-r1_src_install
+	# README.txt gets installed twice
+	rm -r "${ED%/}"/usr/share/doc/"${PN}" || die "failed to remove dir"
+}

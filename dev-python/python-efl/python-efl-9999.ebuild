@@ -1,11 +1,16 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-E_PKG_IUSE="examples"
-E_PYTHON="yes"
+EAPI=7
 
-PYTHON_COMPAT=( python{2_6,2_7,3_4,3_5,3_6,3_7} )
+# FIXME: They are not declared in any official eclass.
+# The enlightenment.niifaq overlay at
+# https://github.com/niifaq/enlightenment.overlay declares those in their
+# efl.eclass but this is not available here.
+#E_PKG_IUSE="examples"
+#E_PYTHON="yes"
+
+PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
@@ -20,13 +25,12 @@ SLOT="0"
 
 IUSE="doc"
 RDEPEND="
-		>=dev-python/cython-0.21
-		>=dev-python/dbus-python-1.2.0-r1
-		>=dev-libs/efl-1.18.0
-		doc? ( dev-python/sphinx )
+		>=dev-python/cython-0.21[${PYTHON_USEDEP}]
+		>=dev-python/dbus-python-1.2.0-r1[${PYTHON_USEDEP}]
+		>=dev-libs/efl-1.22.99
+		doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 		${PYTHON_DEPS}"
-
-DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 S="${WORKDIR}/${P/_/-}"
