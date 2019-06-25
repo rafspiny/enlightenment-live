@@ -8,6 +8,14 @@
 	</maintainer>
 	<longdescription>It includes Evas, Eina, Edje, Eet, Ecore, Efreet, Eldbus, Embryo, Eeze, Emotion, Ethumb, Ephysics, EIO, Evas, Emotion, Elementary. See http://www.enlightenment.org/about-efl</longdescription>
 	<use>
+		<flag name="sound">Flag for handling audio support in efl</flag>
+		<flag name="avahi">Flag for handling avahi support in efl</flag>
+		<flag name="pulseaudio">pulseaudio support</flag>
+		<flag name="systemd">use systemd support</flag>
+		<flag name="gstreamer">use gstreamer 1.0 support</flag>
+		<flag name="glib">Enable <pkg>dev-libs/glib</pkg> support</flag>
+		<flag name="example">Build example</flag>
+
 		<flag name="bmp">Enable WBMP image loader</flag>
 		<flag name="drm">Enable DRM engine</flag>
 		<flag name="dds">Enable DDS image loader</flag>
@@ -16,7 +24,7 @@
 		<flag name="eo">Enable EO files installation</flag>
 		<flag name="fribidi">Enable bidirectional text support</flag>
 		<flag name="gles">Enable the OpenGL ES GL implementation</flag>
-		<flag name="glib">Enable <pkg>dev-libs/glib</pkg> support</flag>
+
 		<flag name="harfbuzz">Enable complex text shaping and layout support</flag>
 		<flag name="hyphen">Enable text hyphenation support</flag>
 		<flag name="ibus">Enable Intelligent Input Bus</flag>
