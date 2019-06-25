@@ -4,21 +4,19 @@
 EAPI=6
 
 inherit eutils gnome2-utils pax-utils xdg-utils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+[ "${PV}" = 9999 ] && inherit git-r3 meson
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
-#EGIT_REPO_URI="https://github.com/Enlightenment/efl.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-# cxx-bindings
 # static-libs
-IUSE="avahi +bmp connman dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc wayland +webp +X xcf xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc test wayland +webp +X xcf xim xine xpresent xpm"
 
 REQUIRED_USE="
 	fbcon? ( !tslib )
@@ -157,20 +155,13 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 BDEPEND="
-	virtual/pkgconfig
+	virtual/p/followed-cams/kgconfig
 	doc? ( app-doc/doxygen )
 "
 
 S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-
-	# Upstream still doesnt offer a configure flag. #611108
-	if ! use unwind ; then
-	        sed -i -e 's:libunwind libunwind-generic:xxxxxxxxxxxxxxxx:' \
-	        configure || die "Sedding configure file with unwind fix failed."
-	fi
 	eapply_user
 	xdg_environment_reset
 }
@@ -185,172 +176,90 @@ src_configure() {
 		einfo "opengl has been selected for you."
 	fi
 
-	local config=(
-		# image loaders
-		--enable-image-loader-generic
-		--enable-image-loader-jpeg # required by ethumb
-		--enable-image-loader-png
-		$(use_enable bmp image-loader-bmp)
-		$(use_enable bmp image-loader-wbmp)
-		$(use_enable eet image-loader-eet)
-		$(use_enable gif image-loader-gif)
-		$(use_enable ico image-loader-ico)
-		$(use_enable jpeg2k image-loader-jp2k)
-		$(use_enable svg librsvg)
-		$(use_enable tga image-loader-tga)
+	local emesonargs=(
+		-Demotion-loaders-disabler=gstreamer,xine
+		$(meson_use sound audio)
+		$(meson_use pulseaudio pulseaudio)
+		$(meson_use systemd systemd)
+		$(meson_use glib glib)
+		$(meson_use nls nls)
 
-		--enable-cserve
-		--enable-elput
-		--enable-multisense
-		--enable-libmount
-		--enable-libeeze
-		--enable-threads
-		--enable-xinput22
-		--enable-liblz4
+		$(meson_use avahi avahi)
+		$(meson_use fbcon fb)
+		$(meson_use sdl sdl)
+		$(meson_use gstreamer gstreamer)
+		$(meson_use v4l v4l2)
+		$(meson_use vnc vnc-server)
 
-		--disable-doc
-		--disable-gesture
-		--disable-gstreamer
-		#--disable-image-loader-tgv
-		--disable-tizen
-		--disable-wayland-ivi-shell
+		$(meson_use physics physics)
+		-Dnetwork-backend=$(usex connman connman none)
+		-Dcrypto=$(usex ssl openssl $(usex gnutls gnutls none))
 
-		#--disable-multisense
-		#--disable-xinput2
-		#--enable-xinput2 # enable it
+		$(meson_use test build-tests)
+		$(meson_use example build-examples)
+		$(meson_use debug debug-threads)
+		$(meson_use debug eina-magic-debug)
 
-		$(use_enable eo install-eo-files)
-		$(use_enable doc)
-		$(use_enable luajit lua-old)
-		$(use_enable pixman)
-		$(use_enable pixman pixman-font)
-		$(use_enable pixman pixman-rect)
-		$(use_enable pixman pixman-line)
-		$(use_enable pixman pixman-poly)
-		$(use_enable pixman pixman-image)
-		$(use_enable pixman pixman-image-scale-sample)
-		$(use_enable ppm image-loader-pmaps)
-		$(use_enable postscript spectre)
-		$(use_enable psd image-loader-psd)
-		$(use_enable pulseaudio)
-		$(use_enable raw libraw)
-		$(use_enable scim)
-		$(use_enable sdl)
-		$(use_enable sound audio)
-		$(use_enable systemd)
-		$(use_enable tiff image-loader-tiff)
-		$(use_enable !fbcon tslib)
+		$(meson_use X x11)
+		$(meson_use pixman pixman)
+		$(meson_use wayland wl)
+		$(meson_use drm drm)
+		#$(use_enable drm elput)
+		#use drm && use wayland && emesonargs+=( --enable-gl-drm )
 
-		$(use_enable avahi)
-		$(use_enable dds image-loader-dds)
-		$(use_enable drm)
-		$(use_enable drm elput)
-		$(use_enable egl)
-		$(use_enable fbcon fb)
-		$(use_enable fontconfig)
-		$(use_enable fribidi)
-		$(use_enable gstreamer gstreamer1)
-		$(use_enable harfbuzz)
-		$(use_enable hyphen)
-		$(use_enable ibus)
-		$(use_enable libuv)
-		$(use_enable !luajit lua-old)
-		$(use_enable neon)
-		$(use_enable nls)
-		$(use_enable pdf poppler)
-		$(use_enable physics)
-		$(use_enable postscript spectre)
-		$(use_enable ppm image-loader-pmaps)
-		$(use_enable psd image-loader-psd)
-		$(use_enable pulseaudio)
-		$(use_enable scim)
-		$(use_enable sdl)
-		$(use_enable svg librsvg)
-		$(use_enable systemd)
-		$(use_enable tga image-loader-tga)
-		$(use_enable tiff image-loader-tiff)
-		$(use_enable tslib)
-		$(use_enable v4l v4l2)
-		$(use_enable valgrind)
-		# $(use_enable vlc libvlc)
-		$(use_enable vnc vnc-server)
-		$(use_enable wayland)
-		$(use_enable webp image-loader-webp)
-		$(use_enable xcf)
-		$(use_enable xim)
-		$(use_enable xine)
-		$(use_enable xpm image-loader-xpm)
+		$(meson_use tslib tslib)
+		# $(use_enable !fbcon tslib)
+		#$(meson_use buffer buffer)
 
-		--with-crypto=$(usex gnutls gnutls $(usex ssl openssl none))
-		--with-glib=$(usex glib)
-		--with-js=none
-		--with-net-control=$(usex connman connman none)
-		--with-opengl=$(usex opengl full $(usex gles es none))
-		--with-profile=$(usex debug debug release)
-		#--with-tests=$(usex test regular none)
-		--with-x11=$(usex X xlib none)
+		$(meson_use eo install-eo-files)
+		$(meson_use harfbuzz harfbuzz)
+		$(meson_use hyphen hyphen)
+		$(meson_use fontconfig fontconfig)
+		$(meson_use fribidi fribidi)
 
-		$(use_with X x)
-
-		--enable-i-really-know-what-i-am-doing-and-that-this-will-probably-break-things-and-i-will-fix-them-myself-and-send-patches-abb
+		-Deeze=true
+		-Dlibmount=true
 	)
-
-	use fbcon && use egl && config+=( --enable-eglfs )
-	use drm && use wayland && config+=( --enable-gl-drm )
-	use X && use xpresent && config+=( --enable-xpresent )
-
+	# Options dependant on others
+	if use X; then
+		-Dxinput2=true
+		-Dxinput22=true
+		emesonargs+=(
+		    $(meson_use xpresent xpresent)
+		    #$(meson_use xgesture xgesture)
+		)
+	fi
+	# Options with a choice
 	if use opengl ; then
-	        config+=( --with-opengl=full )
-	        use gles &&  \
+		    emesonargs+=( -Dopengl=full )
+		    use gles &&  \
 			    einfo "You enabled both USE=opengl and USE=gles, using opengl"
 	elif use egl ; then
-	        config+=( --with-opengl=es )
-	elif use drm && use wayland ; then
-	        config+=( --with-opengl=es )
+		    emesonargs+=( -Dopengl=es-egl )
 	else
-	        config+=( --with-opengl=none )
-	        use $sdl && \
-	            ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
+		    emesonargs+=( -Dopengl=none )
+		    use $sdl && \
+		        ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
 			ewarn "Disabling gl for all backends."
 	fi
 
-	# Checking for with version of vlc is enabled and therefore use the right configure option
-	if use vlc ; then
-		einfo "You enabled USE=vlc. Checking vlc version..."
-		if has_version ">media-video/vlc-3.0" ; then
-			einfo "> 3.0 found. Enabling libvlc."
-			config+=($(use_enable vlc libvlc))
-		else
-			einfo "< 3.0 found. Enabling generic-vlc."
-			config+=($(use_with vlc generic-vlc))
-		fi
-	fi
-
-	econf "${config[@]}"
+	meson_src_configure
 }
 
 src_compile() {
-	if host-is-pax && use luajit ; then
-	            # We need to build the lua code first so we can pax-mark it. #547076
-	            local target='_e_built_sources_target_gogogo_'
-	            printf '%s: $(BUILT_SOURCES)\n' "${target}" >> src/Makefile || die
-	            emake -C src "${target}"
-	            emake -C src bin/elua/elua
-	            pax-mark m src/bin/elua/.libs/elua
-	    fi
-
-	V=1 emake || die "Compiling EFL failed."
+	meson_src_compile
 }
 
 src_test() {
 	MAKEOPTS+=" -j1"
-	default
+	meson_src_test
 }
 
 src_install() {
 	MAKEOPTS+=" -j1"
-	einstalldocs
-	V=1 emake install DESTDIR="${D}" || die "Installing EFL files failed."
+
+	meson_src_install
+	#|| die "Installing EFL files failed."
 	prune_libtool_files
 }
 
