@@ -8,43 +8,58 @@
 	</maintainer>
 	<longdescription>It includes Evas, Eina, Edje, Eet, Ecore, Efreet, Eldbus, Embryo, Eeze, Emotion, Ethumb, Ephysics, EIO, Evas, Emotion, Elementary. See http://www.enlightenment.org/about-efl</longdescription>
 	<use>
-		<flag name="sound">Flag for handling audio support in efl</flag>
-		<flag name="avahi">Flag for handling avahi support in efl</flag>
-		<flag name="pulseaudio">pulseaudio support</flag>
-		<flag name="systemd">use systemd support</flag>
-		<flag name="gstreamer">use gstreamer 1.0 support</flag>
-		<flag name="glib">Enable <pkg>dev-libs/glib</pkg> support</flag>
-		<flag name="example">Build example</flag>
-
+		<flag name="avahi">Add avahi/Zeroconf support</flag>
 		<flag name="bmp">Enable WBMP image loader</flag>
-		<flag name="drm">Enable DRM engine</flag>
+		<flag name="connman">Add support for net-misc/connman</flag>
+		<flag name="example">Build example</flag>
 		<flag name="dds">Enable DDS image loader</flag>
+		<flag name="debug">Enable magic debug of eina structure and debug threads for EFL</flag>
+		<flag name="doc">Documentation with Doxygen</flag>
+		<flag name="drm">Enable DRM engine</flag>
 		<flag name="eet">Enable Eet image loader</flag>
 		<flag name="egl">Enable EGL rendering</flag>
 		<flag name="eo">Enable EO files installation</flag>
+		<flag name="fbcon">Enable support for the frame buffer in efl</flag>
+		<flag name="fontconfig">Enable support for fontconfig</flag>
 		<flag name="fribidi">Enable bidirectional text support</flag>
+		<flag name="gif">Enable GIF image loader</flag>
 		<flag name="gles">Enable the OpenGL ES GL implementation</flag>
-
+		<flag name="glib">Enable <pkg>dev-libs/glib</pkg> support</flag>
+		<flag name="gnutls">Prefer net-libs/gnutls as SSL/TLS provider (ineffective with USE=-ssl) </flag>
+		<flag name="gstreamer">use gstreamer 1.0 support</flag>
 		<flag name="harfbuzz">Enable complex text shaping and layout support</flag>
 		<flag name="hyphen">Enable text hyphenation support</flag>
 		<flag name="ibus">Enable Intelligent Input Bus</flag>
 		<flag name="ico">Enable Ico image loader</flag>
-		<flag name="raw">Enable libraw library for image loader</flag>
+		<flag name="jpeg2k">Support for JPEG 2000, a wavelet-based image compression format </flag>
+		<flag name="json">Add support for json evas loader</flag>
 		<flag name="libuv">Enable dev-libs/libuv support</flag>
-		<flag name="physics">Enable Bullet physics effects and support</flag>
+		<flag name="luajit">USE dev-lang/luajit instead of dev-lang/lua</flag>
+		<flag name="nls">Add Native Language Support (using gettext - GNU locale utilities) </flag>
+		<flag name="opengl">Add support for OpenGL (3D graphics)</flag>
+		<flag name="pdf">Add general support for PDF </flag>
 		<flag name="pixman">Enable PixMan for software rendering</flag>
+		<flag name="physics">Enable Bullet physics effects and support</flag>
 		<flag name="ppm">Enable PMAPS image loader</flag>
 		<flag name="psd">Enable PSD image loader</flag>
+		<flag name="pulseaudio">pulseaudio support</flag>
+		<flag name="raw">Enable libraw library for image loader</flag>
 		<flag name="scim">Enable Smart Common Input Method</flag>
+		<flag name="sound">Flag for handling audio support in efl</flag>
+		<flag name="systemd">use systemd support</flag>
+		<flag name="ssl">Add support for SSL/TLS connections</flag>
 		<flag name="tga">Enable Tga image loader</flag>
+		<flag name="test">Build tests</flag>
 		<flag name="tiff">Enable TIFF image loader</flag>
 		<flag name="tslib">Enable <pkg>x11-libs/tslib</pkg> for touchscreen events</flag>
 		<flag name="vlc">Enabling vlc evas engine</flag>
 		<flag name="v4l">Include Video4Linux v2 support in the build</flag>
-		<flag name="valgrind">Enable usage of <pkg>dev-util/valgrind</pkg> in debug</flag>
+		<flag name="vnc">Enable vnc server</flag>
+		<flag name="wayland">Enable Wayland</flag>
 		<flag name="webp">Enable WebP image loader</flag>
 		<flag name="xcf">Enable XCF image loader</flag>
 		<flag name="xim">Enable X Input Method</flag>
 		<flag name="xpresent">Enable x11-libs/libXpresent support</flag>
+		<flag name="xpm">Add support for XPM graphics format</flag>
 	</use>
 </pkgmetadata>

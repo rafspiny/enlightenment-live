@@ -15,8 +15,7 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-# static-libs
-IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ico ibus jpeg2k libressl libuv luajit neon nls opengl ssl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound +svg systemd tga tiff tslib unwind v4l valgrind vlc vnc test wayland +webp +X xcf xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ibus +ico jpeg2k json libuv luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
 	fbcon? ( !tslib )
@@ -63,10 +62,7 @@ RDEPEND="
 	)
 	gnutls? ( net-libs/gnutls )
 	!gnutls? (
-		ssl? (
-			!libressl? ( dev-libs/openssl:0= )
-			libressl? ( dev-libs/libressl )
-		)
+		ssl? ( dev-libs/openssl:0= )
 	)
 	harfbuzz? ( media-libs/harfbuzz )
 	hyphen? ( dev-libs/hyphen )
@@ -96,7 +92,6 @@ RDEPEND="
 	tiff? ( media-libs/tiff:0= )
 	tslib? ( x11-libs/tslib:= )
 	unwind? ( sys-libs/libunwind )
-	valgrind? ( dev-util/valgrind )
 	vlc? ( media-video/vlc )
 	vnc? ( net-libs/libvncserver )
 	wayland? (
@@ -169,15 +164,17 @@ src_prepare() {
 src_configure() {
 	if use ssl && use gnutls ; then
 		einfo "You enabled both USE=ssl and USE=gnutls, but only one can be used;"
-		einfo "gnutls has been selected for you."
-	fi
-	if use opengl && use gles ; then
-		einfo "You enabled both USE=opengl and USE=gles, but only one can be used;"
-		einfo "opengl has been selected for you."
+		einfo "ssl has been selected for you."
 	fi
 
 	local emesonargs=(
-		-Demotion-loaders-disabler=gstreamer,xine
+		-Demotion-generic-loaders-disabler=$(usex vlc '' vlc)
+		-Demotion-loaders-disabler=libvlc,$(usex gstreamer '' 'gstreamer,')$(usex xine '' xine)
+
+		-Dlua-interpreter=$(usex luajit luajit lua)
+		-Dbindings=$(usex luajit 'luajit,' '')cxx
+		# Add a mono use flag to build mono binding
+
 		$(meson_use sound audio)
 		$(meson_use pulseaudio pulseaudio)
 		$(meson_use systemd systemd)
@@ -219,27 +216,65 @@ src_configure() {
 
 		-Deeze=true
 		-Dlibmount=true
+		-Devas-modules=shared
 	)
 	# Options dependant on others
 	if use X; then
-		-Dxinput2=true
-		-Dxinput22=true
 		emesonargs+=(
-		    $(meson_use xpresent xpresent)
-		    #$(meson_use xgesture xgesture)
+			-Dxinput2=true
+			-Dxinput22=true
+			$(meson_use xpresent xpresent)
+			#$(meson_use xgesture xgesture)
 		)
 	fi
+
 	# Options with a choice
+
+	# Checking imf
+	combind_imf=""
+	for token in xim ibus scim ; do
+		if use !$token ; then
+			combined_imf="${combined_imf}${combined_imf:+,}$token"
+		fi
+	done
+	# Checking evas loaders
+	combined_evas_loaders=""
+	for token in bmp dds eet gif ico json pdf psd raw svg tga tiff xcf xpm webp; do
+		if use !$token ; then
+			combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}$token"
+		fi
+	done
+
+	# Checking for other evas loaders
+	if use !jpeg2k ; then
+		combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}jp2k"
+	fi
+	if use !gstreamer ; then
+		combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}gst"
+	fi
+	if use !ppm ; then
+		combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}pmaps"
+	fi
+
+	emesonargs+=(
+		-Decore-imf-loaders-disabler="$combined_imf"
+		-Devas-loaders-disabler="$combined_evas_loaders"
+	)
+
+	if use opengl && use gles ; then
+		einfo "You enabled both USE=opengl and USE=gles, but only one can be used;"
+		einfo "opengl has been selected for you."
+	fi
 	if use opengl ; then
-		    emesonargs+=( -Dopengl=full )
-		    use gles &&  \
-			    einfo "You enabled both USE=opengl and USE=gles, using opengl"
+			emesonargs+=( -Dopengl=full )
+			use gles &&  \
+				einfo "You enabled both USE=opengl and USE=gles, using opengl"
 	elif use egl ; then
-		    emesonargs+=( -Dopengl=es-egl )
+			emesonargs+=( -Dopengl=es-egl )
 	else
-		    emesonargs+=( -Dopengl=none )
-		    use $sdl && \
-		        ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
+			emesonargs+=( -Dopengl=none )
+			use $sdl && \
+				ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
 			ewarn "Disabling gl for all backends."
 	fi
 
@@ -259,7 +294,6 @@ src_install() {
 	MAKEOPTS+=" -j1"
 
 	meson_src_install
-	#|| die "Installing EFL files failed."
 	prune_libtool_files
 }
 
