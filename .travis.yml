@@ -6,44 +6,38 @@ language: python
 python:
     - pypy
 env:
-    - PORTAGE_VER="2.3.49"
+    - PORTAGE_VER="2.3.67"
 before_install:
     - sudo apt-get -qq update
-    - pip install lxml
-    - pip install pyyaml
+    - pip install lxml pyyaml
 before_script:
-    - mkdir enlightenment-live
+    - sudo chmod a+rwX /etc/passwd /etc/group /etc /var /var/cache
+    - mkdir -p enlightenment-live /etc/portage /var/cache/distfiles /var/db/repos/gentoo
     - mv !(enlightenment-live) enlightenment-live/
     - mv .git enlightenment-live/
     - wget "https://raw.githubusercontent.com/mrueg/repoman-travis/master/.travis.yml" -O .travis.yml.upstream
     - wget "https://raw.githubusercontent.com/mrueg/repoman-travis/master/spinner.sh"
-    - wget "https://github.com/gentoo/portage/archive/portage-${PORTAGE_VER}.tar.gz" -O portage-${PORTAGE_VER}.tar.gz
-    - wget "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" -O portage-tree.tar.gz
-    - sudo chmod a+rwX /etc/passwd /etc/group /etc /usr spinner.sh
+    - wget -qO - "https://github.com/gentoo/portage/archive/portage-${PORTAGE_VER}.tar.gz" | tar xz
+    - wget -qO - "https://github.com/gentoo-mirror/gentoo/archive/master.tar.gz" | tar xz -C /var/db/repos/gentoo --strip-components=1
     - chmod a+rwx spinner.sh
     - echo "portage:x:250:250:portage:/var/tmp/portage:/bin/false" >> /etc/passwd
     - echo "portage::250:portage,travis" >> /etc/group
-    - mkdir -p /etc/portage /usr/portage/distfiles
-    - wget "https://www.gentoo.org/dtd/metadata.dtd" -O /usr/portage/distfiles/metadata.dtd
-    - tar xzf portage-${PORTAGE_VER}.tar.gz && mv portage-portage-${PORTAGE_VER} portage-${PORTAGE_VER}
-    - tar xzf portage-tree.tar.gz -C /usr/portage --strip-components=1
-    - cp portage-${PORTAGE_VER}/cnf/repos.conf /etc/portage/
-    - ln -s /usr/portage/profiles/base/ /etc/portage/make.profile
-    - SIZE=$(stat -c %s .travis.yml.upstream)
-#    - if ! cmp -n $SIZE -s .travis.yml .travis.yml.upstream; then echo -e "\e[31m !!! .travis.yml outdated! Update available https://github.com/mrueg/repoman-travis \e[0m" > /tmp/update ; fi
+    - wget "https://www.gentoo.org/dtd/metadata.dtd" -O /var/cache/distfiles/metadata.dtd
+    - ln -s $TRAVIS_BUILD_DIR/portage-portage-${PORTAGE_VER}/cnf/repos.conf /etc/portage/repos.conf
+    - ln -s /var/db/repos/gentoo/profiles/default/linux/amd64/17.0 /etc/portage/make.profile
+    #- SIZE=$(stat -c %s .travis.yml.upstream)
+    #- if ! cmp -n $SIZE -s .travis.yml .travis.yml.upstream; then echo -e "\e[31m !!! .travis.yml outdated! Update available https://github.com/mrueg/repoman-travis \e[0m" > /tmp/update ; fi
     - cd enlightenment-live
 # repoman is not able to cope with the files in portage/arch/<ARCH>/package.use.mask to mask ISE flags for a specific arch
 # Taking care of that by temporary removing those USE flags
-    - mkdir -p /usr/portage/profiles/arch/alpha/ && cat profiles/alpha/package.use.mask >> /usr/portage/profiles/arch/alpha/package.use.mask
-    - mkdir -p /usr/portage/profiles/arch/hppa/ && cat profiles/hppa/package.use.mask >> /usr/portage/profiles/arch/hppa/package.use.mask
-    - mkdir -p /usr/portage/profiles/arch/ia64/ && cat profiles/ia64/package.use.mask >> /usr/portage/profiles/arch/ia64/package.use.mask
+
+    - mkdir -p /var/cache/profiles/arch/alpha/ && cat profiles/alpha/package.use.mask >> /var/cache/profiles/arch/alpha/package.use.mask
+    - mkdir -p /var/cache/profiles/arch/hppa/ && cat profiles/hppa/package.use.mask >> /var/cache/profiles/arch/hppa/package.use.mask
+    - mkdir -p /var/cache/profiles/arch/ia64/ && cat profiles/ia64/package.use.mask >> /var/cache/profiles/arch/ia64/package.use.mask
 #    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~alpha//gi {} \;
 #    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~hppa//gi {} \;
 #    - find . \( -wholename "*dev-libs/efl/*.ebuild" -o -wholename "*x11-wm/enlightenment/*.ebuild" \) -exec sed -i'' s/~ia64//gi {} \;
-script:
-    - ./../spinner.sh "python ../portage-${PORTAGE_VER}/repoman/bin/repoman full -d"
-# You can append own scripts after this line
-#notifications:
+##notifications:
 #  irc:
 #    channels:
 #      - "chat.freenode.net#gentoo-qt"
@@ -52,3 +46,7 @@ script:
 #      - "%{author} - %{commit_message}"
 #      - "Change view : %{compare_url}"
 #      - "Build details : %{build_url}"
+
+script:
+    - ./../spinner.sh "python ../portage-portage-${PORTAGE_VER}/repoman/bin/repoman full -d"
+# You can append own scripts after this line
