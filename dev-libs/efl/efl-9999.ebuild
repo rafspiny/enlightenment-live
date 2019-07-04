@@ -9,7 +9,8 @@ inherit eutils gnome2-utils pax-utils xdg-utils
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
-[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
+#EGIT_REPO_URI="https://github.com/enlightenment/${PN}.git"
+#[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
@@ -261,20 +262,17 @@ src_configure() {
 		-Devas-loaders-disabler="$combined_evas_loaders"
 	)
 
-	if use opengl && use gles ; then
-		einfo "You enabled both USE=opengl and USE=gles, but only one can be used;"
-		einfo "opengl has been selected for you."
+	if use opengl && ( use gles || use egl ); then
+		einfo "You enabled both USE=opengl and USE=gles or USE=egl, but modern systems doing gl, they probably also do egl/gles.;"
+		einfo "Because of this, gl has been selected for you."
 	fi
 	if use opengl ; then
 			emesonargs+=( -Dopengl=full )
-			use gles &&  \
-				einfo "You enabled both USE=opengl and USE=gles, using opengl"
-	elif use egl ; then
+	elif use egl && use gles ; then
 			emesonargs+=( -Dopengl=es-egl )
+			einfo "Using es-egl as a backend."
 	else
 			emesonargs+=( -Dopengl=none )
-			use $sdl && \
-				ewarn "You enabled both USE=sdl and USE=gles which isn't currently supported."
 			ewarn "Disabling gl for all backends."
 	fi
 
