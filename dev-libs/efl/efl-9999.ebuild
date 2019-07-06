@@ -19,6 +19,7 @@ SLOT="0"
 IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ibus +ico jpeg2k json libuv luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
+	drm? ( wayland )
 	fbcon? ( !tslib )
 	gles? (
 		|| ( X wayland )
@@ -170,7 +171,7 @@ src_configure() {
 
 	local emesonargs=(
 		-Demotion-generic-loaders-disabler=$(usex vlc '' vlc)
-		-Demotion-loaders-disabler=libvlc,gstreamer,$(usex gstreamer '' 'gstreamer1,')$(usex xine '' xine)
+		-Demotion-loaders-disabler=libvlc,gstreamer$(usex gstreamer '' ',gstreamer1')$(usex xine '' ',xine')
 
 		-Dlua-interpreter=$(usex luajit luajit lua)
 		-Dbindings=$(usex luajit 'luajit,' '')cxx
