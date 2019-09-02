@@ -7,9 +7,9 @@ inherit eutils l10n
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="EFL Dynamic EDC edtiro"
-#HOMEPAGE="https://www.enlightenment.org/"
 HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
-EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
+EGIT_REPO_URI="https://github.com/hermet/enventor"
+#EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
@@ -21,15 +21,17 @@ RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${P/_/-}"
-DOCS=( AUTHORS NEWS README )
+DOCS=( AUTHORS NEWS README.md )
 
 src_prepare() {
-	eapply -p0 "${FILESDIR}/enventor_eo_prefix_fix.patch"
+	einfo "Applying patch for README file"
+	eapply -p1 "${FILESDIR}/installation.patch"
 	eapply_user
-	[ ${PV} = 9999 ] && eautoreconf
+	eautoreconf
 }
 
 src_configure() {
+	eautoreconf
 	local config=(
 		$(use_enable nls)
 		$(use_enable static-libs static)
