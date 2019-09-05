@@ -2,7 +2,10 @@
 
 # enlightenment-live
 
-Enlightenment WM latest stable version and live ebuilds
+Enlightenment WM live ebuilds. You will find three sets:
+* enlightenment-core-9999 - EFL + E + Terminology
+* enlightenment-apps-9999 - Several apps based on EFL (torrent client, IRC client, and many more)
+* enlightenment-dev-9999 - Tools for E development 
 
 ## Usage
 

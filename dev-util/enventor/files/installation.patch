@@ -1,0 +1,19 @@
+diff --git a/Makefile.am b/Makefile.am
+index 1a867bc..71cdc8e 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -11,12 +11,12 @@ libtool \
+ missing
+ 
+ filesdir = $(datadir)/$(PACKAGE)/docs
+-files_DATA = README
++files_DATA = README.md
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+ EXTRA_DIST = \
+-README \
++README.md \
+ AUTHORS \
+ COPYING \
+ autogen.sh
