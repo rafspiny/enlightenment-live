@@ -40,6 +40,7 @@ src_configure() {
 		-Dnls=$(usex nls true false)
 		-Dpam=$(usex pam true false)
 		-Dlogind=$(usex systemd true false)
+		-Dconsolekit=$(usex consolekit true false)
 	)
 	meson_src_configure
 }
