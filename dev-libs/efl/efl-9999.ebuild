@@ -171,7 +171,7 @@ src_configure() {
 
 	local emesonargs=(
 		-Demotion-generic-loaders-disabler=$(usex vlc '' vlc)
-		-Demotion-loaders-disabler=libvlc,gstreamer$(usex gstreamer '' ',gstreamer1')$(usex xine '' ',xine')
+		-Demotion-loaders-disabler=libvlc$(usex gstreamer '' ',gstreamer1')$(usex xine '' ',xine')
 
 		-Dlua-interpreter=$(usex luajit luajit lua)
 		-Dbindings=$(usex luajit 'luajit,' '')cxx
