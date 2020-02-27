@@ -21,10 +21,7 @@ IUSE="+gstreamer vlc xine"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
-	|| ( dev-libs/efl[gstreamer] dev-libs/efl[xine] dev-libs/efl[vlc] )
-	gstreamer? ( dev-libs/efl[gstreamer] )
-	vlc? ( dev-libs/efl[vlc] )
-	xine? ( dev-libs/efl[xine] )
+	dev-libs/efl[gstreamer]
 "
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
