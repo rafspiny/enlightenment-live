@@ -3,7 +3,7 @@
 
 EAPI=7
 
-[ "${PV}" = 9999 ] && inherit git-r3 meson
+[ "${PV}" = 9999 ] && inherit git-r3 meson xdg-utils
 
 DESCRIPTION="System and process monitor written with EFL"
 HOMEPAGE="https://www.enlightenment.org/"
@@ -28,5 +28,10 @@ src_test() {
 
 src_install() {
 	meson_src_install
-	xdg_icon_cache_update()
 }
+
+pkg_postinst()
+{
+	xdg_icon_cache_update
+}
+
