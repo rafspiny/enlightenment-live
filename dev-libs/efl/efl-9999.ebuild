@@ -9,7 +9,6 @@ inherit eutils gnome2-utils pax-utils xdg-utils
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
-#EGIT_REPO_URI="https://github.com/enlightenment/${PN}.git"
 #[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
@@ -31,7 +30,7 @@ REQUIRED_USE="
 	pulseaudio?	( sound )
 	sdl?		( opengl )
 	vnc?        ( X fbcon )
-	wayland?	( egl !opengl gles )
+	wayland?	( || ( egl opengl gles ) )
 	xim?		( X )
 "
 
@@ -61,6 +60,7 @@ RDEPEND="
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
+		media-plugins/gst-plugins-meta:1.0
 	)
 	gnutls? ( net-libs/gnutls )
 	!gnutls? (
