@@ -22,13 +22,11 @@ REQUIRED_USE="
 	fbcon? ( !tslib )
 	gles? (
 		|| ( X wayland )
-		!sdl
 		egl
 	)
 	ibus? ( glib )
 	opengl?		( || ( X sdl wayland ) )
 	pulseaudio?	( sound )
-	sdl?		( opengl )
 	vnc?        ( X fbcon )
 	wayland?	( || ( egl opengl gles ) )
 	xim?		( X )
