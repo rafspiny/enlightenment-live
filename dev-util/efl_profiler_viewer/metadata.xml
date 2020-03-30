@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment Window Manager.</description>
+	</maintainer>
+	<longdescription>EFL Profiling Viewer - developer application for graphical view and analyze log-files, that was created by efl_debug.</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
