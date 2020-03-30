@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit meson
+inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment DR19 window manager"
