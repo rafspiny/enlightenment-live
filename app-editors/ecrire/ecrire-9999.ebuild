@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils cmake-utils
+inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment experimental text editor"
@@ -14,27 +14,25 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE=""
+IUSE="nls"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
 	"
-DEPEND="${RDEPEND}"
+DEPEND="
+	${RDEPEND}
+	nls? ( sys-devel/gettext )
+"
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	mkdir build
-	cd build
-	cmake-utils_src_prepare
-}
-
 src_configure() {
-	cmake-utils_src_configure
+	local emesonargs=(
+		-Dnls=true
+	)
+	meson_src_configure
 }
 
 src_install() {
-	default
-	cmake-utils_src_install
-	prune_libtool_files
+	meson_src_install
 }
