@@ -1,9 +1,9 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit eutils
+inherit meson
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 MY_PN="${PN/enlightenment-/}"
 
@@ -22,29 +22,24 @@ DEPEND="
 	nls? ( sys-devel/gettext )
 "
 
-S="${WORKDIR}"/"${MY_P}"
+S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
 	default
 	cd enlightenment-extra-9999
-	bash autogen.sh
-
-	#autotools-utils_src_configure
 	# Fix a QA issue, https://phab.enlightenment.org/T7167
 	sed -i '/Version=/d' data/desktop/extra.desktop* || die
 }
 
 src_configure() {
 	cd enlightenment-extra-9999
-	local myconf=(
-		$(use_enable nls)
+	local emesonargs=(
+		-Dnls=true
 	)
-
-	econf "${myconf[@]}"
+	meson_src_configure
 }
 
 src_install() {
 	cd enlightenment-extra-9999
-	default
-	find "${D}" -name '*.la' -delete || die
+	meson_src_install
 }

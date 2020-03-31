@@ -6,7 +6,7 @@ language: python
 python:
     - pypy
 env:
-    - PORTAGE_VER="2.3.67"
+    - PORTAGE_VER="2.3.96"
 before_install:
     - sudo apt-get -qq update
     - pip install lxml pyyaml
@@ -28,7 +28,7 @@ before_script:
     #- SIZE=$(stat -c %s .travis.yml.upstream)
     #- if ! cmp -n $SIZE -s .travis.yml .travis.yml.upstream; then echo -e "\e[31m !!! .travis.yml outdated! Update available https://github.com/mrueg/repoman-travis \e[0m" > /tmp/update ; fi
     - cd enlightenment-live
-# repoman is not able to cope with the files in portage/arch/<ARCH>/package.use.mask to mask ISE flags for a specific arch
+# repoman is not able to cope with the files in portage/arch/<ARCH>/package.use.mask to mask USE flags for a specific arch
 # Taking care of that by temporary removing those USE flags
 
     - mkdir -p /var/cache/profiles/arch/alpha/ && cat profiles/alpha/package.use.mask >> /var/cache/profiles/arch/alpha/package.use.mask
