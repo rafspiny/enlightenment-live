@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>EFL based sticky notes program.</description>
+	</maintainer>
+	<longdescription>Sticky notes application based on EFL. See https://github.com/jf-simon/enotes</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
