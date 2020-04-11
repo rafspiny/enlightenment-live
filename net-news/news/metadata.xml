@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment news reader gadget .</description>
+	</maintainer>
+	<longdescription>Enlightenment news reader gadget. See https://github.com/jf-simon/news</longdescription>
+	<use>
+	</use>
+
+</pkgmetadata>
