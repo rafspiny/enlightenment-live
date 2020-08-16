@@ -257,6 +257,9 @@ src_configure() {
 	if use !ppm ; then
 		combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}pmaps"
 	fi
+	if use !postscript; then
+		combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}ps"
+	fi
 
 	emesonargs+=(
 		-Decore-imf-loaders-disabler="$combined_imf"
