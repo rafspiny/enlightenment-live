@@ -9,6 +9,8 @@ inherit eutils gnome2-utils pax-utils xdg-utils
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
+#EGIT_REPO_URI="file:///data/projects/efl"
+
 #[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
@@ -238,7 +240,7 @@ src_configure() {
 		fi
 	done
 	# Checking evas loaders
-	combined_evas_loaders=""
+	combined_evas_loaders="avif"
 	for token in bmp dds eet gif ico json pdf psd raw svg tga tiff xcf xpm webp; do
 		if use !$token ; then
 			combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}$token"
