@@ -8,7 +8,6 @@
 	</maintainer>
 	<longdescription>The Enlightenment WM based on the EFL. See http://www.enlightenment.org</longdescription>
 	<use>
-		<flag name="pm-utils">Adds support for suspend/resume the system through sys-power/pm-utils</flag>
 		<flag name="udev">Use sys-fs/udev to determine available devices</flag>
 		<flag name="ukit">Use upower/udisks to automount devices</flag>
 		<flag name="eeze">Use eeze to mount/unmount devices trough udev</flag>

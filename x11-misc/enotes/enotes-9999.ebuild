@@ -20,4 +20,3 @@ DEPEND="${RDEPEND}
 	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
-
