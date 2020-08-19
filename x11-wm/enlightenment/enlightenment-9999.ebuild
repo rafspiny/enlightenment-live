@@ -38,7 +38,7 @@ IUSE_E_MODULES=(
 	"${E_MODULES_DEFAULT[@]/#/+enlightenment_modules_}"
 	"${E_MODULES[@]/#/enlightenment_modules_}"
 )
-IUSE="doc +eeze egl nls pam pm-utils static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]}"
+IUSE="doc +eeze egl nls pam static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]}"
 
 # maybe even dev-libs/wlc for wayland USE flag
 RDEPEND="
@@ -49,7 +49,6 @@ RDEPEND="
 	enlightenment_modules_mixer? ( >=media-libs/alsa-lib-1.0.8 )
 	nls? ( sys-devel/gettext )
 	pam? ( sys-libs/pam )
-	pm-utils? ( sys-power/pm-utils )
 	systemd? ( sys-apps/systemd )
 	wayland? (
 		>=dev-libs/wayland-1.3.0

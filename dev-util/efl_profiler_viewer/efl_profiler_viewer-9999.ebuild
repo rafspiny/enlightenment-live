@@ -26,7 +26,6 @@ DEPEND="${RDEPEND}"
 #S="${WORKDIR}/${P}"
 DOCS=( AUTHORS NEWS README )
 
-
 src_configure() {
 	local mycmakeargs=(
 	)
