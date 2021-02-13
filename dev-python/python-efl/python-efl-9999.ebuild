@@ -10,7 +10,7 @@ EAPI=7
 #E_PKG_IUSE="examples"
 #E_PYTHON="yes"
 
-PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9}} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3

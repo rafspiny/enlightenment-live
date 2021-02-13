@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit multilib cmake-utils eutils l10n
+inherit multilib cmake eutils l10n
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="EFL Profiler Viewer"
@@ -30,5 +30,5 @@ src_configure() {
 	local mycmakeargs=(
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }

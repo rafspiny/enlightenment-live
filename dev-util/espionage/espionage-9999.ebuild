@@ -4,7 +4,7 @@
 EAPI=7
 
 # Add experimental python3_{5,7} support, which needs testing!
-PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9}} )
 
 inherit distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3

@@ -5,7 +5,7 @@ EAPI=7
 
 # FIXME: There were python 3.{2,4} implementations listed.
 # Probably this ebuild also supports python 3.{5,6,7}. Needs testing!
-PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9}} )
 
 inherit distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3

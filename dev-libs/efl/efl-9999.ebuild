@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -69,7 +69,7 @@ RDEPEND="
 	harfbuzz? ( media-libs/harfbuzz )
 	hyphen? ( dev-libs/hyphen )
 	ibus? ( app-i18n/ibus )
-	jpeg2k? ( media-libs/openjpeg:0= )
+	jpeg2k? ( media-libs/openjpeg )
 	libuv? ( dev-libs/libuv )
 	luajit? ( dev-lang/luajit:= )
 	!luajit? ( dev-lang/lua:* )
@@ -170,9 +170,6 @@ src_configure() {
 	fi
 
 	local emesonargs=(
-		-Demotion-generic-loaders-disabler=$(usex vlc '' vlc)
-		-Demotion-loaders-disabler=libvlc$(usex gstreamer '' ',gstreamer1')$(usex xine '' ',xine')
-
 		-Dlua-interpreter=$(usex luajit luajit lua)
 		-Dbindings=$(usex luajit 'luajit,' '')cxx
 		# Add a mono use flag to build mono binding
@@ -218,7 +215,6 @@ src_configure() {
 
 		-Deeze=true
 		-Dlibmount=true
-		-Devas-modules=shared
 	)
 	# Options dependant on others
 	if use X; then
@@ -272,6 +268,7 @@ src_configure() {
 	fi
 	if use opengl ; then
 			emesonargs+=( -Dopengl=full )
+			einfo "Using full as a backend."
 	elif use egl && use gles ; then
 			emesonargs+=( -Dopengl=es-egl )
 			einfo "Using es-egl as a backend."
