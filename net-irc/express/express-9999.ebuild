@@ -1,10 +1,10 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit meson xdg
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment IRC client"
 HOMEPAGE="https://www.enlightenment.org/"
@@ -14,29 +14,25 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0.17/${PV%%_*}"
 
-IUSE="doc nls static-libs"
+IUSE="nls"
 
 RDEPEND="
-	>=dev-libs/efl-1.10.0
+	>=dev-libs/efl-1.18.0
 	"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig
+	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
 
-src_prepare() {
-	[ ${PV} = 9999 ] && eautoreconf
-}
-
 src_configure() {
-	local config=(
-		$(use_enable nls)
-		$(use_enable static-libs static)
+	local emesonargs=(
+		-Dnls=$(usex nls true false)
 	)
-
-	econf "${config[@]}"
+	meson_src_configure
 }
 
 src_install() {
-	default
-	prune_libtool_files
+	meson_src_install
 }
+

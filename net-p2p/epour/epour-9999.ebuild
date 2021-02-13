@@ -5,7 +5,7 @@ EAPI=7
 
 # TODO: re-add python 3.7 support, once python-distutils-extra and
 # libtorrent-rasterbar have it supported.
-PYTHON_COMPAT=( python3_{5,6} )
+PYTHON_COMPAT=( python{2_7,3_{5,6,7,8}} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
