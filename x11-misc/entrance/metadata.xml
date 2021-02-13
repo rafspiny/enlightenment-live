@@ -8,7 +8,6 @@
 	</maintainer>
 	<longdescription>Entrance is EFL Unix Display Manager. Entrance allows a user to choose a X WM/Desktop session to launch. Entrance is alive and working again for logging into X sessions! The project has been resurrected from the dead to live on once again...</longdescription>
 	<use>
-		<flag name="consolekit">Enables support for authorization using consolekit</flag>
 		<flag name="pam">PAM support</flag>
 	</use>
 </pkgmetadata>

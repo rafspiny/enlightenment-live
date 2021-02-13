@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,13 +15,12 @@ LICENSE="GPL-3"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="consolekit debug nls pam systemd"
+IUSE="debug nls pam systemd"
 
 RDEPEND="
 	dev-libs/efl[X]
 	nls? ( sys-devel/gettext )
 	pam? ( sys-libs/pam )
-	consolekit? ( sys-auth/consolekit )
 	systemd? ( sys-apps/systemd )
 "
 
@@ -40,7 +39,6 @@ src_configure() {
 		-Dnls=$(usex nls true false)
 		-Dpam=$(usex pam true false)
 		-Dlogind=$(usex systemd true false)
-		-Dconsolekit=$(usex consolekit true false)
 	)
 	meson_src_configure
 }
