@@ -170,9 +170,6 @@ src_configure() {
 	fi
 
 	local emesonargs=(
-		-Demotion-generic-loaders-disabler=$(usex vlc '' vlc)
-		-Demotion-loaders-disabler=libvlc$(usex gstreamer '' ',gstreamer1')$(usex xine '' ',xine')
-
 		-Dlua-interpreter=$(usex luajit luajit lua)
 		-Dbindings=$(usex luajit 'luajit,' '')cxx
 		# Add a mono use flag to build mono binding
@@ -218,7 +215,6 @@ src_configure() {
 
 		-Deeze=true
 		-Dlibmount=true
-		-Devas-modules=shared
 	)
 	# Options dependant on others
 	if use X; then
@@ -272,6 +268,7 @@ src_configure() {
 	fi
 	if use opengl ; then
 			emesonargs+=( -Dopengl=full )
+			einfo "Using full as a backend."
 	elif use egl && use gles ; then
 			emesonargs+=( -Dopengl=es-egl )
 			einfo "Using es-egl as a backend."

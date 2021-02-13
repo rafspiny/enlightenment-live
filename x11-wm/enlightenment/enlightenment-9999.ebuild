@@ -46,6 +46,7 @@ RDEPEND="
 	virtual/udev
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
+	x11-apps/setxkbmap
 	enlightenment_modules_mixer? ( >=media-libs/alsa-lib-1.0.8 )
 	nls? ( sys-devel/gettext )
 	pam? ( sys-libs/pam )
