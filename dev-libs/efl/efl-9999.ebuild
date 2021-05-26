@@ -17,7 +17,7 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz hyphen +ibus +ico jpeg2k json libuv luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
 	drm? ( wayland )
@@ -67,6 +67,7 @@ RDEPEND="
 		ssl? ( dev-libs/openssl:0= )
 	)
 	harfbuzz? ( media-libs/harfbuzz )
+	heif? ( media-libs/libheif )
 	hyphen? ( dev-libs/hyphen )
 	ibus? ( app-i18n/ibus )
 	jpeg2k? ( media-libs/openjpeg )
@@ -237,7 +238,7 @@ src_configure() {
 	done
 	# Checking evas loaders
 	combined_evas_loaders="avif"
-	for token in bmp dds eet gif ico json pdf psd raw svg tga tiff xcf xpm webp; do
+	for token in bmp dds eet gif heif ico json pdf psd raw svg tga tiff xcf xpm webp; do
 		if use !$token ; then
 			combined_evas_loaders="${combined_evas_loaders}${combined_evas_loaders:+,}$token"
 		fi

@@ -28,6 +28,7 @@
 		<flag name="gnutls">Prefer net-libs/gnutls as SSL/TLS provider (ineffective with USE=-ssl) </flag>
 		<flag name="gstreamer">use gstreamer 1.0 support</flag>
 		<flag name="harfbuzz">Enable complex text shaping and layout support</flag>
+		<flag name="heif">Enable HEIF loader</flag>
 		<flag name="hyphen">Enable text hyphenation support</flag>
 		<flag name="ibus">Enable Intelligent Input Bus</flag>
 		<flag name="ico">Enable Ico image loader</flag>
