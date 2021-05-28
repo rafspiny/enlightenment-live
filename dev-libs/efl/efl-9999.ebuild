@@ -17,7 +17,7 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
 	drm? ( wayland )
@@ -172,9 +172,10 @@ src_configure() {
 
 	local emesonargs=(
 		-Dlua-interpreter=$(usex luajit luajit lua)
-		-Dbindings=$(usex luajit 'luajit,' '')cxx
+		-Dbindings=$(usex lua 'lua,' '')cxx
 		# Add a mono use flag to build mono binding
 
+		$(meson_use lua elua)
 		$(meson_use sound audio)
 		$(meson_use pulseaudio pulseaudio)
 		$(meson_use systemd systemd)
