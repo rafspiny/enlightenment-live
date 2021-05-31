@@ -36,6 +36,7 @@
 		<flag name="json">Add support for json evas loader</flag>
 		<flag name="libuv">Enable dev-libs/libuv support</flag>
 		<flag name="luajit">USE dev-lang/luajit instead of dev-lang/lua</flag>
+		<flag name="lua">Build support for lua bindings</flag>
 		<flag name="nls">Add Native Language Support (using gettext - GNU locale utilities) </flag>
 		<flag name="opengl">Add support for OpenGL (3D graphics)</flag>
 		<flag name="pdf">Add general support for PDF </flag>
