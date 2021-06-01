@@ -20,7 +20,6 @@ SLOT="0"
 IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
-	drm? ( wayland )
 	fbcon? ( !tslib )
 	gles? (
 		|| ( X wayland )
