@@ -3,8 +3,8 @@
 
 EAPI=7
 
-inherit multilib cmake eutils l10n
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit cmake
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="EFL Profiler Viewer"
 #HOMEPAGE="https://www.enlightenment.org/"
