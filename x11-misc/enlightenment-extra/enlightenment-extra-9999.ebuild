@@ -9,7 +9,7 @@ MY_PN="${PN/enlightenment-/}"
 
 DESCRIPTION="An app for downloading themes and add-ons to Enlightenment WM"
 HOMEPAGE="https://extra.enlightenment.org"
-EGIT_REPO_URI="https://git.enlightenment.org/apps/${MY_PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/apps/${MY_PN}.git"
 
 LICENSE="WTFPL-2"
 SLOT="0"

@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment IRC client"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
