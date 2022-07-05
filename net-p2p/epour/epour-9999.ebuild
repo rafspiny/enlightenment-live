@@ -1,11 +1,11 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 # TODO: re-add python 3.7 support, once python-distutils-extra and
 # libtorrent-rasterbar have it supported.
-PYTHON_COMPAT=( python{2_7,3_{5,6,7,8}} )
+PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9}} )
 
 inherit eutils distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
@@ -22,7 +22,15 @@ IUSE=""
 RDEPEND="dev-python/python-distutils-extra[${PYTHON_USEDEP}]
 		>=dev-libs/efl-1.15.0
 		~dev-python/python-efl-9999[${PYTHON_USEDEP}]
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+		>=net-libs/libtorrent-rasterbar-1.0.10:=[python]
+=======
+=======
+>>>>>>> Stashed changes
+		dev-python/pyxdg[${PYTHON_USEDEP}]
 		>=net-libs/libtorrent-rasterbar-1.0.10:=[python,${PYTHON_USEDEP}]
+>>>>>>> Stashed changes
 		sys-apps/dbus
 		x11-misc/xdg-utils
 		${PYTHON_DEPS}"
