@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Enlightenment News Feed.</description>
+	</maintainer>
+	<longdescription>The Enlightenment news feed apploication writtedn with EFL</longdescription>
+	<use>
+	</use>
+</pkgmetadata>

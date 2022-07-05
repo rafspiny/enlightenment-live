@@ -1,14 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit eutils gnome2-utils pax-utils xdg-utils
 [ "${PV}" = 9999 ] && inherit git-r3 meson
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="file:///data/projects/efl"
 
 #[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
@@ -33,6 +33,7 @@ REQUIRED_USE="
 	xim?		( X )
 "
 
+# Possibly, the media-libs/libjpeg-turbo dependency can be removed
 RDEPEND="
 	app-arch/lz4:0=
 	net-misc/curl
@@ -40,7 +41,8 @@ RDEPEND="
 	sys-apps/dbus
 	>=sys-apps/util-linux-2.20.0
 	sys-libs/zlib:=
-	virtual/jpeg:0=
+	media-libs/libjpeg-turbo
+	media-libs/libjxl
 	virtual/udev
 	avahi? ( net-dns/avahi )
 	connman? ( net-misc/connman )
@@ -151,10 +153,10 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-BDEPEND="
-	virtual/p/followed-cams/kgconfig
-	doc? ( app-doc/doxygen )
-"
+#BDEPEND="
+#	virtual/p/followed-cams/kgconfig
+#	doc? ( app-doc/doxygen )
+#"
 
 S="${WORKDIR}/${P/_/-}"
 

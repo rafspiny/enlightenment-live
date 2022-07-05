@@ -1,14 +1,14 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="https://git.enlightenment.org/core/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="https://github.com/Enlightenment/enlightenment.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
