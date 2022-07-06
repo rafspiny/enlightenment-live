@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="EFL user interface for connman"
 HOMEPAGE="https://www.enlightenment.org"
-EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
 LICENSE="BSD-2"
