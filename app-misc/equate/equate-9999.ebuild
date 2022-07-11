@@ -8,7 +8,7 @@ inherit eutils autotools
 
 DESCRIPTION="Enlightenment calculator"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
@@ -27,6 +27,7 @@ src_prepare() {
 	# Rerun autotools
 	einfo "Regenerating autotools files..."
 	eautoreconf
+	eapply_user
 }
 
 src_configure() {
