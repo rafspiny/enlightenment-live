@@ -7,7 +7,7 @@ EAPI=8
 
 DESCRIPTION="System and process monitor written with EFL"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="ISC"
 SLOT="0"

@@ -8,7 +8,7 @@ inherit meson xdg
 
 DESCRIPTION="Enlightenment IRC client"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
