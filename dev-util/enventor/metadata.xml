@@ -7,7 +7,4 @@
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
 	<longdescription>Enventor, which is also known as EDC (Edje Data Collections) Editor, is a EDC script editor tool that supports text editing and previewing functions for the EDC source code. See http://www.enlightenment.org/about-enventor</longdescription>
-	<use>
-	</use>
-
 </pkgmetadata>

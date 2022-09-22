@@ -3,8 +3,7 @@
 
 EAPI=7
 
-inherit eutils autotools
-[ "${PV}" = 9999 ] && inherit git-r3
+inherit autotools git-r3
 
 DESCRIPTION="Enlightenment calculator"
 HOMEPAGE="https://www.enlightenment.org/"

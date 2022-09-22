@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>Equate is a simply calculator that uses EFL.</description>
 	</maintainer>
-	<longdescription>Simply calculator for enlightenment</longdescription>
+	<longdescription>Simply calculator for enlightenment. It relies on EFL and it is very simple to use. Try it for yourself once.</longdescription>
 </pkgmetadata>

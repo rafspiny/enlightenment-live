@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>EFL interface for connman.</description>
 	</maintainer>
-	<longdescription>Econman is an EFL wrapper for connman</longdescription>
+	<longdescription>Econman is an EFL wrapper for connman. It enables us to work with wired and wireless connections through connman.</longdescription>
 </pkgmetadata>

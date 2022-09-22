@@ -1,10 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 
-inherit eutils
-[ "${PV}" = 9999 ] && inherit git-r3 autotools
+inherit git-r3 autotools
 
 DESCRIPTION="EFL user interface for connman"
 HOMEPAGE="https://www.enlightenment.org"
@@ -39,5 +38,5 @@ src_configure() {
 
 src_install() {
 	default
-	prune_libtool_files
+	find "${D}" -name '*.la' -delete || die
 }

@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>Ecrire is a simply experimental text editor.</description>
 	</maintainer>
-	<longdescription>Prototype of a text editor using EFL.</longdescription>
+	<longdescription>Prototype of a text editor using EFL. It ofefrs basic functionalities like copy and pastei, search, undo and redo.</longdescription>
 </pkgmetadata>

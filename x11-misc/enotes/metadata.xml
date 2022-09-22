@@ -7,7 +7,5 @@
 		<description>EFL based sticky notes program.</description>
 	</maintainer>
 	<longdescription>Sticky notes application based on EFL. See https://github.com/jf-simon/enotes</longdescription>
-	<use>
-	</use>
 
 </pkgmetadata>

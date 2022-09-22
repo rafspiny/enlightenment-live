@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>Python bindongs for EFL.</description>
 	</maintainer>
-	<longdescription>EFL bindings for Python.</longdescription>
+	<longdescription>EFL bindings for Python. They allow you to use the latest EFL functionalities in Python.</longdescription>
 </pkgmetadata>
