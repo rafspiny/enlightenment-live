@@ -7,7 +7,4 @@
 		<description>Enlightenment theme and background download manager.</description>
 	</maintainer>
 	<longdescription>An app for downloading themes and add-ons to Enlightenment WM. See http://www.enlightenment.org</longdescription>
-	<use>
-	</use>
-
 </pkgmetadata>

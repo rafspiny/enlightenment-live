@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit eutils gnome2-utils pax-utils xdg-utils
+inherit gnome2-utils pax-utils xdg-utils
 [ "${PV}" = 9999 ] && inherit git-r3 meson
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
@@ -131,24 +131,6 @@ RDEPEND="
 	)
 	xine? ( media-libs/xine-lib )
 	xpm? ( x11-libs/libXpm )
-
-	!dev-libs/ecore
-	!dev-libs/edbus
-	!dev-libs/eet
-	!dev-libs/eeze
-	!dev-libs/efreet
-	!dev-libs/eina
-	!dev-libs/eio
-	!dev-libs/embryo
-	!dev-libs/eobj
-	!dev-libs/ephysics
-	!media-libs/edje
-	!media-libs/emotion
-	!media-libs/ethumb
-	!media-libs/evas
-	!media-libs/elementary
-	!media-plugins/emotion_generic_players
-	!media-plugins/evas_generic_loaders
 "
 
 DEPEND="${RDEPEND}"
@@ -296,7 +278,7 @@ src_install() {
 	MAKEOPTS+=" -j1"
 
 	meson_src_install
-	prune_libtool_files
+	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {

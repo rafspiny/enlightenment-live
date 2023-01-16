@@ -7,7 +7,7 @@ inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Feature rich terminal emulator using the Enlightenment Foundation Libraries"
-HOMEPAGE="https://www.enlightenment.org/p.php?p=about/terminology"
+HOMEPAGE="https://www.enlightenment.org?p=about/terminology"
 EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 

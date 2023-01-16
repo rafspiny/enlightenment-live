@@ -25,10 +25,10 @@ SLOT="0"
 
 IUSE="doc"
 RDEPEND="
-		>=dev-python/cython-0.21[${PYTHON_USEDEP}]
-		>=dev-python/dbus-python-1.2.0-r1[${PYTHON_USEDEP}]
+		>=dev-python/cython-0.21
+		>=dev-python/dbus-python-1.2.0-r1
 		>=dev-libs/efl-1.22.99
-		doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
+		doc? ( dev-python/sphinx )
 		${PYTHON_DEPS}"
 DEPEND="${RDEPEND}"
 BDEPEND="virtual/pkgconfig"
