@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -7,7 +7,7 @@ inherit git-r3 autotools
 
 DESCRIPTION="EFL user interface for connman"
 HOMEPAGE="https://www.enlightenment.org"
-EGIT_REPO_URI="http://git.enlightenment.org/apps/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/apps/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
 LICENSE="BSD-2"

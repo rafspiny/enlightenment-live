@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,7 +8,7 @@ EAPI=6
 DESCRIPTION="EFL Dynamic EDC edtiro"
 HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
 EGIT_REPO_URI="https://github.com/hermet/enventor"
-#EGIT_REPO_URI="http://git.enlightenment.org/tools/${PN}.git"
+#EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
