@@ -1,0 +1,10 @@
+name: 'QA check with repoman'
+on: [push, pull_request]
+jobs:
+    repoman:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: pkgcore/pkgcheck-action@v1
+              with:
+                args: --config=--config .pkgcheck.conf
