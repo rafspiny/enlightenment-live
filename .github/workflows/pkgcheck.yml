@@ -1,4 +1,4 @@
-name: 'QA check with repoman'
+name: 'QA check with pkgcheck'
 on: [push, pull_request]
 jobs:
     repoman:
