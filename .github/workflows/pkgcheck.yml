@@ -5,6 +5,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: rafspiny/pkgcheck-action@1.0.2
+            - uses: pkgcore/pkgcheck-action@v1
               with:
                 args: --config=.pkgcheck.conf
