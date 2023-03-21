@@ -1,17 +1,14 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit gnome2-utils pax-utils xdg-utils
-[ "${PV}" = 9999 ] && inherit git-r3 meson
+inherit git-r3 meson xdg
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="file:///data/projects/efl"
-
-#[ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/libs/${PN}/${P/_/-}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
@@ -279,14 +276,4 @@ src_install() {
 
 	meson_src_install
 	find "${ED}" -name '*.la' -delete || die
-}
-
-pkg_postinst() {
-	gnome2_icon_cache_update
-	xdg_mimeinfo_database_update
-}
-
-pkg_postrm() {
-	gnome2_icon_cache_update
-	xdg_mimeinfo_database_update
 }

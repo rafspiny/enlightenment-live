@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -8,7 +8,7 @@ inherit meson xdg
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="https://github.com/Enlightenment/enlightenment.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
@@ -18,7 +18,7 @@ SLOT="0.17/${PV%%_*}"
 
 E_MODULES_DEFAULT_MESON=(
 	conf conf-applications conf-bindings conf-dialogs conf-display conf-interaction conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves conf-theme conf-window-manipulation conf-window-remembers
-	appmenu backlight battery bluez4 clock connman cpufreq everything fileman fileman-opinfo gadman geolocation ibar ibox lokker luncher mixer msgbus music-control notification packagekit pager pager-plain quickaccess start shot syscon sysinfo systray tasks teamwork temperature tiling time winlist wireless wizard xkbswitch vkbd
+	appmenu backlight battery bluez4 clock connman cpufreq everything fileman fileman-opinfo gadman geolocation ibar ibox lokker luncher mixer msgbus music-control notification packagekit pager pager-plain quickaccess start shot syscon systray tasks teamwork temperature tiling time winlist wizard xkbswitch vkbd
 )
 E_MODULES_DEFAULT=(
 	conf-applications conf-bindings conf-dialogs conf-display conf-interaction
@@ -31,14 +31,7 @@ E_MODULES_DEFAULT=(
 	teamwork temperature tiling winlist wizard xkbswitch
 	wl-weekeyboard wl-wl wl-x11
 )
-E_MODULES=(
-	packagekit wl-desktop-shell wl-drm wl-fb wl-x11 wireless wl-buffer xwayland sysinfo policy-mobile wl-text-input
-)
-IUSE_E_MODULES=(
-	"${E_MODULES_DEFAULT[@]/#/+enlightenment_modules_}"
-	"${E_MODULES[@]/#/enlightenment_modules_}"
-)
-IUSE="doc +eeze egl nls pam static-libs systemd +udev ukit wayland ${IUSE_E_MODULES[@]}"
+IUSE="doc +eeze egl nls pam static-libs systemd +udev ukit wayland ${E_MODULES_DEFAULT[@]}"
 
 # maybe even dev-libs/wlc for wayland USE flag
 RDEPEND="
@@ -47,7 +40,7 @@ RDEPEND="
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
 	x11-apps/setxkbmap
-	enlightenment_modules_mixer? ( >=media-libs/alsa-lib-1.0.8 )
+	mixer? ( >=media-libs/alsa-lib-1.0.8 )
 	nls? ( sys-devel/gettext )
 	pam? ( sys-libs/pam )
 	systemd? ( sys-apps/systemd )
@@ -95,5 +88,5 @@ src_configure() {
 
 src_install() {
 	meson_src_install
-	prune_libtool_files
+	find "${ED}" -type f -name '*.la' -delete || die
 }

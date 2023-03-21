@@ -1,13 +1,13 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit autotools git-r3
+inherit autotools git-r3 xdg
 
 DESCRIPTION="Enlightenment calculator"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
+EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"

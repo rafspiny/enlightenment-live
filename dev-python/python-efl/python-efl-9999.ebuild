@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,13 +11,14 @@ EAPI=8
 #E_PYTHON="yes"
 
 PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9,10}} )
+DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Python bindings for EFL"
-HOMEPAGE="https://www.enlightenment.org/about-epour"
-EGIT_REPO_URI="http://git.enlightenment.org/enlightenment/${PN}.git"
+HOMEPAGE="https://www.enlightenment.org/"
+EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="LGPL-2.1"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
