@@ -17,7 +17,6 @@ IUSE=""
 PYTHON_COMPAT=( python3_{5..10} )
 
 RDEPEND="
-		dev-python/python-distutils-extra
 		>=dev-libs/efl-1.15.0
 		~dev-python/python-efl-9999
 		dev-python/pyxdg
