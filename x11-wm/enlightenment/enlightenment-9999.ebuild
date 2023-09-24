@@ -19,7 +19,7 @@ LICENSE="BSD-2"
 # reset it rather than just to keep it.
 SLOT="0.17/${PV%%_*}"
 
-IUSE="acpi bluetooth connman doc exif geolocation nls pam policykit systemd udisks wayland xwayland"
+IUSE="acpi bluetooth connman doc egl exif geolocation mixer nls pam policykit systemd udisks wayland xwayland"
 
 REQUIRED_USE="xwayland? ( wayland )"
 RDEPEND="
