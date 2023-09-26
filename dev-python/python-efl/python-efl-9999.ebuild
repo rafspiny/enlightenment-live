@@ -1,11 +1,10 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-
 EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
-DISTUTILS_USE_SETUPTOOLS=no
+DISTUTILS_USE_PEP517="setuptools"
 
 inherit distutils-r1 flag-o-matic git-r3
 
@@ -16,16 +15,12 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
-KEYWORDS="amd64 ~riscv x86"
+KEYWORDS="amd64 x86"
 IUSE="doc test"
 
-RESTRICT="!test? ( test 
+RESTRICT="!test? ( test )"
 
-)"
-
-
-
-RDEPEND="=dev-libs/efl-$(ver_cut 1-2)*
+RDEPEND="=dev-libs/efl-9999*
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	sys-apps/dbus"
 DEPEND="${RDEPEND}"
@@ -83,4 +78,3 @@ python_install_all() {
 	use doc && local HTML_DOCS=( ./build/doc/html/. )
 	distutils-r1_python_install_all
 }
-

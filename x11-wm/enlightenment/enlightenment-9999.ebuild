@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit meson optfeature xdg
+inherit meson xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Enlightenment DR19 window manager"
@@ -43,7 +43,6 @@ RDEPEND="
 	wayland? (
 		|| (
 			dev-libs/efl[systemd]
-			dev-libs/efl[elogind]
 		)
 		dev-libs/efl[drm,wayland]
 		>=dev-libs/wayland-1.3.0
@@ -95,7 +94,7 @@ src_configure() {
 			-D wl-desktop-shell=true
 			-D wl-drm=true
 			-D wl-wl=true
-            -D wl-x11=true
+			-D wl-x11=true
 			-D wl-text-input=true
 			-D wl-weekeyboard=true
 			-D wayland=true
@@ -108,7 +107,7 @@ src_configure() {
 src_install() {
 	use doc && local HTML_DOCS=( doc/. )
 	meson_src_install
-    find "${ED}" -type f -name '*.la' -delete || die
+	find "${ED}" -type f -name '*.la' -delete || die
 }
 
 pkg_postinst() {

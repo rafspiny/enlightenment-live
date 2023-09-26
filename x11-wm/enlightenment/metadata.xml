@@ -49,6 +49,7 @@
 		<flag name="wl-wl">Wayland-in-Wayland module</flag>
 		<flag name="wl-x11">Wayland-in-X11 module</flag>
 		<flag name="xkbswitch">Keyboard layout configuration and switcher</flag>
+		<flag name="xwayland">Support for XWayland</flag>
 		<flag name="conf">Settings Panel</flag>
 		<flag name="conf-applications">Allows configuration of Ibar, Restart, and Startup applications</flag>
 		<flag name="conf-bindings">Input Control Settings</flag>
