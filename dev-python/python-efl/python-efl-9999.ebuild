@@ -3,25 +3,25 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
-DISTUTILS_USE_PEP517="setuptools"
+PYTHON_COMPAT=( python3_{5..11} )
+DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 flag-o-matic git-r3
+inherit distutils-r1
+[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
 HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
-#SRC_URI="https://download.enlightenment.org/rel/bindings/python/${P}.tar.xz"
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64 ~riscv x86"
 IUSE="doc test"
 
 RESTRICT="!test? ( test )"
 
-RDEPEND="=dev-libs/efl-9999*
-	dev-python/dbus-python[${PYTHON_USEDEP}]
+RDEPEND=">=dev-libs/efl-1.22.99
+    dev-python/dbus-python[${PYTHON_USEDEP}]
 	sys-apps/dbus"
 DEPEND="${RDEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
@@ -62,11 +62,11 @@ src_prepare() {
 }
 
 python_compile_all() {
+    default
+    
 	if use doc ; then
 		esetup.py build_doc --build-dir "${S}"/build/doc/
 	fi
-
-	distutils-r1_python_compile
 }
 
 python_test() {
@@ -78,3 +78,7 @@ python_install_all() {
 	use doc && local HTML_DOCS=( ./build/doc/html/. )
 	distutils-r1_python_install_all
 }
+
+
+
+S="${WORKDIR}/${P/_/-}"
