@@ -8,48 +8,55 @@ inherit meson xdg
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="https://www.enlightenment.org/"
-EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
-#EGIT_REPO_URI="https://github.com/Enlightenment/enlightenment.git"
+#EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
+EGIT_REPO_URI="file:///data/projects/enlightenment"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
+[ "${PV}" = 9999 ] || KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv x86"
 
 LICENSE="BSD-2"
-[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
+# Historically enlightenment was slotted to separate e16 from e17. e16 is now
+# packaged as x11-wm/e16, but the slot is kept because it's more complicated to
+# reset it rather than just to keep it.
 SLOT="0.17/${PV%%_*}"
 
-E_MODULES_DEFAULT_MESON=(
-	conf conf-applications conf-bindings conf-dialogs conf-display conf-interaction conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves conf-theme conf-window-manipulation conf-window-remembers
-	appmenu backlight battery bluez4 clock connman cpufreq everything fileman fileman-opinfo gadman geolocation ibar ibox lokker luncher mixer msgbus music-control notification packagekit pager pager-plain quickaccess start shot syscon systray tasks teamwork temperature tiling time winlist wizard xkbswitch vkbd
-)
-E_MODULES_DEFAULT=(
-	conf-applications conf-bindings conf-dialogs conf-display conf-interaction
-	conf-intl conf-menus conf-paths conf-performance conf-randr conf-shelves
-	conf-theme conf-window-manipulation conf-window-remembers
+IUSE="acpi bluetooth connman doc egl exif geolocation mixer nls pam policykit systemd udisks wayland xwayland"
 
-	appmenu backlight battery bluez4 clock conf connman cpufreq everything
-	fileman fileman-opinfo gadman geolocation ibar ibox lokker mixer msgbus music-control
-	notification pager pager-plain quickaccess shot start syscon systray tasks time
-	teamwork temperature tiling winlist wizard xkbswitch
-	wl-weekeyboard wl-wl wl-x11
-)
-IUSE="doc +eeze egl nls pam static-libs systemd +udev ukit wayland ${E_MODULES_DEFAULT[@]}"
-
-# maybe even dev-libs/wlc for wayland USE flag
+REQUIRED_USE="xwayland? ( wayland )"
 RDEPEND="
-	>=dev-libs/efl-9999[X,egl?,wayland?]
+	>=dev-libs/efl-9999[X,eet,fontconfig,egl?,wayland?]
 	virtual/udev
+	x11-apps/setxkbmap
+	x11-libs/libXext
 	x11-libs/libxcb
 	x11-libs/xcb-util-keysyms
-	x11-apps/setxkbmap
+	x11-misc/xkeyboard-config
+	acpi? ( sys-power/acpid )
+	bluetooth? ( net-wireless/bluez )
+	connman? ( dev-libs/efl[connman] )
+	exif? ( media-libs/libexif )
+	geolocation? ( app-misc/geoclue:2.0 )
 	mixer? ( >=media-libs/alsa-lib-1.0.8 )
-	nls? ( sys-devel/gettext )
 	pam? ( sys-libs/pam )
+	policykit? ( sys-auth/polkit )
 	systemd? ( sys-apps/systemd )
+	udisks? ( sys-fs/udisks:2 )
 	wayland? (
+		|| (
+			dev-libs/efl[systemd]
+		)
+		dev-libs/efl[drm,wayland]
 		>=dev-libs/wayland-1.3.0
 		>=dev-libs/weston-1.11.0
 		>=x11-libs/pixman-0.31.1
 		>=x11-libs/libxkbcommon-0.3.1
+
+	)
+	xwayland? (
+		dev-libs/efl[X,wayland]
+		x11-base/xwayland
 	)"
+BDEPEND="virtual/pkgconfig
+	nls? ( sys-devel/gettext )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 	dev-util/meson"
@@ -58,35 +65,53 @@ S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
 	local emesonargs=(
-		-Dinstall-sysactions=true
-		-Dinstall-enlightenment-menu=true
-		-Dfiles=true
-		-Ddevice-udev=true
-		-Dnls=$(usex nls true false)
-		-Dpam=$(usex pam true false)
-		-Dmount-udisks=$(usex ukit true false)
-		-Dmount-eeze=$(usex eeze true false)
-		-Dsystemd=$(usex systemd true false)
-		-Dmount-eeze=$(usex eeze true false)
+	    -D install-sysactions=true
+	    -D install-enlightenment-menu=true
+	    -Dfiles=true
+		-D device-udev=true
+
+		-D elput=true
+		-D install-system=true
+		-D mount-eeze=false
+		-D packagekit=false
+
+		$(meson_use udisks mount-udisks)
+		$(meson_use bluetooth bluez5)
+		$(meson_use connman)
+		$(meson_use exif libexif)
+		$(meson_use geolocation)
+		$(meson_use nls)
+		$(meson_use pam)
+		$(meson_use policykit polkit)
+		$(meson_use systemd)
+		$(meson_use wayland wl)
+		$(meson_use xwayland)
 	)
-	# TODO Should we set systemdunitdir as well?
 
-	# Check for wayland flag
-	# TODO Maybe we should check for wayland and xwayland
-	# TODO wl-text-input and wl-weekeyboard may be dependent on something else...need to check
 	if use wayland; then
-		emesonargs+=( -Dwayland=true -Dwl-buffer=true -Dwl-drm=true -Dwl-wl=true -Dwl-x11=true -Dwl-desktop-shell=true -Dwl-text-input=true -Dwl-weekeyboard=true )
+		emesonargs+=(
+			-D wl-buffer=true
+			-D wl-desktop-shell=true
+			-D wl-drm=true
+			-D wl-wl=true
+			-D wl-x11=true
+			-D wl-text-input=true
+			-D wl-weekeyboard=true
+			-D wayland=true
+		)
 	fi
-
-	# TODO This should be useless given that the default value for each and one of the module is 'true'
-	for i in ${E_MODULES_DEFAULT_MESON}; do
-		emesonargs+=( -D${i}=true )
-	done
 
 	meson_src_configure
 }
 
 src_install() {
+	use doc && local HTML_DOCS=( doc/. )
 	meson_src_install
 	find "${ED}" -type f -name '*.la' -delete || die
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	xdg_icon_cache_update
+	xdg_mimeinfo_database_update
 }

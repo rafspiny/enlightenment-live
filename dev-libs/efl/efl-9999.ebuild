@@ -3,7 +3,11 @@
 
 EAPI=7
 
-inherit git-r3 meson xdg
+
+LUA_REQ_USE="deprecated(+)"
+LUA_COMPAT=( lua5-{1,2} luajit )
+
+inherit git-r3 lua-single meson xdg
 
 DESCRIPTION="Enlightenment Foundation Core Libraries"
 HOMEPAGE="https://www.enlightenment.org/"
@@ -11,12 +15,13 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="file:///data/projects/efl"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 SLOT="0"
 
-IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles +glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
+	${LUA_REQUIRED_USE}
 	fbcon? ( !tslib )
 	gles? (
 		|| ( X wayland )
@@ -31,7 +36,7 @@ REQUIRED_USE="
 "
 
 # Possibly, the media-libs/libjpeg-turbo dependency can be removed
-RDEPEND="
+RDEPEND="${LUA_DEPS}
 	app-arch/lz4:0=
 	net-misc/curl
 	media-libs/libpng:0=
@@ -77,7 +82,7 @@ RDEPEND="
 	physics? ( sci-physics/bullet:= )
 	pixman? ( x11-libs/pixman )
 	postscript? ( app-text/libspectre:* )
-	pulseaudio? ( media-sound/pulseaudio )
+	pulseaudio? ( media-libs/libpulse )
 	raw? ( media-libs/libraw:* )
 	scim? ( app-i18n/scim )
 	sdl? (
@@ -151,8 +156,9 @@ src_configure() {
 	fi
 
 	local emesonargs=(
-		-Dlua-interpreter=$(usex luajit luajit lua)
-		-Dbindings=$(usex lua 'lua,' '')cxx
+#		-Dlua-interpreter=$(usex luajit luajit lua)
+#		-Dbindings=$(usex lua 'lua,' '')cxx
+		$(meson_use lua_single_target_luajit elua)
 		# Add a mono use flag to build mono binding
 
 		$(meson_use lua elua)

@@ -3,35 +3,82 @@
 
 EAPI=8
 
-# FIXME: They are not declared in any official eclass.
-# The enlightenment.niifaq overlay at
-# https://github.com/niifaq/enlightenment.overlay declares those in their
-# efl.eclass but this is not available here.
-#E_PKG_IUSE="examples"
-#E_PYTHON="yes"
-
-PYTHON_COMPAT=( python{2_7,3_{5,6,7,8,9,10}} )
+PYTHON_COMPAT=( python3_{5..11} )
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1
+inherit distutils-r1 flag-o-matic
 [ "${PV}" = 9999 ] && inherit git-r3
 
-DESCRIPTION="Python bindings for EFL"
-HOMEPAGE="https://www.enlightenment.org/"
+DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
+HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
-LICENSE="LGPL-2.1"
-[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
+LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
+KEYWORDS="amd64 ~riscv x86"
+IUSE="doc test"
 
-IUSE="doc"
-RDEPEND="
-		>=dev-python/cython-0.21
-		>=dev-python/dbus-python-1.2.0-r1
-		>=dev-libs/efl-1.22.99
-		doc? ( dev-python/sphinx )
-		${PYTHON_DEPS}"
+RESTRICT="!test? ( test )"
+
+RDEPEND=">=dev-libs/efl-1.22.99
+	dev-python/dbus-python[${PYTHON_USEDEP}]
+	sys-apps/dbus"
 DEPEND="${RDEPEND}"
-BDEPEND="virtual/pkgconfig"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	virtual/pkgconfig
+	doc? (
+		dev-python/sphinx[${PYTHON_USEDEP}]
+		media-gfx/graphviz
+	)"
+
+PATCHES=( "${FILESDIR}/python-efl-1.25-clang-crosscompile.patch" )
+
+src_prepare() {
+	default
+
+	# Generate our own C files, discard the bundled ones.
+	export ENABLE_CYTHON=1
+
+	# Tries to download a file under /tmp
+	rm tests/ecore/test_09_file_download.py || die
+
+	# Tries to use that file which failed to download
+	rm tests/ecore/test_10_file_monitor.py || die
+
+	# Needs an active internet connection
+	rm tests/ecore/test_11_con.py || die
+
+	# Test fails because of deleted files above
+	sed -i 's/>= 13/>= 10/g' tests/ecore/test_08_exe.py || die
+
+	# Make tests verbose
+	sed -i 's:verbosity=1:verbosity=3:' tests/00_run_all_tests.py || die
+
+	# Disable any optimization on x86, #704260
+	if use x86; then
+		filter-flags -O?
+		append-cflags -O0
+	fi
+}
+
+python_compile_all() {
+    default
+
+	if use doc ; then
+		esetup.py build_doc --build-dir "${S}"/build/doc/
+	fi
+}
+
+python_test() {
+	cd tests/ || die
+	${EPYTHON} 00_run_all_tests.py --verbose || die "Tests failed with ${EPYTHON}"
+}
+
+python_install_all() {
+	use doc && local HTML_DOCS=( ./build/doc/html/. )
+	distutils-r1_python_install_all
+}
+
+
 
 S="${WORKDIR}/${P/_/-}"
