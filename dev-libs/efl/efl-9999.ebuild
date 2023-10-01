@@ -18,20 +18,15 @@ LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 KEYWORDS="amd64 x86"
 SLOT="0"
 
-IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif gles +glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
+IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif +glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
 REQUIRED_USE="
 	${LUA_REQUIRED_USE}
 	fbcon? ( !tslib )
-	gles? (
-		|| ( X wayland )
-		egl
-	)
 	ibus? ( glib )
-	opengl?		( || ( X sdl wayland ) )
+	opengl?		( X )
 	pulseaudio?	( sound )
 	vnc?        ( X fbcon )
-	wayland?	( || ( egl opengl gles ) )
 	xim?		( X )
 "
 
@@ -59,7 +54,6 @@ RDEPEND="${LUA_DEPS}
 	fribidi? ( dev-libs/fribidi )
 	gif? ( media-libs/giflib:= )
 	glib? ( dev-libs/glib:2 )
-	gles? ( media-libs/mesa[gles2] )
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
@@ -78,6 +72,9 @@ RDEPEND="${LUA_DEPS}
 	luajit? ( dev-lang/luajit:= )
 	!luajit? ( dev-lang/lua:* )
 	nls? ( sys-devel/gettext )
+	opengl? (
+		virtual/opengl
+	)
 	pdf? ( app-text/poppler:=[cxx] )
 	physics? ( sci-physics/bullet:= )
 	pixman? ( x11-libs/pixman )
@@ -87,7 +84,6 @@ RDEPEND="${LUA_DEPS}
 	scim? ( app-i18n/scim )
 	sdl? (
 		media-libs/libsdl2
-		virtual/opengl
 	)
 	sound? ( media-libs/libsndfile )
 	svg? (
@@ -119,20 +115,11 @@ RDEPEND="${LUA_DEPS}
 		x11-libs/libXrender
 		x11-libs/libXtst
 		x11-libs/libXScrnSaver
-		opengl? (
-			x11-libs/libX11
-			x11-libs/libXrender
-			virtual/opengl
-		)
-		gles? (
-			x11-libs/libX11
-			x11-libs/libXrender
-			virtual/opengl
-			xpresent? ( x11-libs/libXpresent )
-		)
+		!opengl? ( media-libs/mesa[egl(+),gles2] )
 	)
 	xine? ( media-libs/xine-lib )
 	xpm? ( x11-libs/libXpm )
+	xpresent? ( x11-libs/libXpresent )
 "
 
 DEPEND="${RDEPEND}"
@@ -250,19 +237,18 @@ src_configure() {
 		-Devas-loaders-disabler="$combined_evas_loaders"
 	)
 
-	if use opengl && ( use gles || use egl ); then
-		einfo "You enabled both USE=opengl and USE=gles or USE=egl, but modern systems doing gl, they probably also do egl/gles.;"
-		einfo "Because of this, gl has been selected for you."
-	fi
-	if use opengl ; then
-			emesonargs+=( -Dopengl=full )
-			einfo "Using full as a backend."
-	elif use egl && use gles ; then
-			emesonargs+=( -Dopengl=es-egl )
-			einfo "Using es-egl as a backend."
+	if use wayland; then
+		einfo "Using es-egl as a backendi because you selected wayland."
+		emesonargs+=( -D opengl=es-egl )
+	elif ! use wayland && use opengl; then
+		einfo "Using full as a backend."
+		emesonargs+=( -D opengl=full )
+	elif ! use wayland && use X && ! use opengl; then
+		einfo "Using es-egl as a backend."
+		emesonargs+=( -D opengl=es-egl )
 	else
-			emesonargs+=( -Dopengl=none )
-			ewarn "Disabling gl for all backends."
+		ewarn "Disabling gl for all backends."
+		emesonargs+=( -D opengl=none )
 	fi
 
 	meson_src_configure
