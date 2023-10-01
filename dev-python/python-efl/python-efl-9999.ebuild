@@ -62,7 +62,7 @@ src_prepare() {
 }
 
 python_compile_all() {
-    default
+	default
 
 	if use doc ; then
 		esetup.py build_doc --build-dir "${S}"/build/doc/
@@ -78,7 +78,5 @@ python_install_all() {
 	use doc && local HTML_DOCS=( ./build/doc/html/. )
 	distutils-r1_python_install_all
 }
-
-
 
 S="${WORKDIR}/${P/_/-}"

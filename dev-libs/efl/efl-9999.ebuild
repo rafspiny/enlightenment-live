@@ -3,7 +3,6 @@
 
 EAPI=7
 
-
 LUA_REQ_USE="deprecated(+)"
 LUA_COMPAT=( lua5-{1,2} luajit )
 
