@@ -142,10 +142,7 @@ src_configure() {
 	fi
 
 	local emesonargs=(
-#		-Dlua-interpreter=$(usex luajit luajit lua)
-#		-Dbindings=$(usex lua 'lua,' '')cxx
 		$(meson_use lua_single_target_luajit elua)
-		# Add a mono use flag to build mono binding
 
 		$(meson_use lua elua)
 		$(meson_use sound audio)
@@ -164,6 +161,7 @@ src_configure() {
 		$(meson_use physics physics)
 		-Dnetwork-backend=$(usex connman connman none)
 		-Dcrypto=$(usex ssl openssl $(usex gnutls gnutls none))
+		-Dlua-interpreter=$(usex luajit luajit lua)
 
 		$(meson_use test build-tests)
 		$(meson_use example build-examples)
