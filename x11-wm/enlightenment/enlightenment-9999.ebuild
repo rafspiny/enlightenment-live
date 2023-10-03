@@ -8,8 +8,8 @@ inherit meson xdg
 
 DESCRIPTION="Enlightenment DR19 window manager"
 HOMEPAGE="https://www.enlightenment.org/"
-#EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
-EGIT_REPO_URI="file:///data/projects/enlightenment"
+EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
+#EGIT_REPO_URI="file:///data/projects/enlightenment"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 [ "${PV}" = 9999 ] || KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv x86"
 
