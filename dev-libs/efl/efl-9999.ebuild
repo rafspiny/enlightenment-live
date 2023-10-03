@@ -161,7 +161,6 @@ src_configure() {
 		$(meson_use physics physics)
 		-Dnetwork-backend=$(usex connman connman none)
 		-Dcrypto=$(usex ssl openssl $(usex gnutls gnutls none))
-		-Dlua-interpreter=$(usex luajit luajit lua)
 
 		$(meson_use test build-tests)
 		$(meson_use example build-examples)
@@ -188,6 +187,12 @@ src_configure() {
 		-Deeze=true
 		-Dlibmount=true
 	)
+	local luaChoice="lua"
+	if use lua_single_target_luajit; then
+		luaChoice="luajit"
+	fi
+	emesonargs+=( -D lua-interpreter="${luaChoice}")
+
 	# Options dependant on others
 	if use X; then
 		emesonargs+=(
