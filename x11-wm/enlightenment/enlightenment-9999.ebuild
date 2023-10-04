@@ -97,7 +97,6 @@ src_configure() {
 			-D wl-x11=true
 			-D wl-text-input=true
 			-D wl-weekeyboard=true
-			-D wayland=true
 		)
 	fi
 

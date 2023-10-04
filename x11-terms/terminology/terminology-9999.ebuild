@@ -3,8 +3,9 @@
 
 EAPI=8
 
-inherit meson xdg
-[ "${PV}" = 9999 ] && inherit git-r3
+PYTHON_COMPAT=( python3_{9..12} )
+
+inherit meson python-any-r1 git-r3 xdg
 
 DESCRIPTION="Feature rich terminal emulator using the Enlightenment Foundation Libraries"
 HOMEPAGE="https://www.enlightenment.org?p=about/terminology"
@@ -15,19 +16,37 @@ LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE=""
+IUSE="extras nls"
 
-RDEPEND=">=dev-libs/efl-1.18.0"
-DEPEND="${RDEPEND}
+RDEPEND="|| ( dev-libs/efl[X] dev-libs/efl[wayland] )
+	app-arch/lz4
+	>=dev-libs/efl-1.26.1[eet,fontconfig]"
+DEPEND="${RDEPEND}"
+BDEPEND="${PYTHON_DEPS}
+	virtual/libintl
 	virtual/pkgconfig
-	dev-util/meson"
+	nls? ( sys-devel/gettext )"
 
 S="${WORKDIR}/${P/_/-}"
 
+pkg_setup() {
+	python-any-r1_pkg_setup
+}
+
+src_prepare() {
+	default
+
+	# Fix python shebangs for python-exec[-native-symlinks], #766081
+	local shebangs=($(grep -rl "#!/usr/bin/env python3" || die))
+	python_fix_shebang -q ${shebangs[*]}
+}
+
 src_configure() {
 	local emesonargs=(
-		-Dnls=true
+		$(meson_use nls)
+		$(meson_use extras tests)
 	)
+
 	meson_src_configure
 }
 
