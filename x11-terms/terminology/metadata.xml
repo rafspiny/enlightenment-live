@@ -6,5 +6,8 @@
 		<name>Raffaele</name>
 		<description>Terminology: Enlightenment terminal.</description>
 	</maintainer>
+	<use>
+		<flag name="extras">Install additional testing tools</flag>
+	</use>
 	<longdescription>The enlightenment terminal emulator. See http://www.enlightenment.org/about-terminology</longdescription>
 </pkgmetadata>
