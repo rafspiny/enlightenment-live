@@ -187,6 +187,11 @@ src_configure() {
 		-Deeze=true
 		-Dlibmount=true
 	)
+	local bindingsList="cxx,"
+	use lua_single_target_luajit && bindingsList+="lua,"
+	[[ ! -z "$bindingsList" ]] && bindingsList=${bindingsList::-1}
+	emesonargs+=( -D bindings="${bindingsList}" )
+
 	local luaChoice="lua"
 	if use lua_single_target_luajit; then
 		luaChoice="luajit"
