@@ -11,11 +11,11 @@ inherit distutils-r1 flag-o-matic
 
 DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
 HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
-EGIT_REPO_URI="https://github.com/DaveMDS/${PN}.git
+EGIT_REPO_URI="https://github.com/DaveMDS/${PN}.git"
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
-KEYWORDS="amd64 ~riscv x86"
+KEYWORDS="~amd64 ~riscv ~x86"
 IUSE="doc test"
 
 RESTRICT="!test? ( test )"
@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/efl-1.22.99
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	sys-apps/dbus"
 DEPEND="${RDEPEND}"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+BDEPEND="=dev-python/cython-0.29.36
 	virtual/pkgconfig
 	doc? (
 		dev-python/sphinx[${PYTHON_USEDEP}]
