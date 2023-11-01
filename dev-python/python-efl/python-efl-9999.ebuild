@@ -11,7 +11,7 @@ inherit distutils-r1 flag-o-matic
 
 DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
 HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
-EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
+EGIT_REPO_URI="https://github.com/DaveMDS/${PN}.git
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
