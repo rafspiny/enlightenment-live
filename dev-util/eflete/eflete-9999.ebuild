@@ -1,14 +1,13 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="Edje Theme Editor - a theme graphical editor"
-#HOMEPAGE="https://www.enlightenment.org/"
-HOMEPAGE="https://git.enlightenment.org/tools/eflete.git/about/"
-EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
+HOMEPAGE="https://git.enlightenment.org/dimmus/eflete.git/"
+EGIT_REPO_URI="https://git.enlightenment.org/dimmus/eflete.git"
 
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
