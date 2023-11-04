@@ -28,4 +28,3 @@ src_prepare() {
 	# Fix a QA issue, https://phab.enlightenment.org/T7167
 	sed -i '/Version=/d' data/desktop/extra.desktop* || die
 }
-

@@ -24,7 +24,7 @@ RDEPEND=">=dev-libs/efl-1.22.99
 	dev-python/dbus-python[${PYTHON_USEDEP}]
 	sys-apps/dbus"
 DEPEND="${RDEPEND}"
-BDEPEND="=dev-python/cython-0.29.36
+BDEPEND="=dev-python/cython-0.29.36-r0
 	virtual/pkgconfig
 	doc? (
 		dev-python/sphinx[${PYTHON_USEDEP}]
