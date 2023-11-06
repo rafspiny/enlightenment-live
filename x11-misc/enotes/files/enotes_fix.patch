@@ -1,0 +1,13 @@
+diff --git a/src/bin/enotes_main.c b/src/bin/enotes_main.c
+index 7f458c8..7ea5e73 100644
+--- a/src/bin/enotes_main.c
++++ b/src/bin/enotes_main.c
+@@ -2711,7 +2711,7 @@ _enotes_new()     // create a new note an fill in all default datas
+ 
+ Eina_Bool
+ check_running_enotes()
+-text{
++{
+    FILE* fp;
+    char buf[PATH_MAX];
+    config_path = efreet_config_home_get();

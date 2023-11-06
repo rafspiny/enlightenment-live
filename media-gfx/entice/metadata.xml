@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>rafspiny@gmail.com</email>
+		<name>Raffaele</name>
+		<description>Entice is a simple image viewer, based on the EFL (Enlightenment Foundation Libraries)</description>
+	</maintainer>
+	<longdescription>A simple cross-platform image viewer with basic features written with the EFL (Enlightement Foundation Libraries)
+
+Development is done in Enlightenment repository. Github mirror can be found here.</longdescription>
+</pkgmetadata>

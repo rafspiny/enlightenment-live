@@ -20,3 +20,7 @@ DEPEND="${RDEPEND}
 	dev-util/meson"
 
 S="${WORKDIR}/${P/_/-}"
+
+PATCHES=(
+	"${FILESDIR}/enotes_fix.patch"
+)

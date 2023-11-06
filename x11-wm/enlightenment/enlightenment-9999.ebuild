@@ -65,9 +65,9 @@ S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
 	local emesonargs=(
-	    -D install-sysactions=true
-	    -D install-enlightenment-menu=true
-	    -Dfiles=true
+		-D install-sysactions=true
+		-D install-enlightenment-menu=true
+		-Dfiles=true
 		-D device-udev=true
 
 		-D elput=true
