@@ -6,10 +6,10 @@ EAPI=8
 inherit cmake git-r3
 
 DESCRIPTION="Clouseau. EFL Profiler Viewer"
-HOMEPAGE="hhttps://github.com/dimmus/clousea"
+HOMEPAGE="https://github.com/dimmus/clouseau"
 EGIT_REPO_URI="https://github.com/dimmus/${PN}.git"
 
-LICENSE=""
+LICENSE="all-rights-reserved"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
