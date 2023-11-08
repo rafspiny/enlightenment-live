@@ -1,0 +1,43 @@
+diff --git a/src/lib/CMakeLists.txt b/src/lib/CMakeLists.txt
+index 8df7574..572211a 100644
+--- a/src/lib/CMakeLists.txt
++++ b/src/lib/CMakeLists.txt
+@@ -23,6 +23,6 @@ target_link_libraries(clouseau_debug
+ 
+ INSTALL(FILES Clouseau.h DESTINATION include)
+ 
+-INSTALL(TARGETS clouseau_debug LIBRARY DESTINATION lib)
++INSTALL(TARGETS clouseau_debug LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
+ 
+ add_subdirectory(extensions)
+diff --git a/src/lib/extensions/evlog/CMakeLists.txt b/src/lib/extensions/evlog/CMakeLists.txt
+index 8d4db1a..4250b2a 100644
+--- a/src/lib/extensions/evlog/CMakeLists.txt
++++ b/src/lib/extensions/evlog/CMakeLists.txt
+@@ -25,5 +25,5 @@ target_link_libraries(clouseau_evlog
+    ${EET_LIBRARIES}
+    )
+ 
+-INSTALL(TARGETS clouseau_evlog LIBRARY DESTINATION lib)
++INSTALL(TARGETS clouseau_evlog LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
+ 
+diff --git a/src/lib/extensions/focus_inspector/CMakeLists.txt b/src/lib/extensions/focus_inspector/CMakeLists.txt
+index 49dda7f..137b219 100644
+--- a/src/lib/extensions/focus_inspector/CMakeLists.txt
++++ b/src/lib/extensions/focus_inspector/CMakeLists.txt
+@@ -31,4 +31,4 @@ target_link_libraries(clouseau_focus_inspector
+ 
+ add_dependencies(clouseau_focus_inspector focus_inspector_theme)
+ 
+-INSTALL(TARGETS clouseau_focus_inspector LIBRARY DESTINATION lib)
++INSTALL(TARGETS clouseau_focus_inspector LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
+diff --git a/src/lib/extensions/objects_introspection/CMakeLists.txt b/src/lib/extensions/objects_introspection/CMakeLists.txt
+index 0fe4adb..d144517 100644
+--- a/src/lib/extensions/objects_introspection/CMakeLists.txt
++++ b/src/lib/extensions/objects_introspection/CMakeLists.txt
+@@ -28,4 +28,4 @@ target_link_libraries(clouseau_objects_introspection
+    clouseau_debug
+    )
+ 
+-INSTALL(TARGETS clouseau_objects_introspection LIBRARY DESTINATION lib)
++INSTALL(TARGETS clouseau_objects_introspection LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
