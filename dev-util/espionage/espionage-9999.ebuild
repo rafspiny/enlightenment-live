@@ -17,8 +17,6 @@ LICENSE="GPL-3"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE=""
-
 RDEPEND="
 	>=dev-libs/efl-9999
 	dev-python/dbus-python

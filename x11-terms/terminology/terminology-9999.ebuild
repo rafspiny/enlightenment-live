@@ -12,6 +12,7 @@ HOMEPAGE="https://www.enlightenment.org?p=about/terminology"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -26,8 +27,6 @@ BDEPEND="${PYTHON_DEPS}
 	virtual/libintl
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
-
-S="${WORKDIR}/${P/_/-}"
 
 pkg_setup() {
 	python-any-r1_pkg_setup

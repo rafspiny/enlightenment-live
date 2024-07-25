@@ -10,7 +10,9 @@ DESCRIPTION="An app for downloading themes and add-ons to Enlightenment WM"
 HOMEPAGE="https://extra.enlightenment.org"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/extra.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="WTFPL-2"
+
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -19,8 +21,6 @@ DEPEND="
 	${RDEPEND}
 	sys-devel/gettext
 "
-
-S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
 	default

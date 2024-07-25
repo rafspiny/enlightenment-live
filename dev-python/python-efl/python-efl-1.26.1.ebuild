@@ -3,15 +3,16 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{5..11} )
+PYTHON_COMPAT=( python3_{5..12} )
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 flag-o-matic
+inherit distutils-r1
 
 DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
 HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
 SRC_URI="https://download.enlightenment.org/rel/bindings/python/${PN}-${PV}.tar.xz"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
 KEYWORDS="~amd64 ~riscv ~x86"
@@ -29,7 +30,7 @@ BDEPEND="virtual/pkgconfig
 		media-gfx/graphviz
 	)"
 
-PATCHES=( 
+PATCHES=(
 	"${FILESDIR}/python-efl-1.25-clang-crosscompile.patch"
 	"${FILESDIR}/python-efl-1.26.1-distutils-dep_util.patch"
 )
@@ -55,5 +56,3 @@ python_install_all() {
 	use doc && local HTML_DOCS=( ./build/doc/html/. )
 	distutils-r1_python_install_all
 }
-
-S="${WORKDIR}/${P/_/-}"

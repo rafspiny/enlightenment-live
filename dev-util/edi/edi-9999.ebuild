@@ -9,11 +9,10 @@ DESCRIPTION="An IDE using EFL"
 HOMEPAGE="https://git.enlightenment.org/enlightenment/edi.git"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/edi.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
-
-IUSE=""
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
@@ -24,13 +23,7 @@ dev-util/bear
 dev-libs/check
 "
 
-S="${WORKDIR}/${P/_/-}"
 DOCS=( AUTHORS NEWS README.md )
-
-# only if you need to define one explicitly
-pkg_setup() {
-	llvm_pkg_setup
-}
 
 src_configure() {
 	local llvm_prefix="$(get_llvm_prefix)"

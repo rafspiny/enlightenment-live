@@ -9,12 +9,11 @@ DESCRIPTION="Entice photo browser"
 HOMEPAGE="https://git.enlightenment.org/vtorri/entice"
 EGIT_REPO_URI="https://github.com/vtorri/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="GPL-3"
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
+KEYWORDS="~amd64 ~x86"
 
 IUSE="nls"
 RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/${P/_/-}"

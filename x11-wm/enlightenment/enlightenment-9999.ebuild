@@ -13,6 +13,7 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="http://download.enlightenment.org/rel/apps/${PN}/${P/_/-}.tar.xz"
 [ "${PV}" = 9999 ] || KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv x86"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 # Historically enlightenment was slotted to separate e16 from e17. e16 is now
 # packaged as x11-wm/e16, but the slot is kept because it's more complicated to
@@ -59,8 +60,6 @@ BDEPEND="virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 DEPEND="${RDEPEND}
 	doc? ( app-text/doxygen )"
-
-S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
 	local emesonargs=(

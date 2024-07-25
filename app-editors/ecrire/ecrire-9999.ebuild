@@ -10,6 +10,7 @@ DESCRIPTION="Enlightenment experimental text editor"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -23,8 +24,6 @@ DEPEND="
 	${RDEPEND}
 	nls? ( sys-devel/gettext )
 "
-
-S="${WORKDIR}/${P/_/-}"
 
 src_configure() {
 	local emesonargs=(

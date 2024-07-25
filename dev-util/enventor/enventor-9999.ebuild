@@ -10,6 +10,7 @@ HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
 EGIT_REPO_URI="https://github.com/hermet/enventor"
 #EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -19,7 +20,6 @@ IUSE="doc nls static-libs"
 RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${P/_/-}"
 DOCS=( AUTHORS NEWS README.md )
 
 src_prepare() {

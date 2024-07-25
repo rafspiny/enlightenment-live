@@ -13,9 +13,11 @@ HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 #EGIT_REPO_URI="file:///data/projects/efl"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-KEYWORDS="amd64 x86"
+
 SLOT="0"
+KEYWORDS="amd64 x86"
 
 IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif +glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
 
@@ -98,7 +100,7 @@ RDEPEND="${LUA_DEPS}
 	wayland? (
 		>=dev-libs/wayland-1.8.0
 		>=x11-libs/libxkbcommon-0.3.1
-		media-libs/mesa[gles2,wayland]
+		media-libs/mesa[gles2(-),wayland]
 	)
 	webp? ( media-libs/libwebp:= )
 	X? (
@@ -114,7 +116,7 @@ RDEPEND="${LUA_DEPS}
 		x11-libs/libXrender
 		x11-libs/libXtst
 		x11-libs/libXScrnSaver
-		!opengl? ( media-libs/mesa[egl(+),gles2] )
+		!opengl? ( media-libs/mesa[egl(+),gles2(-)] )
 	)
 	xine? ( media-libs/xine-lib )
 	xpm? ( x11-libs/libXpm )
@@ -127,8 +129,6 @@ DEPEND="${RDEPEND}"
 #	virtual/p/followed-cams/kgconfig
 #	doc? ( app-doc/doxygen )
 #"
-
-S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
 	eapply_user
