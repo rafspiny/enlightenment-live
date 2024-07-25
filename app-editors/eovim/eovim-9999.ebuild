@@ -10,11 +10,10 @@ DESCRIPTION="EFL GUI for Neovim"
 HOMEPAGE="https://github.com/jeanguyomarch/eovim"
 EGIT_REPO_URI="https://github.com/jeanguyomarch/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="MIT"
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
-
-IUSE=""
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
@@ -24,5 +23,3 @@ RDEPEND="
 DEPEND="
 	${RDEPEND}
 "
-
-S="${WORKDIR}/${P/_/-}"

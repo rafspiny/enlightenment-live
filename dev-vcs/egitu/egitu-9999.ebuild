@@ -12,16 +12,14 @@ DESCRIPTION="GIT client based on EFL"
 HOMEPAGE="https://github.com/DaveMDS/egitu"
 EGIT_REPO_URI="https://github.com/DaveMDS/egitu.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="GPL-3"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE=""
 RDEPEND=">=dev-libs/efl-1.13.0
 		dev-python/python-efl
 		dev-python/pyxdg
 		${PYTHON_DEPS}"
 
 DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/${P/_/-}"

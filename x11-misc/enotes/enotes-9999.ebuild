@@ -9,6 +9,7 @@ DESCRIPTION="Sticky notes based on EFL"
 HOMEPAGE="https://github.com/jf-simon/enotes"
 EGIT_REPO_URI="https://github.com/jf-simon/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="GPL-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -17,9 +18,7 @@ IUSE="X"
 RDEPEND="
 	dev-libs/efl"
 DEPEND="${RDEPEND}
-	dev-util/meson"
-
-S="${WORKDIR}/${P/_/-}"
+	dev-build/meson"
 
 PATCHES=(
 	"${FILESDIR}/enotes_fix.patch"

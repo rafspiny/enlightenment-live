@@ -9,6 +9,7 @@ DESCRIPTION="Edje Theme Editor - a theme graphical editor"
 HOMEPAGE="https://git.enlightenment.org/dimmus/eflete.git/"
 EGIT_REPO_URI="https://git.enlightenment.org/dimmus/eflete.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -18,7 +19,6 @@ IUSE="doc nls static-libs"
 RDEPEND=">=dev-libs/efl-1.18.0"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${P/_/-}"
 DOCS=( AUTHORS NEWS README )
 
 src_prepare() {

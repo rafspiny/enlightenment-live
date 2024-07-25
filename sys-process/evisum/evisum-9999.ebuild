@@ -12,11 +12,9 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 LICENSE="ISC"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND="dev-libs/efl"
 RDEPEND="|| ( dev-libs/efl[X] dev-libs/efl[wayland] )"
-BDEPEND=""
 
 src_compile() {
 	meson_src_compile

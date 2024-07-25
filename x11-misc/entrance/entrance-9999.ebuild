@@ -25,7 +25,7 @@ RDEPEND="
 "
 
 DEPEND="${RDEPEND}
-	dev-util/meson"
+	dev-build/meson"
 
 src_configure() {
 	prefix=/usr/share

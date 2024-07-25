@@ -9,18 +9,15 @@ DESCRIPTION="Enlightenment calculator"
 HOMEPAGE="https://www.enlightenment.org/"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
+S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 [ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 SLOT="0"
-
-IUSE=""
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
 	"
 DEPEND="${RDEPEND}"
-
-S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
 	# Rerun autotools

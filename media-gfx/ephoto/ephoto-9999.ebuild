@@ -21,7 +21,7 @@ RDEPEND="
 	nls? ( sys-devel/gettext )
 	"
 DEPEND="${RDEPEND}
-	dev-util/meson"
+	dev-build/meson"
 
 src_configure() {
 	meson_src_configure

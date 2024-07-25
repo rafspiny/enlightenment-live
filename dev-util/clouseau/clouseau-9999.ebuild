@@ -10,10 +10,8 @@ HOMEPAGE="https://github.com/dimmus/clouseau"
 EGIT_REPO_URI="https://github.com/dimmus/${PN}.git"
 
 LICENSE="all-rights-reserved"
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
-
-IUSE=""
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.20.0
