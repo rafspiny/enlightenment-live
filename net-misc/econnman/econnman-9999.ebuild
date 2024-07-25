@@ -17,7 +17,7 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="
-	~dev-python/python-efl-9999
+	~dev-python/python-efl-1.26.1
 	net-misc/connman:0
 "
 DEPEND="${RDEPEND}

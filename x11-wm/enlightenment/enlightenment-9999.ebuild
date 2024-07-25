@@ -58,8 +58,7 @@ RDEPEND="
 BDEPEND="virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 DEPEND="${RDEPEND}
-	doc? ( app-doc/doxygen )
-	dev-util/meson"
+	doc? ( app-doc/doxygen )"
 
 S="${WORKDIR}/${P/_/-}"
 

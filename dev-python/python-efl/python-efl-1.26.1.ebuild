@@ -7,11 +7,10 @@ PYTHON_COMPAT=( python3_{5..11} )
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1 flag-o-matic
-[ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Python bindings for Enlightenment Foundation Libraries"
 HOMEPAGE="https://github.com/DaveMDS/python-efl https://docs.enlightenment.org/python-efl/current/"
-EGIT_REPO_URI="https://github.com/DaveMDS/${PN}.git"
+SRC_URI="https://download.enlightenment.org/rel/bindings/python/${PN}-${PV}.tar.xz"
 
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
@@ -30,34 +29,13 @@ BDEPEND="virtual/pkgconfig
 		media-gfx/graphviz
 	)"
 
-PATCHES=( "${FILESDIR}/python-efl-1.25-clang-crosscompile.patch" )
+PATCHES=( 
+	"${FILESDIR}/python-efl-1.25-clang-crosscompile.patch"
+	"${FILESDIR}/python-efl-1.26.1-distutils-dep_util.patch"
+)
 
 src_prepare() {
 	default
-
-	# Generate our own C files, discard the bundled ones.
-	export ENABLE_CYTHON=1
-
-	# Tries to download a file under /tmp
-	rm tests/ecore/test_09_file_download.py || die
-
-	# Tries to use that file which failed to download
-	rm tests/ecore/test_10_file_monitor.py || die
-
-	# Needs an active internet connection
-	rm tests/ecore/test_11_con.py || die
-
-	# Test fails because of deleted files above
-	sed -i 's/>= 13/>= 10/g' tests/ecore/test_08_exe.py || die
-
-	# Make tests verbose
-	sed -i 's:verbosity=1:verbosity=3:' tests/00_run_all_tests.py || die
-
-	# Disable any optimization on x86, #704260
-	if use x86; then
-		filter-flags -O?
-		append-cflags -O0
-	fi
 }
 
 python_compile_all() {

@@ -1,0 +1,22 @@
+diff -Naur a/efl/utils/setup.py b/efl/utils/setup.py
+index e47578f..5990489 100644
+--- a/efl/utils/setup.py
++++ b/efl/utils/setup.py
+@@ -16,7 +16,7 @@
+ # along with this Python-EFL.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ import os
+-import distutils
++from distutils import dep_util
+ import distutils.command.build
+ from distutils.log import warn, info, error
+ 
+@@ -68,7 +68,7 @@ class build_edc(distutils.cmd.Command):
+             sources.extend( os.path.join(root, name) for name in files )
+ 
+         edj_file = os.path.join('build', 'themes', '%s.edj' % name)
+-        if distutils.dep_util.newer_group(sources, edj_file):
++        if dep_util.newer_group(sources, edj_file):
+             info('compiling theme "%s" from edc file: "%s"' % (name, edc_file))
+             cmd = ['edje_cc', '-v',
+                    '-id', theme_dir, '-id', os.path.join(theme_dir, 'images'),

@@ -18,7 +18,7 @@ PYTHON_COMPAT=( python3_{5..10} )
 
 RDEPEND="
 		>=dev-libs/efl-1.15.0
-		~dev-python/python-efl-9999
+		~dev-python/python-efl-1.26.1
 		dev-python/pyxdg
 		sys-apps/dbus
 		x11-misc/xdg-utils

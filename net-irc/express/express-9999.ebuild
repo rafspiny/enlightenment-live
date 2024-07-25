@@ -21,7 +21,7 @@ RDEPEND="
 	"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	dev-util/meson"
+	dev-build/meson"
 
 S="${WORKDIR}/${P/_/-}"
 

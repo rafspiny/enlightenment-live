@@ -22,6 +22,6 @@ IUSE=""
 RDEPEND="
 	>=dev-libs/efl-9999
 	dev-python/dbus-python
-	>=dev-python/python-efl-9999
+	>=dev-python/python-efl-1.26.1
 "
 DEPEND="${RDEPEND}"

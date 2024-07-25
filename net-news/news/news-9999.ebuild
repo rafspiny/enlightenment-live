@@ -17,6 +17,6 @@ IUSE="X"
 RDEPEND="
 	dev-libs/efl"
 DEPEND="${RDEPEND}
-	dev-util/meson"
+	dev-build/meson"
 
 S="${WORKDIR}/${P/_/-}"
