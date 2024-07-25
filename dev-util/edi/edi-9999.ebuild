@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit git-r3 meson llvm
+inherit git-r3 meson llvm-r1
 
 DESCRIPTION="An IDE using EFL"
 HOMEPAGE="https://git.enlightenment.org/enlightenment/edi.git"
