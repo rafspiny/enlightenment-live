@@ -20,7 +20,7 @@ IUSE="nls"
 RDEPEND="
 	>=dev-libs/efl-1.18.0
 	"
-DEPEND="${RDEPEND}
+BDEPEND="${RDEPEND}
 	virtual/pkgconfig
 	dev-build/meson"
 

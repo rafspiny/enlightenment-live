@@ -24,7 +24,7 @@ RDEPEND="
 	systemd? ( sys-apps/systemd )
 "
 
-DEPEND="${RDEPEND}
+BDEPEND="${RDEPEND}
 	dev-build/meson"
 
 src_configure() {

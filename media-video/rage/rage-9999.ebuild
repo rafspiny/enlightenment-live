@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-libs/efl-1.18.0
 	dev-libs/efl[gstreamer]
 "
-DEPEND="${RDEPEND}
+BDEPEND="${RDEPEND}
 	virtual/pkgconfig
 	dev-build/meson"
 

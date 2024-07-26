@@ -17,7 +17,7 @@ IUSE="X"
 
 RDEPEND="
 	dev-libs/efl"
-DEPEND="${RDEPEND}
+BDEPEND="${RDEPEND}
 	dev-build/meson"
 
 PATCHES=(
