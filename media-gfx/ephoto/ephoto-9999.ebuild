@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-libs/efl-1.19.0[eet,X]
 	nls? ( sys-devel/gettext )
 	"
-DEPEND="${RDEPEND}
+BDEPEND="${RDEPEND}
 	dev-build/meson"
 
 src_configure() {
