@@ -6,7 +6,7 @@ EAPI=8
 inherit git-r3
 
 DESCRIPTION="Enlightenment torrent client"
-HOMEPAGE="https://www.enlightenment.org/about-epour"
+HOMEPAGE="https://git.enlightenment.org/enlightenment/epour"
 EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
 S="${WORKDIR}/${P/_/-}"

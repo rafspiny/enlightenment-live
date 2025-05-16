@@ -100,7 +100,7 @@ RDEPEND="${LUA_DEPS}
 	wayland? (
 		>=dev-libs/wayland-1.8.0
 		>=x11-libs/libxkbcommon-0.3.1
-		media-libs/mesa[gles2(-),wayland]
+		media-libs/mesa[wayland]
 	)
 	webp? ( media-libs/libwebp:= )
 	X? (
@@ -116,7 +116,7 @@ RDEPEND="${LUA_DEPS}
 		x11-libs/libXrender
 		x11-libs/libXtst
 		x11-libs/libXScrnSaver
-		!opengl? ( media-libs/mesa[egl(+),gles2(-)] )
+		!opengl? ( media-libs/mesa[opengl(+)] )
 	)
 	xine? ( media-libs/xine-lib )
 	xpm? ( x11-libs/libXpm )
