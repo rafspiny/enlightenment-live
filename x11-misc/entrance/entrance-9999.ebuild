@@ -7,7 +7,7 @@ inherit meson
 [ "${PV}" = 9999 ] && inherit git-r3
 
 DESCRIPTION="Entrance - An EFL based display manager."
-HOMEPAGEi="https://github.com/wltjr/entrance"
+HOMEPAGE="https://github.com/wltjr/entrance"
 EGIT_REPO_URI="https://github.com/Obsidian-StudiosInc/${PN}.git"
 [ "${PV}" = 9999 ] || SRC_URI="https://github.com/Obsidian-StudiosInc/${PN}/archive/v${P}.tar.gz"
 
