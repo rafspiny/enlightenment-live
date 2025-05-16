@@ -23,7 +23,6 @@
 		<flag name="fontconfig">Enable support for fontconfig</flag>
 		<flag name="fribidi">Enable bidirectional text support</flag>
 		<flag name="gif">Enable GIF image loader</flag>
-		<flag name="gles">Enable the OpenGL ES GL implementation</flag>
 		<flag name="glib">Enable <pkg>dev-libs/glib</pkg> support</flag>
 		<flag name="gnutls">Prefer net-libs/gnutls as SSL/TLS provider (ineffective with USE=-ssl) </flag>
 		<flag name="gstreamer">use gstreamer 1.0 support</flag>
