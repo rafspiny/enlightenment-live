@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0
-	>=sys-devel/llvm-11:=
+	>=llvm-core/llvm-11:=
 "
 DEPEND="${RDEPEND}
 dev-util/bear

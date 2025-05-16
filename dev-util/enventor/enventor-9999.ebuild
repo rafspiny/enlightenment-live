@@ -6,7 +6,7 @@ EAPI=7
 [ "${PV}" = 9999 ] && inherit git-r3 autotools
 
 DESCRIPTION="EFL Dynamic EDC edtiro"
-HOMEPAGE="https://git.enlightenment.org/tools/enventor.git/about/"
+HOMEPAGE="https://www.enlightenment.org/about-enventor"
 EGIT_REPO_URI="https://github.com/hermet/enventor"
 #EGIT_REPO_URI="https://git.enlightenment.org/tools/${PN}.git"
 
