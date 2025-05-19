@@ -14,7 +14,7 @@ S="${WORKDIR}/${P/_/-}"
 LICENSE="WTFPL-2"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 
 RDEPEND=">=dev-libs/efl-1.18[X]"
 DEPEND="

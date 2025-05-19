@@ -15,7 +15,7 @@ SRC_URI="https://download.enlightenment.org/rel/bindings/python/${PN}-${PV}.tar.
 S="${WORKDIR}/${P/_/-}"
 LICENSE="|| ( GPL-3 LGPL-3 )"
 SLOT="0"
-KEYWORDS="~amd64 ~riscv ~x86"
+[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~riscv ~x86"
 IUSE="doc test"
 
 RESTRICT="!test? ( test )"

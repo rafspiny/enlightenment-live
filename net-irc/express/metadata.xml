@@ -6,8 +6,6 @@
 		<name>Raffaele</name>
 		<description>Enlightenment IRC client.</description>
 	</maintainer>
-	<longdescription>The Enlightenment IRC client based on EFL. See http://www.enlightenment.org</longdescription>
-	<use>
-	</use>
+	<longdescription>IRC client. See http://www.enlightenment.org The client operates similar to the Terminology interface. (A brief example of a setup, using libera.chat and the enlightenment irc channel #e)</longdescription>
 
 </pkgmetadata>

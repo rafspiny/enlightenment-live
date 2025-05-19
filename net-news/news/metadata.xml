@@ -6,8 +6,9 @@
 		<name>Raffaele</name>
 		<description>Enlightenment news reader gadget .</description>
 	</maintainer>
-	<longdescription>Enlightenment news reader gadget. See https://github.com/jf-simon/news</longdescription>
-	<use>
-	</use>
+	<upstream>
+		<remote-id type="github">jf-simon/news</remote-id>
+	</upstream>
+	<longdescription>Enlightenment news reader gadget. See https://github.com/jf-simon/news. It allows atom/rss feeds, auto update, user set feed image, popup on new Infos, coloring the feedicons, showing/hiding Feed Images, click an image to open the articel in webbrowser</longdescription>
 
 </pkgmetadata>

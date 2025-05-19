@@ -6,5 +6,15 @@
 		<name>Raffaele</name>
 		<description>Egitu - EFL Git client.</description>
 	</maintainer>
-	<longdescription>Theis client is written using the python bindings for EFL.</longdescription>
+	<upstream>
+		<remote-id type="github">DaveMDS/egitu</remote-id>
+	</upstream>
+	<longdescription>Theis client is written using the python bindings for EFL. Among the feature: Draw the DAG of the repo
+View the diff of each revision
+Edit repository description
+Powerfull branches management
+Clone local or remote repository
+Stage/unstage files
+Commit staged changes
+Revert commits (optionally autocommit the revert)</longdescription>
 </pkgmetadata>

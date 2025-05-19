@@ -17,9 +17,10 @@ S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
 
 SLOT="0"
-KEYWORDS="amd64 x86"
+[ "${PV}" = 9999 ] || KEYWORDS="amd64 x86"
 
 IUSE="avahi +bmp connman example dds debug doc drm +eet egl eo fbcon +fontconfig fribidi gif +glib gnutls gstreamer +harfbuzz +heif hyphen +ibus +ico jpeg2k json libuv lua luajit nls opengl pdf pixman physics +ppm postscript +psd pulseaudio raw scim sdl sound ssl +svg systemd tga tiff tslib unwind v4l vlc vnc test wayland +webp +X xcf +xim xine xpresent xpm"
+RESTRICT="!test? ( test )"
 
 REQUIRED_USE="
 	${LUA_REQUIRED_USE}

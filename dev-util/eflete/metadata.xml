@@ -6,6 +6,6 @@
 		<name>Raffaele</name>
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
-	<longdescription>Eflete, Edje Theme Editor - a theme graphical editor</longdescription>
+	<longdescription>Eflete, Edje Theme Editor - a theme graphical editor. EFL Edje Theme Editor is a rich graphical tool for Enlightenment Foundation Library (EFL) that provides UI for edc markup. It is aimed at simplifying the creation and editing of widget styles. In addition, this is a great example of a full-fledged practical use of the amazing functionality of the EFL.</longdescription>
 
 </pkgmetadata>

@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>EFL torrent client.</description>
 	</maintainer>
-	<longdescription>Torrent client using libtorrent and EFL.</longdescription>
+	<longdescription>Torrent client using libtorrent and EFL. Based on libtorrent-rasterbar 0.16.0 or later, currently tested and developed with version 0.16.16</longdescription>
 </pkgmetadata>

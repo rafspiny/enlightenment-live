@@ -6,5 +6,5 @@
 		<name>Raffaele</name>
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
-	<longdescription>Espionage, a complete D-Bus inspector written in python that use the EFL</longdescription>
+	<longdescription>Espionage, a complete D-Bus inspector written in python that use the EFL. It helps you to look into D-Bus entries and debug.</longdescription>
 </pkgmetadata>
