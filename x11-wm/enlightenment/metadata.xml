@@ -6,65 +6,12 @@
 		<name>Raffaele</name>
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
-	<longdescription>The Enlightenment WM based on the EFL. See http://www.enlightenment.org</longdescription>
+	<longdescription>The Enlightenment WM based on the EFL. Enlightenment is a Window Manager, Compositor and Minimal Desktop for Linux (the primary platform), BSD and any other compatible UNIX system. Source code releases are on our download page. Visit our contribute page for our latest source code repositories. See http://www.enlightenment.org </longdescription>
 	<use>
-		<flag name="udev">Use sys-fs/udev to determine available devices</flag>
-		<flag name="ukit">Use upower/udisks to automount devices</flag>
-		<flag name="eeze">Use eeze to mount/unmount devices trough udev</flag>
-		<flag name="egl">Enable EGL support</flag>
-		<flag name="appmenu">Gadget that hold the toolbar of the foreground application</flag>
-		<flag name="backlight">Backlight control slider gadget</flag>
-		<flag name="battery">A gadget to visualize your battery status</flag>
-		<flag name="bluez4">Configure Bluetooth devices</flag>
-		<flag name="clock">Nice clock gadget to show current time</flag>
 		<flag name="connman">Control Wifi and wired networks as a user</flag>
-		<flag name="cpufreq">Gadget to monitor and change the CPU frequency</flag>
-		<flag name="everything">The run command module provides an application launcher dialog</flag>
-		<flag name="fileman">Enlightenment's integrated file manager</flag>
-		<flag name="fileman-opinfo">Can be placed on the desktop or in a shelf</flag>
-		<flag name="gadman">Module to manage gadgets on the desktop</flag>
 		<flag name="geolocation">Geolocation</flag>
-		<flag name="ibar">Iconic application launcher</flag>
-		<flag name="ibox">A home for your iconified applications</flag>
-		<flag name="lokker">Screen locker</flag>
 		<flag name="mixer">A module to provide a mixer for changing volume</flag>
-		<flag name="msgbus">DBus Extension</flag>
-		<flag name="music-control">Control your music in your shelf</flag>
-		<flag name="notification">notification-daemon alternative. Popup if an event occur</flag>
-		<flag name="pager">Gadget to allow you to visualize your virtual desktops and the windows they contain</flag>
-		<flag name="pager-plain">A simpler desktop pager</flag>
-		<flag name="quickaccess">Enlightenment Quickaccess Launcher</flag>
-		<flag name="shot">Simple screenshot+save/upload module</flag>
-		<flag name="start">Enlightenment's 'Start' button equivalent</flag>
-		<flag name="syscon">This module provides a unified popup dialog for all the system actions in Enlightenment</flag>
-		<flag name="systray">system tray that hold applications icons like Skype, Pidgin, Kopete and others</flag>
-		<flag name="tasks">Gadget to allow you to switch tasks</flag>
-		<flag name="teamwork">Enable teamwork module</flag>
-		<flag name="temperature">Temperature monitor</flag>
-		<flag name="tiling">Positions/resizes your windows tilingly</flag>
-		<flag name="time">The time module</flag>
-		<flag name="winlist">A module to show the list of client applications presently running</flag>
-		<flag name="wizard">First Run Wizard</flag>
-		<flag name="wl-weekeyboard">Wayland virtual keyboard</flag>
-		<flag name="wl-wl">Wayland-in-Wayland module</flag>
-		<flag name="wl-x11">Wayland-in-X11 module</flag>
-		<flag name="xkbswitch">Keyboard layout configuration and switcher</flag>
 		<flag name="xwayland">Support for XWayland</flag>
-		<flag name="conf">Settings Panel</flag>
-		<flag name="conf-applications">Allows configuration of Ibar, Restart, and Startup applications</flag>
-		<flag name="conf-bindings">Input Control Settings</flag>
-		<flag name="conf-dialogs">Configure default dialog properties</flag>
-		<flag name="conf-display">Used to configure your screen</flag>
-		<flag name="conf-interaction">Configure Mouse and Touch input</flag>
-		<flag name="conf-intl">Used to select a default language</flag>
-		<flag name="conf-menus">Configures menu behavior</flag>
-		<flag name="conf-paths">Specifies the Enlightenment search paths and default directories</flag>
-		<flag name="conf-performance">Used to configure certain performance related items as frame rates and cache settings</flag>
-		<flag name="conf-randr">Used to configure your screen's resolution</flag>
-		<flag name="conf-shelves">Shelf configuration dialog</flag>
-		<flag name="conf-theme">Used to configure your theme preferences</flag>
-		<flag name="conf-window-manipulation">Configures window raise, resistance, and maximize policies</flag>
-		<flag name="conf-window-remembers">Delete existing window remembers</flag>
 	</use>
 
 </pkgmetadata>

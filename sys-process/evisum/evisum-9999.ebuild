@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/${PN}.git"
 
 LICENSE="ISC"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 
 DEPEND="dev-libs/efl"
 RDEPEND="|| ( dev-libs/efl[X] dev-libs/efl[wayland] )"

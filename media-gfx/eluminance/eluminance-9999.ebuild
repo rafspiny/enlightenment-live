@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{5..11} pypy3 )
+PYTHON_COMPAT=( python3_{5..14} pypy3 )
 inherit distutils-r1 xdg
 [ "${PV}" = 9999 ] && inherit git-r3
 

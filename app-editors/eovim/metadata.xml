@@ -6,5 +6,8 @@
 		<name>Raffaele</name>
 		<description>EFL GUI for Neovim</description>
 	</maintainer>
-	<longdescription>Eovim is the Enlightened Neovim. That's just an EFL GUI client for Neovim.</longdescription>
+	<upstream>
+		<remote-id type="github">jeanguyomarch/eovim</remote-id>
+	</upstream>
+	<longdescription>Eovim is the Enlightened Neovim. That's just an EFL GUI client for Neovim. Eovim is written in plain C, with the amazing EFL. You have great added value to the text-only neovim with a minimal runtime overhead. No need to spawn a web browser to use it! If you don't like the externalized UI, it can be turned off, or changed via themes.</longdescription>
 </pkgmetadata>

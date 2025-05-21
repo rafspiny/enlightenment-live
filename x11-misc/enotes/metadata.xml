@@ -6,6 +6,9 @@
 		<name>Raffaele</name>
 		<description>EFL based sticky notes program.</description>
 	</maintainer>
-	<longdescription>Sticky notes application based on EFL. See https://github.com/jf-simon/enotes</longdescription>
+	<upstream>
+		<remote-id type="github">jf-simon/enotes</remote-id>
+	</upstream>
+	<longdescription>Sticky notes application based on EFL. See https://github.com/jf-simon/enotes. save all relevant infos automaticly. when you leave a note with the mouse!</longdescription>
 
 </pkgmetadata>

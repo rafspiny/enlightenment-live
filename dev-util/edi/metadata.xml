@@ -6,6 +6,6 @@
 		<name>Raffaele</name>
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
-	<longdescription>EDI, The Enlightened IDE - An IDE using EFL</longdescription>
+	<longdescription>EDI, The Enlightened IDE - An IDE using EFL. Edi is a development environment designed for and built using the Enlightenment Foundation Libraries (EFL). The overall project aim is to create a new, native development environment for Linux that makes getting up and running easier than ever before. With so much happening on Linux, both on desktop and mobile, this will help more developers get involved in the exciting future of open source development.</longdescription>
 
 </pkgmetadata>

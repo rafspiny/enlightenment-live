@@ -6,5 +6,8 @@
 		<name>Raffaele</name>
 		<description>EFL fast image browser.</description>
 	</maintainer>
+	<upstream>
+		<remote-id type="github">DaveMDS/eluminance</remote-id>
+	</upstream>
 	<longdescription>Another photo browser focused on speed and based on EFL. More info at https://github.com/DaveMDS/eluminance</longdescription>
 </pkgmetadata>

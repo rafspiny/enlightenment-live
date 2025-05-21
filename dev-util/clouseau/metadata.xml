@@ -6,6 +6,9 @@
 		<name>Raffaele</name>
 		<description>Enlightenment Window Manager.</description>
 	</maintainer>
+	<upstream>
+		<remote-id type="github">dimmus/clouseau</remote-id>
+	</upstream>
 	<longdescription>EFL Profiling Viewer - developer application for graphical view and analyze log-files, that was created by efl_debug.</longdescription>
 
 </pkgmetadata>

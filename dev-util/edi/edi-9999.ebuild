@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://git.enlightenment.org/enlightenment/edi.git"
 S="${WORKDIR}/${P/_/-}"
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.18.0

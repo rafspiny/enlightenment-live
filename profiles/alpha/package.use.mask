@@ -1,2 +1,0 @@
-# Mask vlc for efl on specific platform
-dev-libs/efl vlc

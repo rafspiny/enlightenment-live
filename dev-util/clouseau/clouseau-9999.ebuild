@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://github.com/dimmus/${PN}.git"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+[ "${PV}" = 9999 ] || KEYWORDS="~amd64 ~x86"
 
 RDEPEND="
 	>=dev-libs/efl-1.20.0

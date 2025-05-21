@@ -13,8 +13,7 @@ S="${WORKDIR}/${P/_/-}"
 LICENSE="GPL-2"
 SLOT="0"
 
-#DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{5..10} )
+PYTHON_COMPAT=( python3_{5..14} )
 
 RDEPEND="
 		>=dev-libs/efl-1.15.0
@@ -26,8 +25,3 @@ RDEPEND="
 		${PYTHON_DEPS}
 "
 DEPEND="${RDEPEND}"
-#src_install() {
-	#distutils-r1_src_install
-	# README.txt gets installed twice
-#	rm -r "${ED%/}"/usr/share/doc/"${PN}" || die "failed to remove dir"
-#}
