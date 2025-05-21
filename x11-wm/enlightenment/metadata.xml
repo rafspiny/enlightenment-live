@@ -8,7 +8,6 @@
 	</maintainer>
 	<longdescription>The Enlightenment WM based on the EFL. Enlightenment is a Window Manager, Compositor and Minimal Desktop for Linux (the primary platform), BSD and any other compatible UNIX system. Source code releases are on our download page. Visit our contribute page for our latest source code repositories. See http://www.enlightenment.org </longdescription>
 	<use>
-		<flag name="egl">Enable EGL support</flag>
 		<flag name="connman">Control Wifi and wired networks as a user</flag>
 		<flag name="geolocation">Geolocation</flag>
 		<flag name="mixer">A module to provide a mixer for changing volume</flag>
